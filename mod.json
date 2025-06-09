@@ -1,0 +1,105 @@
+{
+	"geode": "4.5.0",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "nwo5.trigger_indicators_v2",
+	"name": "Trigger Indicators",
+	"version": "v0.1.0-beta.1",
+	"developer": "Nwo5",
+	"tags": ["utility", "enhancement", "editor", "offline"],
+	"description": "better edit pro or smth",
+	"settings": {
+		"behaviour-title": {
+			"type": "title",
+			"name": "Indicator Behaviour"
+		},
+		"indicator-type": {
+			"type": "string",
+			"name": "Type",
+			"description": "(every mode will use individual lines for triggers) 'individual lines' draws well, individual lines to objects, 'rect' draws a rectangle around all objects, 'clustered' divides objects into, well, clusters, not that complicated you can figure it out i believe in you :3",
+			"default": "Clustered",
+			"one-of": ["Individual Lines", "Rect", "Clustered"]
+		},
+		"only-selected": {
+			"type": "bool",
+			"name": "Only Selected",
+			"description": "only show indicators for selected triggers/objs",
+			"default": false
+		},
+		"only-triggers": {
+			"type": "bool",
+			"name": "Only Triggers",
+			"description": "only show trigger to trigger connections",
+			"default": false
+		},
+		"max-distance": {
+			"type": "float",
+			"name": "Max Distance",
+			"description": "max distance between objects to draw indicators (without selecting)",
+			"default": 300,
+			"min": 0,
+			"max": 10000
+		},
+		"cluster-size": {
+			"type": "float",
+			"name": "Max Cluster Distance",
+			"description": "when clustering, any neighbours further than this will form their own cluster instead of joining one",
+			"default": 60,
+			"min": 0,
+			"max": 300
+		},
+		"cluster-max-threshold": {
+			"type": "int",
+			"name": "Cluster Max Threshold",
+			"description": "maximum amount of objects for clustering, any more and rect gets used (set to a low-ish number for performance)",
+			"default": 60,
+			"min": 1,
+			"max": 1000
+		},
+		"visuals-title": {
+			"type": "title",
+			"name": "Visuals"
+		},
+		"thickness": {
+			"type": "float",
+			"name": "Indicator Thickness",
+			"default": 1,
+			"min": 0,
+			"max": 2
+		},
+		"extras-col-one": {
+			"type": "rgba",
+			"name": "Extras Fill",
+			"description": "input/output indicators",
+			"default": [255, 255, 255, 255]
+		},
+		"extras-col-two": {
+			"type": "rgba",
+			"name": "Extras Outline",
+			"description": "input/output indicators",
+			"default": [0, 0, 0, 255]
+		},
+		"silly-title": {
+			"type": "title",
+			"name": "Silly :333"
+		},
+		"chroma": {
+			"type": "bool",
+			"name": "Chroma",
+			"description": "ooooo gay rgbtq lights :3c",
+			"default": false
+		},
+		"sayo-device-sensitivity": {
+			"type": "float",
+			"name": "Sayo Device Sensitivity",
+			"description": "new hardest acu 100% cbf 240hz sayo solid wave trail uldm jump from time machine first victor on the iss",
+			"default": 0.25,
+			"min": 0.05,
+			"max": 5
+		}
+	}
+}
