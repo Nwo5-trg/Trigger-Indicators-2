@@ -8,9 +8,18 @@
 	},
 	"id": "nwo5.trigger_indicators_v2",
 	"name": "Trigger Indicators",
-	"version": "v0.1.0-beta.1",
+	"version": "v0.1.0-beta.2",
 	"developer": "Nwo5",
 	"tags": ["utility", "enhancement", "editor", "offline"],
+	"links": {"source": "https://github.com/Nwo5-trg/Trigger-Indicators-2"},
+	"issues": {
+		"info": "@nwo5 on discord or github issues, complain about performance and the threat in readme applies to u :3",
+		"url": "https://github.com/Nwo5-trg/Trigger-Indicators-2/issues"
+	},
+	"dependencies": {
+		"geode.node-ids": ">=1.20.1"
+	},
+	"resources": {"sprites": ["resources/*.png"]},
 	"description": "better edit pro or smth",
 	"settings": {
 		"behaviour-title": {
@@ -60,6 +69,20 @@
 			"min": 1,
 			"max": 1000
 		},
+		"group-blacklist": {
+			"type": "string",
+			"name": "Group Blacklist",
+			"description": "you can input more groups like, '1,2,3,4,5'",
+			"default": "",
+			"filter": "1234567890,"
+		},
+		"trigger-blacklist": {
+			"type": "string",
+			"name": "Trigger Blacklist",
+			"description": "you can input more trigger ids like, '1,2,3,4,5'",
+			"default": "",
+			"filter": "1234567890,"
+		},
 		"visuals-title": {
 			"type": "title",
 			"name": "Visuals"
@@ -83,6 +106,13 @@
 			"description": "input/output indicators",
 			"default": [0, 0, 0, 255]
 		},
+		"settings-button-texture": {
+			"type": "string",
+			"name": "Settings Button Texture",
+			"description": "yes you have only pride flags",
+			"default": "genderfluid",
+			"one-of": ["ace", "aro", "aroace", "bi", "gay", "genderfluid", "lesbian", "nonbinary", "pride", "rainbow", "trans"]
+		},
 		"silly-title": {
 			"type": "title",
 			"name": "Silly :333"
@@ -100,6 +130,13 @@
 			"default": 0.25,
 			"min": 0.05,
 			"max": 5
+		},
+		"forced-trigger-blacklist": {
+			"type": "string",
+			"name": "Forced Trigger Blacklist",
+			"description": "mayb dont change this cuz it could break the mod but if ur feeling silly u can force the mod to try to handle these triggers",
+			"default": "899",
+			"filter": "1234567890,"
 		}
 	}
 }

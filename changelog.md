@@ -1,12 +1,22 @@
+## v0.1.0-beta.2
+- **Added** source
+- **Added** trigger blacklist thing for triggers that dont work properly (might make toggleable later or smth but prolly not cuz the fixes would be annoying)
+- **Added** group blacklist again
+- **Added** settings in editor
+- **Added** organised files a lil bit
+- **Added** node ids compat 3:
+
 ## v0.1.0-beta.1
 - **Added** rewrote ***the entire mod***
 - **Added** 50x performance boost i aint even kidding
 - **Added** seperate outputs for target and center
 - **Added** new about
+- **Added** like 3 geode versions bump
 - **Added** some super serious settings
 
 - **Removed** dynamic updating we dont need that anymore
 - **Removed** adv rand and sequence trigger support, too much performance and rewriting for smth almost noone cares about
+- **Removed** group blacklist
 
 - **Fixed** a bunch of edge cases making indicators not update
 - **Fixed** layer fade for extras

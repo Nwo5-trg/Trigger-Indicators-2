@@ -38,6 +38,7 @@ void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetO
                 std::vector<GameObject*> objVector;
                 auto pos = hasCenterObjects ? (i == 1 ? posOffset2 : posOffset1) : posOffset0;
                 drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, true, objVector);
+                
                 drawIndicatorWithRect(pos, objVector, indicatorCol);
                 break;
             }
@@ -46,6 +47,7 @@ void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetO
                 std::vector<GameObject*> clusterVector;
                 auto pos = hasCenterObjects ? (i == 1 ? posOffset2 : posOffset1) : posOffset0;
                 drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, true, clusterVector);
+
                 if (clusterVector.size() > IndicatorVars::clusterMaxThreshold) {
                     drawIndicatorWithRect(pos, clusterVector, indicatorCol);
                 } else {

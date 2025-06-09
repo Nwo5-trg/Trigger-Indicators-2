@@ -22,6 +22,10 @@ void updateIndicators(LevelEditorLayer* editor) {
 
     for (auto trigger : CCArrayExt<EffectGameObject*>(objs)) {
         if (!trigger) continue; // schizo real
+        auto id = trigger->m_objectID;
+        if (IndicatorVars::triggerBlacklist.contains(id)) continue;
+
+        if (id == 1006 && trigger->m_pulseTargetType != 1) continue; // only use trigger indicators for pulse if its targeting groups
 
         auto triggerPos = trigger->getPosition();
 
@@ -32,8 +36,8 @@ void updateIndicators(LevelEditorLayer* editor) {
         targetObjects.clear();
         centerObjects.clear();
 
-        if (target != 0) pushBackObjects(groupDict, target, targetObjects, selected, triggerPos);
-        if (center != 0) pushBackObjects(groupDict, center, centerObjects, selected, triggerPos);
+        if (target != 0 && !IndicatorVars::groupBlacklist.contains(target)) pushBackObjects(groupDict, target, targetObjects, selected, triggerPos);
+        if (center != 0 && !IndicatorVars::groupBlacklist.contains(center)) pushBackObjects(groupDict, center, centerObjects, selected, triggerPos);
 
         if (targetObjects.empty() && centerObjects.empty()) continue;
 

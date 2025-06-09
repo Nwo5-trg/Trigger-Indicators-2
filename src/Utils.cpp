@@ -75,32 +75,45 @@ std::vector<std::vector<GameObject*>> getClusters(const std::vector<GameObject*>
 }
 
 CCPoint getLineCut(CCPoint triggerPos, CCPoint p1, CCPoint p2) {
-        CCPoint centerPos = ccp(p1.x + ((p2.x - p1.x) / 2), p1.y + ((p2.y - p1.y) / 2));
-        CCPoint direction = ccp(centerPos.x - triggerPos.x, centerPos.y - triggerPos.y);
-        CCPoint intersection = centerPos;
-        float cutAtT = 1.0f;
+    CCPoint centerPos = ccp(p1.x + ((p2.x - p1.x) / 2), p1.y + ((p2.y - p1.y) / 2));
+    CCPoint direction = ccp(centerPos.x - triggerPos.x, centerPos.y - triggerPos.y);
+    CCPoint intersection = centerPos;
+    float cutAtT = 1.0f;
 
-        for (float edge : {p1.x, p2.x}) {
-            if (direction.x != 0) {
-                float t = (edge - triggerPos.x) / direction.x;
-                float y = triggerPos.y + t * direction.y;
-                if (t >= 0 && t <= 1 && y >= p1.y && y <= p2.y && t < cutAtT) {
-                    intersection = ccp(edge, y);
-                    cutAtT = t;
-                }
+    for (float edge : {p1.x, p2.x}) {
+        if (direction.x != 0) {
+            float t = (edge - triggerPos.x) / direction.x;
+            float y = triggerPos.y + t * direction.y;
+            if (t >= 0 && t <= 1 && y >= p1.y && y <= p2.y && t < cutAtT) {
+                intersection = ccp(edge, y);
+                cutAtT = t;
             }
         }
-
-        for (float edge : {p1.y, p2.y}) {
-            if (direction.y != 0) {
-                float t = (edge - triggerPos.y) / direction.y;
-                float x = triggerPos.x + t * direction.x;
-                if (t >= 0 && t <= 1 && x >= p1.x && x <= p2.x && t < cutAtT) {
-                    intersection = ccp(x, edge);
-                    cutAtT = t;
-                }
-            }
-        }
-
-        return intersection;
     }
+
+    for (float edge : {p1.y, p2.y}) {
+        if (direction.y != 0) {
+            float t = (edge - triggerPos.y) / direction.y;
+            float x = triggerPos.x + t * direction.x;
+            if (t >= 0 && t <= 1 && x >= p1.x && x <= p2.x && t < cutAtT) {
+                intersection = ccp(x, edge);
+                cutAtT = t;
+            }
+        }
+    }
+
+    return intersection;
+}
+
+std::unordered_set<int> parseIntArray(const std::string& input) {
+    std::unordered_set<int> intSet;
+    auto start = 0;
+    while (true) {
+        auto comma = input.find(',', start);
+        auto num = std::strtol(input.substr(start, comma - start).c_str(), nullptr, 10);
+        if (num != 0) intSet.insert(num);
+        if (comma == std::string::npos) break;
+        start = comma + 1;
+    }
+    return intSet;
+}
