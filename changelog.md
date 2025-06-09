@@ -1,3 +1,8 @@
+## v0.1.0-beta.3
+- **Added** alt textures for buttons (smth smth ery)
+
+- **Fixed** got rid of all globals i think (other than the namespace ones cuz obv i cant get rid of those)
+
 ## v0.1.0-beta.2
 - **Added** source
 - **Added** trigger blacklist thing for triggers that dont work properly (might make toggleable later or smth but prolly not cuz the fixes would be annoying)
