@@ -1,3 +1,6 @@
+## v0.1.0-beta.4
+- **Fixed** remembered using exists so cleaned up settings file (this does *not* deserve a version bump but wtv)
+
 ## v0.1.0-beta.3
 - **Added** alt textures for buttons (smth smth ery)
 
