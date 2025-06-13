@@ -3,6 +3,7 @@
 - **Added** spawn triggered indicators
 - **Added** misc code cleanup
 - **Added** updated about cuz go knows ppl dont check settings
+- **Added** soft toggles :3
 
 - **Fixed** center group indicators i think
 
