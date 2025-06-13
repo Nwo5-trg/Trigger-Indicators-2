@@ -15,3 +15,4 @@ void drawIndicatorWithRect(cocos2d::CCPoint triggerPos, const std::vector<GameOb
 void drawExtras(cocos2d::CCPoint objPos, float scale, int type, cocos2d::ccColor4F col, cocos2d::ccColor4F col2);
 void drawExtrasOutput(cocos2d::CCPoint pos, float scale, cocos2d::ccColor4F col1, cocos2d::ccColor4F col2);
 
+void drawSpawnIndicator(cocos2d::CCPoint objPos, float scale, float zoom);

@@ -1,3 +1,10 @@
+## v0.1.0-beta.5
+- **Added** spawn triggered only
+- **Added** spawn triggered indicators
+- **Adedd** misc code cleanup
+
+- **Fixed** center group indicators i think
+
 ## v0.1.0-beta.4
 - **Fixed** remembered using exists so cleaned up settings file (this does *not* deserve a version bump but wtv)
 

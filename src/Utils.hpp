@@ -1,6 +1,8 @@
 #pragma once
 
+// feels like a constexpr thing but im paranoid about using that for some reason (i really need to do some programming outside of geode oml)
 inline const cocos2d::ccColor4F emptyCCC4F = cocos2d::ccc4f(0.0f, 0.0f, 0.0f, 0.0f);
+inline const cocos2d::ccColor4F aquaCCC4F = cocos2d::ccc4f(0.0f, 1.0f, 1.0f, 1.0f);
 
 inline const std::unordered_map<int, cocos2d::ccColor4F> colorMap = {
     {901, {1.0f, 0.0f, 1.0f, 1.0f}}, {3006, {1.0f, 0.0f, 1.0f, 1.0f}}, {3011, {1.0f, 0.0f, 1.0f, 1.0f}},  

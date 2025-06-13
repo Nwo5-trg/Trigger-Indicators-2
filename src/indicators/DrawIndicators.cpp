@@ -6,10 +6,11 @@ using namespace geode::prelude;
 
 void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetObjects, std::vector<GameObject*>& centerObjects, float alpha) {
     auto triggerScale = trigger->getScale();
-    auto triggerPos = ccp(trigger->getPositionX(), trigger->getPositionY() - (5 * triggerScale)); // -5 cuz triggers arent centered
-    auto posOffset0 = ccp(triggerPos.x + (10 * triggerScale), triggerPos.y); // no center
-    auto posOffset1 = ccp(triggerPos.x + (10 * triggerScale), triggerPos.y + (4.5f * triggerScale)); // target
-    auto posOffset2 = ccp(triggerPos.x + (10 * triggerScale), triggerPos.y - (4.5f * triggerScale)); // center
+    auto triggerPos = trigger->getPosition();
+    auto triggerBodyPos = ccp(triggerPos.x, triggerPos.y - (5 * triggerScale)); // -5 cuz triggers arent centered
+    auto posOffset0 = ccp(triggerBodyPos.x + (10 * triggerScale), triggerBodyPos.y); // no center
+    auto posOffset1 = ccp(triggerBodyPos.x + (10 * triggerScale), triggerBodyPos.y + (4.5f * triggerScale)); // target
+    auto posOffset2 = ccp(triggerBodyPos.x + (10 * triggerScale), triggerBodyPos.y - (4.5f * triggerScale)); // center
     auto triggerID = trigger->m_objectID;
     if (trigger->m_activateGroup && triggerID == 1049) triggerID = 10001; // toggle triggers, fuck off with stop triggers im not fixing those
 
@@ -26,17 +27,16 @@ void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetO
     std::vector<GameObject*>* vectors[] = {&targetObjects, &centerObjects}; // avoids copies or smth
     for (int i = 0; i < 2; i++) {
         auto& vector = *vectors[i];
+        auto pos = hasCenterObjects ? (i == 1 ? posOffset2 : posOffset1) : posOffset0;
 
         switch (IndicatorVars::indicatorType) { // so much easier to read with curly braces im sorry
             case IndicatorType::IndividualLine: {  // individual lines
-                auto pos = hasCenterObjects ? (i == 1 ? posOffset2 : posOffset1) : posOffset0;
                 drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, false, vector);
                 break;
             }
             
             case IndicatorType::Rect: {  // rect
                 std::vector<GameObject*> objVector;
-                auto pos = hasCenterObjects ? (i == 1 ? posOffset2 : posOffset1) : posOffset0;
                 drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, true, objVector);
                 
                 drawIndicatorWithRect(pos, objVector, indicatorCol);
@@ -45,7 +45,6 @@ void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetO
 
             case IndicatorType::Clustered: { // clustered
                 std::vector<GameObject*> clusterVector;
-                auto pos = hasCenterObjects ? (i == 1 ? posOffset2 : posOffset1) : posOffset0;
                 drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, true, clusterVector);
 
                 if (clusterVector.size() > IndicatorVars::clusterMaxThreshold) {
@@ -58,8 +57,8 @@ void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetO
             }
         }
     }
-    
-    drawExtras(triggerPos, triggerScale, hasCenterObjects ? 2 : 1, extrasCol1, extrasCol2); // draw output
+    // draw output
+    drawExtras(triggerBodyPos, triggerScale, hasCenterObjects ? 2 : 1, extrasCol1, extrasCol2);
 }
 
 void drawIndividualLines( // no clue how to even format this properly
@@ -113,8 +112,9 @@ void drawIndicatorWithRect(CCPoint triggerPos, const std::vector<GameObject*>& o
 void drawExtras(CCPoint objPos, float scale, int type, ccColor4F col1, ccColor4F col2) {
     switch (type) {
         case 0: { // input
-            auto center = ccp(objPos.x - (10 * scale), objPos.y - (5 * scale)); // -5 cuz triggers arent centered
-            IndicatorVars::triggerExtraDraw->drawCircle(center, 2 * scale, col1, 0.5f * scale, col2, 32);
+            // -5 cuz i dont pass the centered pos to inputs, only for outputs cuz i already calculated that
+            auto pos = ccp(objPos.x - (10 * scale), objPos.y - (5 * scale));
+            IndicatorVars::triggerExtraDraw->drawCircle(pos, 2 * scale, col1, 0.5f * scale, col2, 32);
             break;
         }
 
@@ -138,4 +138,8 @@ void drawExtrasOutput(CCPoint pos, float scale, ccColor4F col1, ccColor4F col2) 
         ccp(pos.x + (8.0f * scale),  pos.y - (3.5f * scale)),
     };
     IndicatorVars::triggerExtraDraw->drawPolygon(polygon, 3, col1, 0.45f * scale, col2);
+}
+
+void drawSpawnIndicator(CCPoint objPos, float scale, float zoom) {
+    IndicatorVars::triggerExtraDraw->drawCircle(objPos, (25 * scale) / 2, emptyCCC4F, 0.25f / zoom, aquaCCC4F, 32);
 }

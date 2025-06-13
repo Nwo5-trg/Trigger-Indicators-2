@@ -22,12 +22,19 @@ void updateIndicators(LevelEditorLayer* editor) {
 
     for (auto trigger : CCArrayExt<EffectGameObject*>(objs)) {
         if (!trigger) continue; // schizo real
+        auto triggerPos = trigger->getPosition();
+        
+        if (IndicatorVars::spawnIndicators && trigger->m_isSpawnTriggered) { // no layer fade cuz its more optimised like this but tbf robtops doesnt do it either
+            auto triggerScale = trigger->getScale();
+            auto triggerBodyPos = ccp(triggerPos.x, triggerPos.y - (5 * triggerScale));
+            drawSpawnIndicator(triggerBodyPos, triggerScale, zoom);
+        }
+
         auto id = trigger->m_objectID;
         if (IndicatorVars::triggerBlacklist.contains(id)) continue;
 
         if (id == 1006 && trigger->m_pulseTargetType != 1) continue; // only use trigger indicators for pulse if its targeting groups
 
-        auto triggerPos = trigger->getPosition();
 
         auto selected = trigger->m_isSelected;
         if (!selected && ccpDistanceSQ(centerPos, triggerPos) > (cullDistance / zoom)) continue; // this line of code like 100x performance call ts a crypto scam
@@ -49,7 +56,10 @@ void updateIndicators(LevelEditorLayer* editor) {
 void pushBackObjects(CCDictionary* dict, int key, std::vector<GameObject*>& vector, bool triggerSelected, CCPoint triggerPos) {
     if (auto array = static_cast<CCArray*>(dict->objectForKey(key))) {
         for (auto obj : CCArrayExt<GameObject*>(array)) {
-            if (IndicatorVars::onlyTriggers && !obj->m_isTrigger) continue; // trigger only
+            if (IndicatorVars::onlyTriggers) {
+                if (!obj->m_isTrigger) continue; // trigger only
+                if (IndicatorVars::onlySpawn && !static_cast<EffectGameObject*>(obj)->m_isSpawnTriggered) continue;
+            }
 
             if (!triggerSelected) {
                 auto selected = obj->m_isSelected;

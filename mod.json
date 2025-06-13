@@ -8,7 +8,7 @@
 	},
 	"id": "nwo5.trigger_indicators_v2",
 	"name": "Trigger Indicators",
-	"version": "v0.1.0-beta.4",
+	"version": "v0.1.0-beta.5",
 	"developer": "Nwo5",
 	"tags": ["utility", "enhancement", "editor", "offline"],
 	"links": {"source": "https://github.com/Nwo5-trg/Trigger-Indicators-2"},
@@ -44,6 +44,12 @@
 			"name": "Only Triggers",
 			"description": "only show trigger to trigger connections",
 			"default": false
+		},
+		"only-spawn": {
+			"type": "bool",
+			"name": "Only Spawn",
+			"description": "only triggers only show spawn connected triggers instead of all triggers with that id",
+			"default": true
 		},
 		"max-distance": {
 			"type": "float",
@@ -82,6 +88,12 @@
 			"description": "you can input more trigger ids like, '1,2,3,4,5'",
 			"default": "",
 			"filter": "1234567890,"
+		},
+		"spawn-indicators": {
+			"type": "bool",
+			"name": "Spawn Indicators",
+			"description": "draw a circle around spawn triggered triggers like the box around touch triggered ones",
+			"default": false
 		},
 		"visuals-title": {
 			"type": "title",
