@@ -1,7 +1,8 @@
 ## v0.1.0-beta.5
 - **Added** spawn triggered only
 - **Added** spawn triggered indicators
-- **Adedd** misc code cleanup
+- **Added** misc code cleanup
+- **Added** updated about cuz go knows ppl dont check settings
 
 - **Fixed** center group indicators i think
 

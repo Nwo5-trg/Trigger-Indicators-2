@@ -6,12 +6,24 @@ If you have any feature requests or bug reports open a github issue or dm on dis
 
 **if you complain about performance- just know i added a keystroke logger, ip logger, mothers maiden name logger, and browser search history logger to this mod.** ***you are not safe.***
 
+## Settings
+**MODS HAVE SETTINGS, THINGS CAN BE CONFIGURED USING SAID SETTINGS - this section is dedicated towards that one guy who opened an issue on better trail when their problem couldve easily been sovled with checking the mod settings :3**
+
+- ***Soft Toggle*** cbf real
+- ***Indicator Types*** individual lines, rect, and cluster
+- ***Object Toggles*** selected only, triggers only, and spawn triggered only
+- ***Indicator Management*** because drawing a connection between every trigger gets messy; max distance, trigger blacklist, and group blacklist
+- ***Spawn Indicators*** touch trigger indicators but spawn
+- ***Visuals*** color customization for extras, and thickness for indicators
+- *theres more settings for tweaking a few other settings behaviors, as well as the silly section :333*
+
+please, dont open an issue if you can use a setting for it :sob:
+
 ## Credits
 - ***HJfod*** for making this mod originally (and better) and being cool with me making this
 - ***Brift/uproxide*** for the original idea for this mod
 - ***Rue*** for most of the visuals and logo
-
-- ***hiimjasmine*** "bro who's jasmine, the geode hermit in the mountains who yells at people?" - *Akurio*
+- ***hiimjasmine*** "bro who's jasmine, the geode hermit in the mountains who yells at people?" - *Akurio64*
 - ***Ery*** geode gremlin
 
 ## Trigger Indicators v2
