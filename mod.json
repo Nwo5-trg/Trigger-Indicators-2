@@ -125,6 +125,20 @@
 			"default": "genderfluid alt",
 			"one-of": ["ace", "aro", "aroace", "bi", "gay", "genderfluid", "lesbian", "nonbinary", "pride", "rainbow", "trans", "ace alt", "aro alt", "aroace alt", "bi alt", "gay alt", "genderfluid alt", "lesbian alt", "nonbinary alt", "pride alt", "rainbow alt", "trans alt"]
 		},
+		"soft-toggles-title": {
+			"type": "title",
+			"name": "Soft Toggles"
+		},
+		"disable-mod": {
+			"type": "bool",
+			"name": "Disable Mod",
+			"default": false
+		},
+		"disable-indicators": {
+			"type": "bool",
+			"name": "Disable Indicators",
+			"default": false
+		},
 		"silly-title": {
 			"type": "title",
 			"name": "Silly :333"

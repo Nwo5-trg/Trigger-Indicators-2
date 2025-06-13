@@ -6,6 +6,9 @@ using namespace IndicatorVars;
 
 void IndicatorVars::updateSettings() { // kinda randomly sorted but its an organised mess so good enough
     auto mod = Mod::get();
+    disableMod = mod->getSettingValue<bool>("disable-mod");
+    disableIndicators = mod->getSettingValue<bool>("disable-indicators");
+
     onlySelected = mod->getSettingValue<bool>("only-selected");
     onlyTriggers = mod->getSettingValue<bool>("only-triggers");
     onlySpawn = mod->getSettingValue<bool>("only-spawn");
@@ -30,7 +33,7 @@ void IndicatorVars::updateSettings() { // kinda randomly sorted but its an organ
     triggerBlacklist = parseIntArray(mod->getSettingValue<std::string>("trigger-blacklist") 
     + "," + mod->getSettingValue<std::string>("forced-trigger-blacklist")); // saves checking 2 diff sets
     
-    // spawnIndicators = mod->getSettingValue<bool>("spawn-indicators");
+    spawnIndicators = mod->getSettingValue<bool>("spawn-indicators");
     
     settingsButtonTexture = "nwo5.trigger_indicators_v2/" + mod->getSettingValue<std::string>("settings-button-texture") + ".png";
 

@@ -11,10 +11,13 @@ namespace IndicatorVars {
     inline cocos2d::CCDrawNode* triggerExtraDraw = nullptr;
     inline cocos2d::CCLayer* batchLayer = nullptr;
 
+    inline bool disableMod = false;
+    inline bool disableIndicators = false;
+
     inline bool onlySelected = false;
     inline bool onlyTriggers = false;
     inline bool onlySpawn = false;
-    inline bool spawnIndicators = true;
+    inline bool spawnIndicators = false;
     inline float maxDistance = 300.0f * 300.0f; // squaring cuz the distance function squares its results
     inline float thickness = 1.0f;
     inline float clusterSize = 1.0f;

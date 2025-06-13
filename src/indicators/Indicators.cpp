@@ -5,14 +5,16 @@
 using namespace geode::prelude;
 
 void updateIndicators(LevelEditorLayer* editor) {
+    IndicatorVars::triggerIndicatorDraw->clear();
+    IndicatorVars::triggerExtraDraw->clear();
+
+    if (IndicatorVars::disableMod) return;
+    
     auto objs = editor->m_drawGridLayer->m_effectGameObjects;
     auto groupDict = editor->m_groupDict;
     auto currentLayer = editor->m_currentLayer;
     std::vector<GameObject*> targetObjects;
     std::vector<GameObject*> centerObjects;
-
-    IndicatorVars::triggerIndicatorDraw->clear();
-    IndicatorVars::triggerExtraDraw->clear();
 
     auto winSize = CCDirector::get()->getWinSize();
     auto cullDistance = winSize.width * winSize.width;
@@ -29,6 +31,8 @@ void updateIndicators(LevelEditorLayer* editor) {
             auto triggerBodyPos = ccp(triggerPos.x, triggerPos.y - (5 * triggerScale));
             drawSpawnIndicator(triggerBodyPos, triggerScale, zoom);
         }
+
+        if (IndicatorVars::disableIndicators) continue;
 
         auto id = trigger->m_objectID;
         if (IndicatorVars::triggerBlacklist.contains(id)) continue;
