@@ -8,7 +8,7 @@
 	},
 	"id": "nwo5.trigger_indicators_v2",
 	"name": "Trigger Indicators",
-	"version": "v0.1.0-beta.5",
+	"version": "v0.1.0-beta.6",
 	"developer": "Nwo5",
 	"tags": ["utility", "enhancement", "editor", "offline"],
 	"links": {"source": "https://github.com/Nwo5-trg/Trigger-Indicators-2"},
@@ -91,7 +91,7 @@
 		},
 		"spawn-indicators": {
 			"type": "bool",
-			"name": "Spawn Indicators",
+			"name": "Enable Spawn Indicators",
 			"description": "draw a circle around spawn triggered triggers like the box around touch triggered ones",
 			"default": false
 		},
@@ -103,6 +103,13 @@
 			"type": "float",
 			"name": "Indicator Thickness",
 			"default": 1,
+			"min": 0,
+			"max": 5
+		},
+		"spawn-indicator-thickness": {
+			"type": "float",
+			"name": "Spawn Indicator Thickness",
+			"default": 0.25,
 			"min": 0,
 			"max": 2
 		},
@@ -138,6 +145,22 @@
 			"type": "bool",
 			"name": "Disable Indicators",
 			"default": false
+		},
+		"group-labels-title": {
+			"type": "title",
+			"name": "Group Labels"
+		},
+		"group-labels": {
+			"type": "bool",
+			"name": "Enable Group Labels",
+			"default": false
+		},
+		"group-labels-size": {
+			"type": "float",
+			"name": "Group Label Size",
+			"default": 0.3,
+			"min": 0,
+			"max": 2
 		},
 		"silly-title": {
 			"type": "title",

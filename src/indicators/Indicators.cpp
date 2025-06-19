@@ -7,6 +7,10 @@ using namespace geode::prelude;
 void updateIndicators(LevelEditorLayer* editor) {
     IndicatorVars::triggerIndicatorDraw->clear();
     IndicatorVars::triggerExtraDraw->clear();
+    if (IndicatorVars::groupLabels) {
+        IndicatorVars::triggerIndicatorGroupLayer->setVisible(true);
+        IndicatorVars::triggerIndicatorGroupLayer->removeAllChildrenWithCleanup(true);
+    } else IndicatorVars::triggerIndicatorGroupLayer->setVisible(false);
 
     if (IndicatorVars::disableMod) return;
     

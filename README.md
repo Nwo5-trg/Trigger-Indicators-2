@@ -14,11 +14,12 @@ If you have any feature requests or bug reports open a github issue or dm on dis
 - ***Indicator Management*** because drawing a connection between every trigger gets messy; max distance, trigger blacklist, and group blacklist
 - ***Spawn Indicators*** touch trigger indicators but spawn
 - ***Visuals*** color customization for extras, and thickness for indicators
+- ***Group Labels*** show group ids on indicators (no named editor groups support yet)
 - **theres other settings to for tweaking a few other settings behaviors, as well as the silly section :333**
 
 ## Credits
 - ***HJfod*** for making this mod originally (and better) and being cool with me making this
-- ***Brift/uproxide*** for the original idea for this mod
+- ***Brift*** for the original idea for this mod
 - ***Rue*** for most of the visuals and logo
 - ***hiimjasmine*** "bro who's jasmine, the geode hermit in the mountains who yells at people?" - *Akurio64*
 - ***Ery*** geode gremlin

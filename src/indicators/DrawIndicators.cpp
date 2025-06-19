@@ -26,32 +26,34 @@ void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetO
 
     std::vector<GameObject*>* vectors[] = {&targetObjects, &centerObjects}; // avoids copies or smth
     for (int i = 0; i < 2; i++) {
+        if (i == 1 && !hasCenterObjects) break;
+        int group = i == 1 ? trigger->m_centerGroupID : trigger->m_targetGroupID;
         auto& vector = *vectors[i];
         auto pos = hasCenterObjects ? (i == 1 ? posOffset2 : posOffset1) : posOffset0;
 
         switch (IndicatorVars::indicatorType) { // so much easier to read with curly braces im sorry
             case IndicatorType::IndividualLine: {  // individual lines
-                drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, false, vector);
+                drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, false, vector, group);
                 break;
             }
             
             case IndicatorType::Rect: {  // rect
                 std::vector<GameObject*> objVector;
-                drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, true, objVector);
+                drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, true, objVector, group);
                 
-                drawIndicatorWithRect(pos, objVector, indicatorCol);
+                drawIndicatorWithRect(pos, objVector, indicatorCol, group);
                 break;
             }
 
             case IndicatorType::Clustered: { // clustered
                 std::vector<GameObject*> clusterVector;
-                drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, true, clusterVector);
+                drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, true, clusterVector, group);
 
                 if (clusterVector.size() > IndicatorVars::clusterMaxThreshold) {
-                    drawIndicatorWithRect(pos, clusterVector, indicatorCol);
+                    drawIndicatorWithRect(pos, clusterVector, indicatorCol, group);
                 } else {
                     auto clusters = getClusters(clusterVector, IndicatorVars::clusterSize);
-                    for (auto& cluster : clusters) drawIndicatorWithRect(pos, cluster, indicatorCol);
+                    for (auto& cluster : clusters) drawIndicatorWithRect(pos, cluster, indicatorCol, group);
                 }
                 break;
             }
@@ -63,7 +65,7 @@ void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetO
 
 void drawIndividualLines( // no clue how to even format this properly
     const std::vector<GameObject*>& vector, CCPoint pos, ccColor4F indicatorCol, ccColor4F extrasCol1, ccColor4F extrasCol2,
-    bool useClusterVector, std::vector<GameObject*>& clusterVector
+    bool useClusterVector, std::vector<GameObject*>& clusterVector, int group
 ) {
     for (auto obj : vector) {
         auto isTrigger = obj->m_isTrigger;
@@ -75,17 +77,24 @@ void drawIndividualLines( // no clue how to even format this properly
         auto objScale = obj->getScale();
         auto offsetObjPos = ccp(objPos.x - (isTrigger ? (10 * objScale) : 0), objPos.y - (5 * objScale));
 
-        drawIndicator(pos, offsetObjPos, indicatorCol);
+        drawIndicator(pos, offsetObjPos, indicatorCol, group);
 
         if (isTrigger) drawExtras(objPos, objScale, 0, extrasCol1, extrasCol2);
     }
 }
 
-void drawIndicator(CCPoint triggerPos, CCPoint targetPos, ccColor4F col) {
+void drawIndicator(CCPoint triggerPos, CCPoint targetPos, ccColor4F col, int group) {
     IndicatorVars::triggerIndicatorDraw->drawSegment(triggerPos, targetPos, IndicatorVars::thickness, col);
+    if (IndicatorVars::groupLabels) {
+        auto center = ccpMidpoint(triggerPos, targetPos);
+        auto label = CCLabelBMFont::create(std::to_string(group).c_str(), "bigFont.fnt"); // could just save the group as a string but like its already unoptimized so idrc
+        label->setScale(IndicatorVars::groupLabelsSize);
+        label->setPosition(center);
+        IndicatorVars::triggerIndicatorGroupLayer->addChild(label);
+    }
 };
 
-void drawIndicatorWithRect(CCPoint triggerPos, const std::vector<GameObject*>& objs, ccColor4F col) {
+void drawIndicatorWithRect(CCPoint triggerPos, const std::vector<GameObject*>& objs, ccColor4F col, int group) {
     CCPoint p1 = ccp(FLT_MAX, FLT_MAX); // why not in utils? fuck you thats why
     CCPoint p2 = ccp(-FLT_MAX, -FLT_MAX);
     for (auto obj : objs) {
@@ -106,7 +115,7 @@ void drawIndicatorWithRect(CCPoint triggerPos, const std::vector<GameObject*>& o
     p2 = ccp(p2.x + IndicatorVars::thickness, p2.y + IndicatorVars::thickness); 
 
     IndicatorVars::triggerIndicatorDraw->drawRect(p1, p2, emptyCCC4F, IndicatorVars::thickness, col);
-    drawIndicator(triggerPos, getLineCut(triggerPos, p1, p2), col);
+    drawIndicator(triggerPos, getLineCut(triggerPos, p1, p2), col, group);
 };   
 
 void drawExtras(CCPoint objPos, float scale, int type, ccColor4F col1, ccColor4F col2) {
@@ -141,5 +150,5 @@ void drawExtrasOutput(CCPoint pos, float scale, ccColor4F col1, ccColor4F col2) 
 }
 
 void drawSpawnIndicator(CCPoint objPos, float scale, float zoom) {
-    IndicatorVars::triggerExtraDraw->drawCircle(objPos, (25 * scale) / 2, emptyCCC4F, 0.25f / zoom, aquaCCC4F, 32);
+    IndicatorVars::triggerExtraDraw->drawCircle(objPos, (25 * scale) / 2, emptyCCC4F, IndicatorVars::spawnIndicatorThickness / zoom, aquaCCC4F, 32);
 }

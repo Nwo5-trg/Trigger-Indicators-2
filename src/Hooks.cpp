@@ -13,6 +13,7 @@ class $modify(LevelEditorLayer) {
         
         IndicatorVars::triggerIndicatorDraw = nullptr;
         IndicatorVars::triggerExtraDraw = nullptr;
+        IndicatorVars::triggerIndicatorGroupLayer = nullptr;
         IndicatorVars::batchLayer = nullptr;
 
         IndicatorVars::triggerIndicatorDrawChromaNode = nullptr;
@@ -22,19 +23,22 @@ class $modify(LevelEditorLayer) {
         if (auto shaderLayer = this->getChildByType<ShaderLayer>(0)) IndicatorVars::batchLayer = shaderLayer->getChildByType<CCNode>(1)->getChildByType<CCLayer>(0);
         else IndicatorVars::batchLayer = this->getChildByType<CCNode>(1)->getChildByType<CCLayer>(0);
 
-        for (int i = 0; i < 2; i++) { // need 2 cuz indicators should render below triggers, input/output indicators should render above
+        for (int i = 0; i < 3; i++) { // need 2 cuz indicators should render below triggers, input/output indicators should render above
             auto layer = CCLayer::create();
             layer->setPosition(0.0f, 0.0f);
-            layer->setZOrder(i == 0 ? -1500 : 9999);
-            layer->setID(i == 0 ? "trigger-indicator-layer" : "trigger-extra-layer");
+            layer->setZOrder(i == 1 ? 9999 : -1500);
+            layer->setID(i == 0 ? "trigger-indicator-layer" : i == 1 ? "trigger-extra-layer" : "trigger-indicator-group-layer");
             IndicatorVars::batchLayer->addChild(layer);
-
-            auto draw = CCDrawNode::create();
-            draw->setPosition(0.0f, 0.0f);
-            draw->setBlendFunc({GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA});
-            layer->addChild(draw);
-            if (i == 0) IndicatorVars::triggerIndicatorDraw = draw;
-            else IndicatorVars::triggerExtraDraw = draw;
+            if (i == 2) IndicatorVars::triggerIndicatorGroupLayer = layer;
+            
+            if (i < 2) {
+                auto draw = CCDrawNode::create();
+                draw->setPosition(0.0f, 0.0f);
+                draw->setBlendFunc({GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA});
+                layer->addChild(draw);
+                if (i == 0) IndicatorVars::triggerIndicatorDraw = draw;
+                else IndicatorVars::triggerExtraDraw = draw;
+            }
         }
 
         { // silly stuff, has to always be active cuz u can change settings in editor now

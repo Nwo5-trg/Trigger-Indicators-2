@@ -17,6 +17,7 @@ void IndicatorVars::updateSettings() { // kinda randomly sorted but its an organ
     maxDistance = maxDistanceSetting * maxDistanceSetting;
 
     thickness = mod->getSettingValue<double>("thickness");
+    spawnIndicatorThickness = mod->getSettingValue<double>("spawn-indicator-thickness");
 
     clusterSize = mod->getSettingValue<double>("cluster-size");
     clusterMaxThreshold = mod->getSettingValue<int64_t>("cluster-max-threshold");
@@ -36,6 +37,9 @@ void IndicatorVars::updateSettings() { // kinda randomly sorted but its an organ
     spawnIndicators = mod->getSettingValue<bool>("spawn-indicators");
     
     settingsButtonTexture = "nwo5.trigger_indicators_v2/" + mod->getSettingValue<std::string>("settings-button-texture") + ".png";
+
+    groupLabels = mod->getSettingValue<bool>("group-labels");
+    groupLabelsSize = mod->getSettingValue<double>("group-labels-size");
 
     chroma = mod->getSettingValue<bool>("chroma");
     sayoDeviceSensitivity = mod->getSettingValue<double>("sayo-device-sensitivity");

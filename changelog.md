@@ -1,3 +1,8 @@
+## v0.1.0-beta.6
+- **Added** spawn triggered indicators thickness
+- **Added** group labels (no group names support cuz it crashes for me but ill add it next update i can)
+- **Added** some setting name changes
+
 ## v0.1.0-beta.5
 - **Added** spawn triggered only
 - **Added** spawn triggered indicators
