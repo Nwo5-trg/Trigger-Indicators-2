@@ -1,11 +1,11 @@
 #include "Utils.hpp"
-#include "indicators/IndicatorVariables.hpp"
+#include "Variables.hpp"
 
 using namespace geode::prelude;
 
 ccColor4F getTriggerCol(int id) { // paranoid about getting an invalid id
-    if (IndicatorVars::chroma && IndicatorVars::triggerIndicatorDrawChromaNode) { // just cuz its gay doesnt mean we dont have to null check 3:<
-        return ccc4FFromccc3B(IndicatorVars::triggerIndicatorDrawChromaNode->getColor());
+    if (Variables::chroma && Variables::triggerIndicatorDrawChromaNode) { // just cuz its gay doesnt mean we dont have to null check 3:<
+        return ccc4FFromccc3B(Variables::triggerIndicatorDrawChromaNode->getColor());
     }
     if (colorMap.contains(id)) return colorMap.at(id);
     else return ccc4f(1.0f, 1.0f, 1.0f, 1.0f);

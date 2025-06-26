@@ -1,10 +1,10 @@
-#include "IndicatorVariables.hpp"
-#include "../Utils.hpp"
+#include "Variables.hpp"
+#include "Utils.hpp"
 
 using namespace geode::prelude;
-using namespace IndicatorVars;
+using namespace Variables;
 
-void IndicatorVars::updateSettings() { // kinda randomly sorted but its an organised mess so good enough
+void Variables::updateSettings() { // kinda randomly sorted but its an organised mess so good enough
     auto mod = Mod::get();
     disableMod = mod->getSettingValue<bool>("disable-mod");
     disableIndicators = mod->getSettingValue<bool>("disable-indicators");

@@ -1,5 +1,5 @@
 #include "DrawIndicators.hpp"
-#include "IndicatorVariables.hpp"
+#include "../Variables.hpp"
 #include "../Utils.hpp"
 
 using namespace geode::prelude;
@@ -19,9 +19,9 @@ void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetO
     // layer alpha shit
     auto indicatorCol = getTriggerCol(triggerID);
     indicatorCol.a *= alpha;
-    auto extrasCol1 = IndicatorVars::extrasCol1;
+    auto extrasCol1 = Variables::extrasCol1;
     extrasCol1.a *= alpha;
-    auto extrasCol2 = IndicatorVars::extrasCol2;
+    auto extrasCol2 = Variables::extrasCol2;
     extrasCol2.a *= alpha;
 
     std::vector<GameObject*>* vectors[] = {&targetObjects, &centerObjects}; // avoids copies or smth
@@ -31,7 +31,7 @@ void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetO
         auto& vector = *vectors[i];
         auto pos = hasCenterObjects ? (i == 1 ? posOffset2 : posOffset1) : posOffset0;
 
-        switch (IndicatorVars::indicatorType) { // so much easier to read with curly braces im sorry
+        switch (Variables::indicatorType) { // so much easier to read with curly braces im sorry
             case IndicatorType::IndividualLine: {  // individual lines
                 drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, false, vector, group);
                 break;
@@ -49,10 +49,10 @@ void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetO
                 std::vector<GameObject*> clusterVector;
                 drawIndividualLines(vector, pos, indicatorCol, extrasCol1, extrasCol2, true, clusterVector, group);
 
-                if (clusterVector.size() > IndicatorVars::clusterMaxThreshold) {
+                if (clusterVector.size() > Variables::clusterMaxThreshold) {
                     drawIndicatorWithRect(pos, clusterVector, indicatorCol, group);
                 } else {
-                    auto clusters = getClusters(clusterVector, IndicatorVars::clusterSize);
+                    auto clusters = getClusters(clusterVector, Variables::clusterSize);
                     for (auto& cluster : clusters) drawIndicatorWithRect(pos, cluster, indicatorCol, group);
                 }
                 break;
@@ -84,13 +84,13 @@ void drawIndividualLines( // no clue how to even format this properly
 }
 
 void drawIndicator(CCPoint triggerPos, CCPoint targetPos, ccColor4F col, int group) {
-    IndicatorVars::triggerIndicatorDraw->drawSegment(triggerPos, targetPos, IndicatorVars::thickness, col);
-    if (IndicatorVars::groupLabels) {
+    Variables::triggerIndicatorDraw->drawSegment(triggerPos, targetPos, Variables::thickness, col);
+    if (Variables::groupLabels) {
         auto center = ccpMidpoint(triggerPos, targetPos);
         auto label = CCLabelBMFont::create(std::to_string(group).c_str(), "bigFont.fnt"); // could just save the group as a string but like its already unoptimized so idrc
-        label->setScale(IndicatorVars::groupLabelsSize);
+        label->setScale(Variables::groupLabelsSize);
         label->setPosition(center);
-        IndicatorVars::triggerIndicatorGroupLayer->addChild(label);
+        Variables::triggerIndicatorGroupLayer->addChild(label);
     }
 };
 
@@ -111,10 +111,10 @@ void drawIndicatorWithRect(CCPoint triggerPos, const std::vector<GameObject*>& o
         if (top > p2.y) p2.y = top;
     }
 
-    p1 = ccp(p1.x - IndicatorVars::thickness, p1.y - IndicatorVars::thickness); // so half the line doesnt go in the blocks
-    p2 = ccp(p2.x + IndicatorVars::thickness, p2.y + IndicatorVars::thickness); 
+    p1 = ccp(p1.x - Variables::thickness, p1.y - Variables::thickness); // so half the line doesnt go in the blocks
+    p2 = ccp(p2.x + Variables::thickness, p2.y + Variables::thickness); 
 
-    IndicatorVars::triggerIndicatorDraw->drawRect(p1, p2, emptyCCC4F, IndicatorVars::thickness, col);
+    Variables::triggerIndicatorDraw->drawRect(p1, p2, emptyCCC4F, Variables::thickness, col);
     drawIndicator(triggerPos, getLineCut(triggerPos, p1, p2), col, group);
 };   
 
@@ -123,7 +123,7 @@ void drawExtras(CCPoint objPos, float scale, int type, ccColor4F col1, ccColor4F
         case 0: { // input
             // -5 cuz i dont pass the centered pos to inputs, only for outputs cuz i already calculated that
             auto pos = ccp(objPos.x - (10 * scale), objPos.y - (5 * scale));
-            IndicatorVars::triggerExtraDraw->drawCircle(pos, 2 * scale, col1, 0.5f * scale, col2, 32);
+            Variables::triggerExtraDraw->drawCircle(pos, 2 * scale, col1, 0.5f * scale, col2, 32);
             break;
         }
 
@@ -146,9 +146,9 @@ void drawExtrasOutput(CCPoint pos, float scale, ccColor4F col1, ccColor4F col2) 
         ccp(pos.x + (8.0f * scale),  pos.y + (3.5f * scale)),
         ccp(pos.x + (8.0f * scale),  pos.y - (3.5f * scale)),
     };
-    IndicatorVars::triggerExtraDraw->drawPolygon(polygon, 3, col1, 0.45f * scale, col2);
+    Variables::triggerExtraDraw->drawPolygon(polygon, 3, col1, 0.45f * scale, col2);
 }
 
 void drawSpawnIndicator(CCPoint objPos, float scale, float zoom) {
-    IndicatorVars::triggerExtraDraw->drawCircle(objPos, (25 * scale) / 2, emptyCCC4F, IndicatorVars::spawnIndicatorThickness / zoom, aquaCCC4F, 32);
+    Variables::triggerExtraDraw->drawCircle(objPos, (25 * scale) / 2, emptyCCC4F, Variables::spawnIndicatorThickness / zoom, aquaCCC4F, 32);
 }

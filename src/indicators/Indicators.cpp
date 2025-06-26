@@ -1,18 +1,18 @@
 #include "Indicators.hpp"
 #include "DrawIndicators.hpp"
-#include "IndicatorVariables.hpp"
+#include "../Variables.hpp"
 
 using namespace geode::prelude;
 
 void updateIndicators(LevelEditorLayer* editor) {
-    IndicatorVars::triggerIndicatorDraw->clear();
-    IndicatorVars::triggerExtraDraw->clear();
-    if (IndicatorVars::groupLabels) {
-        IndicatorVars::triggerIndicatorGroupLayer->setVisible(true);
-        IndicatorVars::triggerIndicatorGroupLayer->removeAllChildrenWithCleanup(true);
-    } else IndicatorVars::triggerIndicatorGroupLayer->setVisible(false);
+    Variables::triggerIndicatorDraw->clear();
+    Variables::triggerExtraDraw->clear();
+    if (Variables::groupLabels) {
+        Variables::triggerIndicatorGroupLayer->setVisible(true);
+        Variables::triggerIndicatorGroupLayer->removeAllChildrenWithCleanup(true);
+    } else Variables::triggerIndicatorGroupLayer->setVisible(false);
 
-    if (IndicatorVars::disableMod) return;
+    if (Variables::disableMod) return;
     
     auto objs = editor->m_drawGridLayer->m_effectGameObjects;
     auto groupDict = editor->m_groupDict;
@@ -22,24 +22,24 @@ void updateIndicators(LevelEditorLayer* editor) {
 
     auto winSize = CCDirector::get()->getWinSize();
     auto cullDistance = winSize.width * winSize.width;
-    auto batchLayerPos = IndicatorVars::batchLayer->getPosition();
-    auto zoom = IndicatorVars::batchLayer->getScale();
+    auto batchLayerPos = Variables::batchLayer->getPosition();
+    auto zoom = Variables::batchLayer->getScale();
     auto centerPos = ccp(((winSize.width / 2) - batchLayerPos.x) / zoom, ((winSize.height / 2) - batchLayerPos.y) / zoom);
 
     for (auto trigger : CCArrayExt<EffectGameObject*>(objs)) {
         if (!trigger) continue; // schizo real
         auto triggerPos = trigger->getPosition();
         
-        if (IndicatorVars::spawnIndicators && trigger->m_isSpawnTriggered) { // no layer fade cuz its more optimised like this but tbf robtops doesnt do it either
+        if (Variables::spawnIndicators && trigger->m_isSpawnTriggered) { // no layer fade cuz its more optimised like this but tbf robtops doesnt do it either
             auto triggerScale = trigger->getScale();
             auto triggerBodyPos = ccp(triggerPos.x, triggerPos.y - (5 * triggerScale));
             drawSpawnIndicator(triggerBodyPos, triggerScale, zoom);
         }
 
-        if (IndicatorVars::disableIndicators) continue;
+        if (Variables::disableIndicators) continue;
 
         auto id = trigger->m_objectID;
-        if (IndicatorVars::triggerBlacklist.contains(id)) continue;
+        if (Variables::triggerBlacklist.contains(id)) continue;
 
         if (id == 1006 && trigger->m_pulseTargetType != 1) continue; // only use trigger indicators for pulse if its targeting groups
 
@@ -51,8 +51,8 @@ void updateIndicators(LevelEditorLayer* editor) {
         targetObjects.clear();
         centerObjects.clear();
 
-        if (target != 0 && !IndicatorVars::groupBlacklist.contains(target)) pushBackObjects(groupDict, target, targetObjects, selected, triggerPos);
-        if (center != 0 && !IndicatorVars::groupBlacklist.contains(center)) pushBackObjects(groupDict, center, centerObjects, selected, triggerPos);
+        if (target != 0 && !Variables::groupBlacklist.contains(target)) pushBackObjects(groupDict, target, targetObjects, selected, triggerPos);
+        if (center != 0 && !Variables::groupBlacklist.contains(center)) pushBackObjects(groupDict, center, centerObjects, selected, triggerPos);
 
         if (targetObjects.empty() && centerObjects.empty()) continue;
 
@@ -64,18 +64,18 @@ void updateIndicators(LevelEditorLayer* editor) {
 void pushBackObjects(CCDictionary* dict, int key, std::vector<GameObject*>& vector, bool triggerSelected, CCPoint triggerPos) {
     if (auto array = static_cast<CCArray*>(dict->objectForKey(key))) {
         for (auto obj : CCArrayExt<GameObject*>(array)) {
-            if (IndicatorVars::onlyTriggers) {
+            if (Variables::onlyTriggers) {
                 if (!obj->m_isTrigger) continue; // trigger only
-                if (IndicatorVars::onlySpawn && !static_cast<EffectGameObject*>(obj)->m_isSpawnTriggered) continue;
+                if (Variables::onlySpawn && !static_cast<EffectGameObject*>(obj)->m_isSpawnTriggered) continue;
             }
 
             if (!triggerSelected) {
                 auto selected = obj->m_isSelected;
                 if (selected) goto pushBack; // bite me
-                if (IndicatorVars::onlySelected) continue; // previous line makes it so anything past this is not selected at all
+                if (Variables::onlySelected) continue; // previous line makes it so anything past this is not selected at all
                 auto objPos = obj->getPosition();
                 auto distance = ccpDistanceSQ(objPos, triggerPos); // did not know this function existed nice
-                if (distance > IndicatorVars::maxDistance) continue;
+                if (distance > Variables::maxDistance) continue;
             }
             pushBack:
 
