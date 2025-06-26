@@ -31,7 +31,7 @@ void updateIndicators(LevelEditorLayer* editor) {
         auto triggerPos = trigger->getPosition();
         
         if (Variables::spawnIndicators && trigger->m_isSpawnTriggered) { // no layer fade cuz its more optimised like this but tbf robtops doesnt do it either
-            auto triggerScale = trigger->getScale();
+            auto triggerScale = std::max(trigger->m_scaleX, trigger->m_scaleY);
             auto triggerBodyPos = ccp(triggerPos.x, triggerPos.y - (5 * triggerScale));
             drawSpawnIndicator(triggerBodyPos, triggerScale, zoom);
         }
@@ -51,7 +51,8 @@ void updateIndicators(LevelEditorLayer* editor) {
         targetObjects.clear();
         centerObjects.clear();
 
-        if (target != 0 && !Variables::groupBlacklist.contains(target)) pushBackObjects(groupDict, target, targetObjects, selected, triggerPos);
+        // item edit weirdness
+        if (target != 0 && !Variables::groupBlacklist.contains(target) && id != 3619) pushBackObjects(groupDict, target, targetObjects, selected, triggerPos);
         if (center != 0 && !Variables::groupBlacklist.contains(center)) pushBackObjects(groupDict, center, centerObjects, selected, triggerPos);
 
         if (targetObjects.empty() && centerObjects.empty()) continue;

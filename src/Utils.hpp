@@ -30,7 +30,12 @@ inline const std::unordered_map<int, cocos2d::ccColor4F> colorMap = {
     {2916, {0.498f, 0.498f, 0.498f, 0.498f}}, {10001, {0.0f, 1.0f, 0.498f, 1.0f}}
 };
 
+inline const std::unordered_set<int> itemIDObjects = {
+    1615, 1816
+};
+
 cocos2d::ccColor4F getTriggerCol(int id);
+cocos2d::ccColor4F getColWithAlpha(cocos2d::ccColor4F col);
 
 std::vector<std::vector<GameObject*>> getClusters(const std::vector<GameObject*>& objs, float clusterSize);
 cocos2d::CCPoint getLineCut(cocos2d::CCPoint triggerPos, cocos2d::CCPoint p1, cocos2d::CCPoint p2);

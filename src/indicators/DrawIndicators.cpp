@@ -5,24 +5,22 @@
 using namespace geode::prelude;
 
 void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetObjects, std::vector<GameObject*>& centerObjects, float alpha) {
-    auto triggerScale = trigger->getScale();
+    auto triggerScale = std::max(trigger->m_scaleX, trigger->m_scaleX);
     auto triggerPos = trigger->getPosition();
+
     auto triggerBodyPos = ccp(triggerPos.x, triggerPos.y - (5 * triggerScale)); // -5 cuz triggers arent centered
     auto posOffset0 = ccp(triggerBodyPos.x + (10 * triggerScale), triggerBodyPos.y); // no center
     auto posOffset1 = ccp(triggerBodyPos.x + (10 * triggerScale), triggerBodyPos.y + (4.5f * triggerScale)); // target
     auto posOffset2 = ccp(triggerBodyPos.x + (10 * triggerScale), triggerBodyPos.y - (4.5f * triggerScale)); // center
+    
     auto triggerID = trigger->m_objectID;
     if (trigger->m_activateGroup && triggerID == 1049) triggerID = 10001; // toggle triggers, fuck off with stop triggers im not fixing those
 
     auto hasCenterObjects = !(centerObjects.empty());
 
-    // layer alpha shit
     auto indicatorCol = getTriggerCol(triggerID);
-    indicatorCol.a *= alpha;
-    auto extrasCol1 = Variables::extrasCol1;
-    extrasCol1.a *= alpha;
-    auto extrasCol2 = Variables::extrasCol2;
-    extrasCol2.a *= alpha;
+    auto extrasCol1 = getColWithAlpha(Variables::extrasCol1);
+    auto extrasCol2 = getColWithAlpha(Variables::extrasCol2);
 
     std::vector<GameObject*>* vectors[] = {&targetObjects, &centerObjects}; // avoids copies or smth
     for (int i = 0; i < 2; i++) {

@@ -4,11 +4,20 @@
 using namespace geode::prelude;
 
 ccColor4F getTriggerCol(int id) { // paranoid about getting an invalid id
+    ccColor4F col = {};
     if (Variables::chroma && Variables::triggerIndicatorDrawChromaNode) { // just cuz its gay doesnt mean we dont have to null check 3:<
         return ccc4FFromccc3B(Variables::triggerIndicatorDrawChromaNode->getColor());
     }
-    if (colorMap.contains(id)) return colorMap.at(id);
-    else return ccc4f(1.0f, 1.0f, 1.0f, 1.0f);
+    if (colorMap.contains(id)) col = colorMap.at(id);
+    else col = {1.0f, 1.0f, 1.0f, 1.0f};
+
+    col.a = Variables::currentLayerMultiplier;
+    return col;
+}
+
+ccColor4F getColWithAlpha(ccColor4F col) {
+    col.a *= Variables::currentLayerMultiplier;
+    return col;
 }
 
 std::vector<std::vector<GameObject*>> getClusters(const std::vector<GameObject*>& objs, float clusterSize) {

@@ -12,6 +12,8 @@ namespace Variables {
     inline cocos2d::CCLayer* triggerIndicatorGroupLayer = nullptr;
     inline cocos2d::CCLayer* batchLayer = nullptr;
 
+    inline float currentLayerMultiplier;
+
     inline bool disableMod;
     inline bool disableIndicators;
 
