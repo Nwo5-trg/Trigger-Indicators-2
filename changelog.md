@@ -1,7 +1,7 @@
 ## v0.1.0-beta.6
 **Pinned**
 
-    - collison id support :3333 (might be laggy ill make it update smarter later)
+    - collison id support :3333 (might be laggy ill make it better later)
 
 **Added**
 

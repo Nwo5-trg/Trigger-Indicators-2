@@ -194,6 +194,12 @@
 			"min": 0.1,
 			"max": 50
 		},
+		"no-culling-on-select": {
+			"type": "bool",
+			"name": "No Culling On Select",
+			"description": "(LAGGY AS SH*T BTW JUST USE CULL DISTANCE MUTLIPLER 3:<) so 4r when u select sum but its trigger 2 far so no lines 3:",
+			"default": false
+		},
 		"forced-trigger-blacklist": {
 			"type": "string",
 			"name": "Forced Trigger Blacklist",

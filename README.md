@@ -37,7 +37,7 @@ ive always wanted to come back and finish it tho since trigger indicators are a 
 
 so after making like 20 more mods, i rewrote the entire mod from the ground up, making it *(hopefully)* easy to maintain, and also run ***incredibly*** well (im actually so shocked how well this thing runs)
 
-obviously it isnt perfect or doesnt impact performance at all but still, im incredibly happy with it (thus i will not be giving it the sh**post logo treatment :333)
+obviously it isnt perfect or doesnt impact performance at all but still, im incredibly happy with it (thus i will not be giving it the sh**post logo treatment :333) btw the code is still completely unreadable and awful not sorry :3
 
 ok so hi 9 year olds that decided to read this for some reason, uhh, go do ur homework 
 *(i should prolly get to mine instead of wasting my time making dumb mods for a $2 cube game, nahhh this is a way better use of my life, you should still get yours together tho prolly, or not idk :3)*

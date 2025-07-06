@@ -48,4 +48,5 @@ void Variables::updateSettings() { // kinda randomly sorted but its an organised
     chroma = mod->getSettingValue<bool>("chroma");
     sayoDeviceSensitivity = mod->getSettingValue<double>("sayo-device-sensitivity");
     cullDistanceMultiplier = mod->getSettingValue<double>("cull-distance-multiplier");
+    noCullOnSelect = mod->getSettingValue<bool>("no-culling-on-select");
 }

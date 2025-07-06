@@ -39,6 +39,17 @@ void updateIndicators(LevelEditorLayer* editor) {
     float zoom = Variables::batchLayer->getScale();
     auto centerPos = ccp(((winSize.width / 2) - batchLayerPos.x) / zoom, ((winSize.height / 2) - batchLayerPos.y) / zoom);
 
+    bool groupedObjSelected = false;
+    if (Variables::noCullOnSelect) {
+        auto selectedObjs = editor->m_editorUI->getSelectedObjects();
+        for (auto obj : CCArrayExt<GameObject*>(selectedObjs)) {
+            if (obj->m_groups) { // not really reliable but close enough this is a fucked setting anyway
+                groupedObjSelected = true;
+                break;
+            }
+        }
+    }
+
     for (auto trigger : CCArrayExt<EffectGameObject*>(objs)) {
         if (!trigger) continue; // schizo real
         auto triggerPos = trigger->getPosition();
@@ -57,7 +68,7 @@ void updateIndicators(LevelEditorLayer* editor) {
         if (id == 1006 && trigger->m_pulseTargetType != 1) continue; // only use trigger indicators for pulse if its targeting groups
 
         bool selected = trigger->m_isSelected;
-        if (!selected && ccpDistanceSQ(centerPos, triggerPos) > (cullDistance / zoom)) continue; // this line of code like 100x performance call ts a crypto scam
+        if (!selected && !groupedObjSelected && ccpDistanceSQ(centerPos, triggerPos) > (cullDistance / zoom)) continue; // this line of code like 100x performance call ts a crypto scam
 
         if (!Variables::hasCollisionIDs && collisionIDTriggers.contains(id) && trigger->m_itemID != 0) Variables::hasCollisionIDs = true;
         

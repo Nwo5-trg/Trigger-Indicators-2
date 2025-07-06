@@ -50,6 +50,7 @@ namespace Variables {
     inline bool chroma;
     inline float sayoDeviceSensitivity;
     inline float cullDistanceMultiplier;
+    inline bool noCullOnSelect;
     inline cocos2d::CCNodeRGBA* triggerIndicatorDrawChromaNode = nullptr;
 
     void updateSettings();
