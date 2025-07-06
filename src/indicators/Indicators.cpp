@@ -1,6 +1,7 @@
 #include "Indicators.hpp"
 #include "DrawIndicators.hpp"
 #include "../Variables.hpp"
+#include "../Utils.hpp"
 
 using namespace geode::prelude;
 
@@ -16,14 +17,26 @@ void updateIndicators(LevelEditorLayer* editor) {
     
     auto objs = editor->m_drawGridLayer->m_effectGameObjects;
     auto groupDict = editor->m_groupDict;
-    auto currentLayer = editor->m_currentLayer;
+    int currentLayer = editor->m_currentLayer;
+
+    if (Variables::hasCollisionIDs) {
+        Variables::collisionDict->removeAllObjects();
+        auto objs = editor->m_collisionBlocks;
+        for (auto obj : CCArrayExt<EffectGameObject*>(objs)) {
+            int key = obj->m_itemID;
+            auto array = Variables::collisionDict->objectForKey(key);
+            if (!array) Variables::collisionDict->setObject(CCArray::createWithObject(obj), key);
+            else static_cast<CCArray*>(array)->addObject(obj);
+        }
+    }
+    
     std::vector<GameObject*> targetObjects;
     std::vector<GameObject*> centerObjects;
 
     auto winSize = CCDirector::get()->getWinSize();
-    auto cullDistance = winSize.width * winSize.width;
+    float cullDistance = winSize.width * winSize.width * Variables::cullDistanceMultiplier;
     auto batchLayerPos = Variables::batchLayer->getPosition();
-    auto zoom = Variables::batchLayer->getScale();
+    float zoom = Variables::batchLayer->getScale();
     auto centerPos = ccp(((winSize.width / 2) - batchLayerPos.x) / zoom, ((winSize.height / 2) - batchLayerPos.y) / zoom);
 
     for (auto trigger : CCArrayExt<EffectGameObject*>(objs)) {
@@ -38,34 +51,43 @@ void updateIndicators(LevelEditorLayer* editor) {
 
         if (Variables::disableIndicators) continue;
 
-        auto id = trigger->m_objectID;
+        int id = trigger->m_objectID;
         if (Variables::triggerBlacklist.contains(id)) continue;
 
         if (id == 1006 && trigger->m_pulseTargetType != 1) continue; // only use trigger indicators for pulse if its targeting groups
 
-
-        auto selected = trigger->m_isSelected;
+        bool selected = trigger->m_isSelected;
         if (!selected && ccpDistanceSQ(centerPos, triggerPos) > (cullDistance / zoom)) continue; // this line of code like 100x performance call ts a crypto scam
-        auto target = trigger->m_targetGroupID;
-        auto center = trigger->m_centerGroupID;
+
+        if (!Variables::hasCollisionIDs && collisionIDTriggers.contains(id) && trigger->m_itemID != 0) Variables::hasCollisionIDs = true;
+        
+        int target = trigger->m_targetGroupID;
+        int center = trigger->m_centerGroupID;
         targetObjects.clear();
         centerObjects.clear();
 
         // item edit weirdness
-        if (target != 0 && !Variables::groupBlacklist.contains(target) && id != 3619) pushBackObjects(groupDict, target, targetObjects, selected, triggerPos);
-        if (center != 0 && !Variables::groupBlacklist.contains(center)) pushBackObjects(groupDict, center, centerObjects, selected, triggerPos);
+        if (target != 0 && !Variables::groupBlacklist.contains(target) && id != 3619) pushBackObjects(groupDict, target, targetObjects, selected, triggerPos, false);
+        if (center != 0 && !Variables::groupBlacklist.contains(center)) pushBackObjects(groupDict, center, centerObjects, selected, triggerPos, false);
+        
+        if (collisionIDTriggers.contains(id)) {
+            int collisionID = trigger->m_itemID;
+            int collisionID2 = trigger->m_itemID2;
+            if (collisionID != 0) pushBackObjects(Variables::collisionDict, collisionID, targetObjects, selected, triggerPos, true);
+            if (collisionID2 != 0) pushBackObjects(Variables::collisionDict, collisionID2, centerObjects, selected, triggerPos, true);
+        }
 
         if (targetObjects.empty() && centerObjects.empty()) continue;
 
-        auto alpha = 1.0f * (currentLayer == -1 || ((trigger->m_editorLayer == currentLayer) || (trigger->m_editorLayer2 == currentLayer))? 1.0f : 0.5f);
-        drawForTrigger(trigger, targetObjects, centerObjects, alpha);
+        Variables::currentLayerMultiplier = 1.0f * (currentLayer == -1 || ((trigger->m_editorLayer == currentLayer) || (trigger->m_editorLayer2 == currentLayer))? 1.0f : 0.5f);
+        drawForTrigger(trigger, targetObjects, centerObjects);
     }
 };
 
-void pushBackObjects(CCDictionary* dict, int key, std::vector<GameObject*>& vector, bool triggerSelected, CCPoint triggerPos) {
+void pushBackObjects(CCDictionary* dict, int key, std::vector<GameObject*>& vector, bool triggerSelected, CCPoint triggerPos, bool collision) {
     if (auto array = static_cast<CCArray*>(dict->objectForKey(key))) {
         for (auto obj : CCArrayExt<GameObject*>(array)) {
-            if (Variables::onlyTriggers) {
+            if (!collision && Variables::onlyTriggers) {
                 if (!obj->m_isTrigger) continue; // trigger only
                 if (Variables::onlySpawn && !static_cast<EffectGameObject*>(obj)->m_isSpawnTriggered) continue;
             }

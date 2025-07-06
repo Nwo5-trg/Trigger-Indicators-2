@@ -6,6 +6,8 @@ using namespace Variables;
 
 void Variables::updateSettings() { // kinda randomly sorted but its an organised mess so good enough
     auto mod = Mod::get();
+    hasCollisionIDs = false;
+
     disableMod = mod->getSettingValue<bool>("disable-mod");
     disableIndicators = mod->getSettingValue<bool>("disable-indicators");
 
@@ -34,6 +36,8 @@ void Variables::updateSettings() { // kinda randomly sorted but its an organised
     triggerBlacklist = parseIntArray(mod->getSettingValue<std::string>("trigger-blacklist") 
     + "," + mod->getSettingValue<std::string>("forced-trigger-blacklist")); // saves checking 2 diff sets
     
+    itemIDs = mod->getSettingValue<bool>("item-ids");
+    collisionIDs = mod->getSettingValue<bool>("collision-ids");
     spawnIndicators = mod->getSettingValue<bool>("spawn-indicators");
     
     settingsButtonTexture = "nwo5.trigger_indicators_v2/" + mod->getSettingValue<std::string>("settings-button-texture") + ".png";
@@ -43,4 +47,5 @@ void Variables::updateSettings() { // kinda randomly sorted but its an organised
 
     chroma = mod->getSettingValue<bool>("chroma");
     sayoDeviceSensitivity = mod->getSettingValue<double>("sayo-device-sensitivity");
+    cullDistanceMultiplier = mod->getSettingValue<double>("cull-distance-multiplier");
 }

@@ -4,17 +4,19 @@
 
 - setting to not cull when an object with groups is selected
 
-- target item id in a item edit trigger taken as group target
+- ~~target item id in a item edit trigger taken as group target~~ (beta.6)
 
 - ~~show groupids on lines~~ (beta.6)
 
 - more group label customization
 
-- item ids
+- ~~item ids~~ (beta.6, collision ids cuz i realized item ids were dumb and would onyl connect to like pickups and shit which fuck that)
 
-- use member vars from spawn indicators
+- ~~use member vars from spawn indicators~~ (beta.6)
 
 ## maybe
+
+- random trigger support
 
 - 90 degree lines
 
@@ -41,3 +43,5 @@
 - material ids
 
 - displaying the comparison that item count and item comp triggers are actually doing on the trigger (never doing ts but like not a joke this time)
+
+

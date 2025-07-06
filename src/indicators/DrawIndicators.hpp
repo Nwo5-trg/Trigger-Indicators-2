@@ -1,7 +1,9 @@
 #pragma once
 
-void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetObjects, // no const cuz of drawindividuallines refactoring
-std::vector<GameObject*>& centerObjects, float alpha);
+void drawForTrigger(
+    EffectGameObject* trigger, std::vector<GameObject*>& targetObjects, // no const cuz of drawindividuallines refactoring
+    std::vector<GameObject*>& centerObjects
+);
 
 void drawIndividualLines( // holy shit thats a long params list
     const std::vector<GameObject*>& vector, cocos2d::CCPoint posO,

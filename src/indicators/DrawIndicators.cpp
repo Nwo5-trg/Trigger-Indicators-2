@@ -4,7 +4,7 @@
 
 using namespace geode::prelude;
 
-void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetObjects, std::vector<GameObject*>& centerObjects, float alpha) {
+void drawForTrigger(EffectGameObject* trigger, std::vector<GameObject*>& targetObjects, std::vector<GameObject*>& centerObjects) {
     auto triggerScale = std::max(trigger->m_scaleX, trigger->m_scaleX);
     auto triggerPos = trigger->getPosition();
 

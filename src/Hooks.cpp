@@ -16,6 +16,9 @@ class $modify(LevelEditorLayer) {
         Variables::triggerIndicatorGroupLayer = nullptr;
         Variables::batchLayer = nullptr;
 
+        Variables::collisionDict = nullptr;
+        Variables::collisionDict = CCDictionary::create();
+
         Variables::triggerIndicatorDrawChromaNode = nullptr;
 
         Variables::updateSettings();

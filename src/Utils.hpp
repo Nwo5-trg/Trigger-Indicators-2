@@ -1,8 +1,7 @@
 #pragma once
 
-// feels like a constexpr thing but im paranoid about using that for some reason (i really need to do some programming outside of geode oml)
-inline const cocos2d::ccColor4F emptyCCC4F = cocos2d::ccc4f(0.0f, 0.0f, 0.0f, 0.0f);
-inline const cocos2d::ccColor4F aquaCCC4F = cocos2d::ccc4f(0.0f, 1.0f, 1.0f, 1.0f);
+inline const cocos2d::ccColor4F emptyCCC4F = {0.0f, 0.0f, 0.0f, 0.0f};
+inline const cocos2d::ccColor4F aquaCCC4F = {0.0f, 1.0f, 1.0f, 1.0f};
 
 inline const std::unordered_map<int, cocos2d::ccColor4F> colorMap = {
     {901, {1.0f, 0.0f, 1.0f, 1.0f}}, {3006, {1.0f, 0.0f, 1.0f, 1.0f}}, {3011, {1.0f, 0.0f, 1.0f, 1.0f}},  
@@ -30,8 +29,12 @@ inline const std::unordered_map<int, cocos2d::ccColor4F> colorMap = {
     {2916, {0.498f, 0.498f, 0.498f, 0.498f}}, {10001, {0.0f, 1.0f, 0.498f, 1.0f}}
 };
 
-inline const std::unordered_set<int> itemIDObjects = {
-    1615, 1816
+inline const std::unordered_set<int> collisionIDTriggers = {
+    1815, 3609
+};
+
+inline const std::unordered_set<int> itemIDTriggers = {
+    1611, 1817, 1811, 3614, 3615, 3617, 3619, 3620, 3641
 };
 
 cocos2d::ccColor4F getTriggerCol(int id);

@@ -51,6 +51,12 @@
 			"description": "only triggers only show spawn connected triggers instead of all triggers with that id",
 			"default": true
 		},
+		"collision-ids": {
+			"type": "bool",
+			"name": "Collision IDs",
+			"description": "this is kinda maybe sorta laggier so off by default",
+			"default": false
+		},
 		"max-distance": {
 			"type": "float",
 			"name": "Max Distance",
@@ -179,6 +185,14 @@
 			"default": 0.25,
 			"min": 0.05,
 			"max": 5
+		},
+		"cull-distance-multiplier": {
+			"type": "float",
+			"name": "Cull Distance Multiplier",
+			"description": "less cull distance which is prolly bad unless u want selected objects to show their triggers from further",
+			"default": 1,
+			"min": 0.1,
+			"max": 50
 		},
 		"forced-trigger-blacklist": {
 			"type": "string",

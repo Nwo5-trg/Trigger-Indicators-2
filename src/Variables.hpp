@@ -12,6 +12,9 @@ namespace Variables {
     inline cocos2d::CCLayer* triggerIndicatorGroupLayer = nullptr;
     inline cocos2d::CCLayer* batchLayer = nullptr;
 
+    inline cocos2d::CCDictionary* collisionDict;
+
+    inline bool hasCollisionIDs;
     inline float currentLayerMultiplier;
 
     inline bool disableMod;
@@ -22,6 +25,8 @@ namespace Variables {
     inline bool onlySpawn;
     inline bool spawnIndicators;
     inline bool groupLabels;
+    inline bool itemIDs;
+    inline bool collisionIDs;
 
     inline float maxDistance; // squaring cuz the distance function squares its results
     inline float thickness;
@@ -44,6 +49,7 @@ namespace Variables {
     // the silly zone
     inline bool chroma;
     inline float sayoDeviceSensitivity;
+    inline float cullDistanceMultiplier;
     inline cocos2d::CCNodeRGBA* triggerIndicatorDrawChromaNode = nullptr;
 
     void updateSettings();
