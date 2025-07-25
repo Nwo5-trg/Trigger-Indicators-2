@@ -13,6 +13,7 @@
 **Fixed**
 
 - maybe hopefully fixed stuff just not appearing on windows sometimes (please god)
+- spawn indicators dont render if ur not on the objects layer
 - a few visual bugs with extras i think
 - some code ✨ *shenanigans* ✨
 

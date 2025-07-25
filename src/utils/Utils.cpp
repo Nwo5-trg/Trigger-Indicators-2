@@ -77,6 +77,16 @@ CCPoint Utils::getLineCut(CCPoint origin, const CornerRect& rect) {
     return intersection;
 }
 
+// ccprotatebyangle give me an error for some reason idk so this is just ripped from there
+CCPoint Utils::rotatePoint(CCPoint pos, CCPoint pivot, float rad) {
+    auto r = pos - pivot;
+	float cos = cosf(rad); float sin = sinf(rad);
+	float t = r.x;
+	r.x = t * cos - r.y * sin + pivot.x;
+	r.y = t * sin + r.y * cos + pivot.y;
+	return r;
+}
+
 std::unordered_set<int> Utils::parseIntArray(const std::string& input) {
     std::unordered_set<int> intSet;
     auto start = 0;
@@ -126,8 +136,8 @@ CCPoint Utils::getTriggerBodyPos(GameObject* obj) {
 void Utils::updateLayerAlpha(GameObject* obj) {
     // yeah how tf am i supposed to format this might aswell hide it away in a function so update isnt messy
     Cache::layerAlphaMultiplier = Cache::currentLayer == -1 ||
-        ((obj->m_editorLayer = Cache::currentLayer)
-        || (obj->m_editorLayer2 = Cache::currentLayer))
+        ((obj->m_editorLayer == Cache::currentLayer)
+        || (obj->m_editorLayer2 == Cache::currentLayer))
     ? 1.0f : Settings::layerAlphaMultiplier;
 }
 

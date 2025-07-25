@@ -29,12 +29,26 @@ namespace Cache {
 
     namespace TriggerIndicators {
         inline float cullDistance;
+
         inline cocos2d::ccColor4F col;
         inline cocos2d::ccColor4F extrasCol1;
         inline cocos2d::ccColor4F extrasCol2;
+
         inline std::vector<GameObject*> targetObjects;
         inline std::vector<GameObject*> centerObjects;
         inline std::vector<GameObject*> queuedObjectClusterObjects;
         inline std::vector<GameObject*> queuedTriggerClusterObjects;
+    }
+
+    namespace BetterParticles {
+        // idk why im caching if im copyinghalf the time anyway but oh well
+        inline float thickness;
+        inline float centerLineThickness;
+        
+        inline cocos2d::ccColor4F primaryCol;
+        inline cocos2d::ccColor4F secondaryCol;
+        inline cocos2d::ccColor4F primaryColFill;
+        inline cocos2d::ccColor4F secondaryColFill;
+        inline cocos2d::ccColor4F centerLineCol;
     }
 }

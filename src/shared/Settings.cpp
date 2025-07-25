@@ -53,6 +53,9 @@ void Settings::updateSettings() {
         set(TriggerIndicators::triggerBlacklist, "trigger-indicators-trigger-blacklist");
 
         set(TriggerIndicators::chroma, "trigger-indicators-chroma");
+
+        set(TriggerIndicators::cullDistanceMultiplier, "trigger-indicators-cull-distance-multiplier");
+        set(TriggerIndicators::selectedCullDistanceMultiplier, "trigger-indicators-selected-cull-distance-multiplier");
     }
 
     { // spawn indicators
@@ -62,6 +65,32 @@ void Settings::updateSettings() {
         set(SpawnIndicators::size, "spawn-indicators-size");
         
         set(SpawnIndicators::col, "spawn-indicators-col");
+    }
+
+    { // better particles
+        set(BetterParticles::enabled, "features-enabled-better-particles");
+
+        set(BetterParticles::fillForRect, "better-particles-fill-for-rect");
+        set(BetterParticles::linesToCenter, "better-particles-lines-to-center");
+        set(BetterParticles::hideOnDifferentLayer, "better-particles-hide-on-different-layer");
+        set(BetterParticles::scaleWithZoom, "better-particles-scale-with-zoom");
+
+        set(BetterParticles::thickness, "better-particles-thickness");
+        set(BetterParticles::centerLineThickness, "better-particles-center-line-thickness");
+        set(BetterParticles::fillOpacity, "better-particles-fill-opacity");
+
+        set(BetterParticles::primaryCol, "better-particles-primary-col");
+        set(BetterParticles::secondaryCol, "better-particles-secondary-col");
+        if (mod->getSettingValue<bool>("better-particles-primary-col-for-center-lines")) {
+            BetterParticles::centerLineCol = BetterParticles::primaryCol;
+        } else {
+            set(BetterParticles::centerLineCol, "better-particles-center-line-col");
+        }
+        Cache::BetterParticles::primaryCol = BetterParticles::primaryCol;
+        Cache::BetterParticles::secondaryCol = BetterParticles::secondaryCol;
+        Cache::BetterParticles::centerLineCol = BetterParticles::centerLineCol;
+        Cache::BetterParticles::primaryColFill = BetterParticles::primaryCol;
+        Cache::BetterParticles::secondaryColFill = BetterParticles::secondaryCol;
     }
 
     set(sayoDeviceSensitivity, "silly-sayo-device-sensitivity");

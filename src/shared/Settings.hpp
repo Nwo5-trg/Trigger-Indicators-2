@@ -39,6 +39,7 @@ namespace Settings {
         inline bool chroma;
         
         inline float cullDistanceMultiplier;
+        inline float selectedCullDistanceMultiplier;
     }
 
     namespace SpawnIndicators {
@@ -48,6 +49,23 @@ namespace Settings {
         inline float size;
 
         inline cocos2d::ccColor4F col;
+    }
+
+    namespace BetterParticles {
+        inline bool enabled;
+
+        inline bool fillForRect;
+        inline bool linesToCenter;
+        inline bool hideOnDifferentLayer;
+        inline bool scaleWithZoom;
+
+        inline float thickness;
+        inline float centerLineThickness;
+        inline float fillOpacity;
+
+        inline cocos2d::ccColor4F primaryCol;
+        inline cocos2d::ccColor4F secondaryCol;
+        inline cocos2d::ccColor4F centerLineCol;
     }
 
     inline float sayoDeviceSensitivity;

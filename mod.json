@@ -157,7 +157,7 @@
 			"name": "Thickness",
 			"default": 1,
 			"min": 0,
-			"max": 5
+			"max": 50
 		},
 		"trigger-indicators-extras-col-one": {
 			"type": "rgba",
@@ -187,7 +187,15 @@
 			"description": "less cull distance which is prolly bad unless u want selected objects to show their triggers from further idk :3c",
 			"default": 1,
 			"min": 0.1,
-			"max": 50
+			"max": 500
+		},
+		"trigger-indicators-selected-cull-distance-multiplier": {
+			"type": "float",
+			"name": "Select Cull Distance Multiplier",
+			"description": "yeah so cuz selecting objects negates max distance but triggers still get culled, cull distance is decreased when selecting :3c u can disable or change that here ig idk rawr",
+			"default": 5,
+			"min": 0.1,
+			"max": 500
 		},
 		"spawn-indicators-title": {
 			"type": "title",
@@ -198,19 +206,85 @@
 			"name": "Thickness",
 			"default": 0.25,
 			"min": 0,
-			"max": 2
+			"max": 50
 		},
 		"spawn-indicators-size": {
 			"type": "float",
 			"name": "Size",
 			"default": 25,
-			"min": 1,
-			"max": 50
+			"min": 0,
+			"max": 500
 		},
 		"spawn-indicators-col": {
 			"type": "rgba",
 			"name": "Color",
 			"default": [0, 255, 255, 255]
+		},
+		"better-particles-title": {
+			"type": "title",
+			"name": "Better Particles"
+		},
+		"better-particles-primary-col": {
+			"type": "rgba",
+			"name": "Primary Color",
+			"default": [0, 255, 0, 255]
+		},
+		"better-particles-secondary-col": {
+			"type": "rgba",
+			"name": "Secondary Color",
+			"default": [0, 255, 255, 255],
+			"description": "endrad col"
+		},
+		"better-particles-center-line-col": {
+			"type": "rgba",
+			"name": "Center Line Color",
+			"default": [0, 255, 0, 255]
+		},
+		"better-particles-thickness": {
+			"type": "float",
+			"name": "thickness",
+			"default": 1,
+			"min": 0,
+			"max": 50
+		},
+		"better-particles-center-line-thickness": {
+			"type": "float",
+			"name": "Center Line Thickness",
+			"default": 0.5,
+			"min": 0,
+			"max": 50
+		},
+		"better-particles-fill-for-rect": {
+			"type": "bool",
+			"name": "Fill For Rect",
+			"default": false
+		},
+		"better-particles-fill-opacity": {
+			"type": "float",
+			"name": "Fill Opacity Multiplier",
+			"default": 0.25,
+			"min": 0,
+			"max": 1
+		},
+		"better-particles-lines-to-center": {
+			"type": "bool",
+			"name": "Lines To Center",
+			"default": false
+		},
+		"better-particles-primary-col-for-center-lines": {
+			"type": "bool",
+			"name": "Use Primary Color For Center Lines",
+			"default": true
+		},
+		"better-particles-hide-on-different-layer": {
+			"type": "bool",
+			"name": "Hide On Different Layer",
+			"default": false
+		},
+		"better-particles-scale-with-zoom": {
+			"type": "bool",
+			"name": "Scale With Zoom",
+			"default": false
 		},
 		"general-title": {
 			"type": "title",

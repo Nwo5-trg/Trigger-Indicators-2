@@ -18,6 +18,7 @@ If you have any feature requests or bug reports open a github issue or dm on dis
 - ***Brittank88*** for some testing, ideas, and motivating me to rewrite again
 - ***NikAlexIKS*** for partially suggesting the cluster rework
 - ***Doranell*** for some testing
+- ***Xalva*** for pretty much suggesting cull distance multiplier
 - ***GD Game Creating Server*** for convincing me i still had to optimize and proving i cant have nice things
 - ***Prevter*** their old message made me aware of draw segment being scuffed soooo that constitutes a credit
 - ***CarlIsBored*** for the item edit bug thing, they arent the only person to report it but they also made my thread in gd modding so >:3c

@@ -14,6 +14,8 @@ namespace Utils {
     void clusterObjects(const std::vector<GameObject*>& objs, float clusterSize);
     cocos2d::CCPoint getLineCut(cocos2d::CCPoint origin, const CornerRect& rect);
 
+    cocos2d::CCPoint rotatePoint(cocos2d::CCPoint pos, cocos2d::CCPoint pivot, float rad);
+
     std::unordered_set<int> parseIntArray(const std::string& input);
 
     CornerRect getObjectRect(GameObject* obj, float buffer);
