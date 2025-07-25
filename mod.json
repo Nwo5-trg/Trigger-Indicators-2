@@ -29,22 +29,22 @@
 		"features-enabled-mod": {
 			"type": "bool",
 			"name": "Enable Mod",
-			"default": false
+			"default": true
 		},
 		"features-enabled-trigger-indicators": {
 			"type": "bool",
 			"name": "Enable Trigger Indicators",
-			"default": false
+			"default": true
 		},
 		"features-enabled-better-particles": {
 			"type": "bool",
 			"name": "Enable Better Particles",
-			"default": false
+			"default": true
 		},
 		"features-enabled-spawn-indicators": {
 			"type": "bool",
 			"name": "Enable Spawn Indicators",
-			"default": false
+			"default": true
 		},
 		"trigger-indicators-behaviour-title": {
 			"type": "title",

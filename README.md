@@ -1,7 +1,7 @@
 # Trigger Indicators
 Draw indicators showing what triggers activate :3c
 
-*(and more, because ive grown as a person, im no long index farming, totally)*
+*(and more, because ive grown as a person, im no longer index farming, totally)*
 
 ## Bugs Reporting / Feature Request
 If you have any feature requests or bug reports open a github issue or dm on discord.
@@ -19,14 +19,30 @@ If you have any feature requests or bug reports open a github issue or dm on dis
 - ***NikAlexIKS*** for partially suggesting the cluster rework
 - ***Doranell*** for some testing
 - ***GD Game Creating Server*** for convincing me i still had to optimize and proving i cant have nice things
-- ***Prevter*** theyre old message made me aware of draw segment being scuffed soooo that constitutes a credit
-- ***CarlIsBored*** for the item edit bug thing which they arent the only person to report it but they also made my thread in gd modding so >:3c
-- ***Prolly other ppl*** sowwyyyy if i forgot ur name
+- ***Prevter*** their old message made me aware of draw segment being scuffed soooo that constitutes a credit
+- ***CarlIsBored*** for the item edit bug thing, they arent the only person to report it but they also made my thread in gd modding so >:3c
+
+(sowwyyyy if i forgot ur name here lmk)
 
 ### Misc
 
 - ***Hiimjasmine*** "bro who's jasmine, the geode hermit in the mountains who yells at people?" - *Akurio64*
 - ***Ery*** geode gremlin
+
+## Advanced
+
+soooo if you really want you can edit pretty much every constant in the mod with a json, syntax is just
+```json
+{
+    "number-constant": {
+        "value": 1
+    },
+    "color-constant": {
+        "value": [0, 0.5, 1, 1]
+    }
+}
+```
+im not writing out every constant name if ur json editing you can go into the source and check the map in src->utils->constants.hpp
 
 ## Trigger Indicators v2
 
