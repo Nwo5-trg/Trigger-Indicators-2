@@ -1,3 +1,10 @@
+## v0.1.0-beta.8
+**Added**
+
+- move indicator toggles to setup move popup
+- made that a lil more clear in about
+- femboy flag logo :3c
+
 ## v0.1.0-beta.7
 
 **Added**

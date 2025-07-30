@@ -12,7 +12,7 @@ if you have any feature requests or bug reports open a github issue or dm on dis
 open the settings menu and read
 
 ## Move Indicators
-you have to enable move indicators manually (or enable the setting to do it automatically) for any trigger u want them rendered for
+you have to enable move indicators manually (or enable the setting to do it automatically) for any trigger u want them rendered for (either thru the setup move popup or setup group id > extras)
 
 prolly good to note that move indicators arent realllllly accurate cuz i dont do a full calculation of an objects path or anything, if u got a (reasonable) better idea for smth more accurate lmk
 
