@@ -45,7 +45,7 @@ void MoveIndicators::getObjects(EffectGameObject* trigger, int key) {
     auto triggerPos = trigger->getPosition();
 
     for (auto obj : CCArrayExt<GameObject*>(objs)) {
-        if (Settings::MoveIndicators::excludeTriggers && obj->isTrigger()) continue;
+        if (Settings::MoveIndicators::excludeTriggers && obj->m_isTrigger) continue;
 
         if (trigger->m_isSelected || obj->m_isSelected) goto pushBack;
         if (ccpDistanceSQ(obj->getPosition(), triggerPos) > Cache::View::cullDistance) continue;
