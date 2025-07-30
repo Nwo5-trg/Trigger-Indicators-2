@@ -8,6 +8,7 @@ using namespace MoveIndicators;
 
 void MoveIndicators::draw(EffectGameObject* trigger) {   
     Cache::MoveIndicators::positions.clear();
+    Utils::getSharedObjectGroups(Cache::MoveIndicators::targetObjects, Cache::MoveIndicators::sharedGroups);
     getPositions(trigger, Settings::MoveIndicators::objectGroupingMode);
     if (Cache::MoveIndicators::positions.empty()) return;
 
@@ -19,7 +20,7 @@ void MoveIndicators::draw(EffectGameObject* trigger) {
     auto distance = trigger->m_moveOffset;
     Cache::MoveIndicators::indicatorSegments.clear();
 
-    if (easingType == EasingType::None) {
+    if (easingType == EasingType::None || distance.x == 0.0f || distance.y == 0.0f) {
         Cache::MoveIndicators::indicatorSegments.reserve(1);
         Cache::MoveIndicators::indicatorSegments.emplace_back(ccp(0.0f, 0.0f), distance);
     } else {
@@ -62,9 +63,9 @@ void MoveIndicators::drawIndicator(EffectGameObject* trigger, const std::pair<CC
     }
 
     Utils::drawLine(
-        Cache::objectDraw, pair.first, pair.second, 
+        Cache::gridDraw, pair.first, pair.second, // so there isnt overlapping
         Cache::MoveIndicators::thickness, 
-        Settings::MoveIndicators::indicatorCol
+        Cache::MoveIndicators::centerIndicatorCol
     );
 
     for (const auto& segment : Cache::MoveIndicators::indicatorSegments) {
@@ -72,7 +73,7 @@ void MoveIndicators::drawIndicator(EffectGameObject* trigger, const std::pair<CC
             Cache::objectDraw, 
             pair.second + segment.first, pair.second + segment.second, 
             Cache::MoveIndicators::thickness, 
-            Settings::MoveIndicators::indicatorCol
+            Cache::MoveIndicators::indicatorCol
         );
     }
  

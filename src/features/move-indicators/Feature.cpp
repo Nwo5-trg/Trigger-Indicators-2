@@ -28,11 +28,16 @@ void MoveIndicators::create(EffectGameObject* trigger) {
     getObjects(trigger, target);
     if (Cache::MoveIndicators::targetObjects.empty()) return;
 
+    // only some get opacity customization cuz i dont think setting 
+    // inidcator or start/end opacity is really needed cuz itll look bad anyway
     Cache::MoveIndicators::indicatorCol.a = Cache::layerAlphaMultiplier;
+    Cache::MoveIndicators::centerIndicatorCol.a = Cache::layerAlphaMultiplier 
+    * Settings::MoveIndicators::centerIndicatorCol.a;
     Cache::MoveIndicators::startCol.a = Cache::layerAlphaMultiplier;
     Cache::MoveIndicators::endCol.a = Cache::layerAlphaMultiplier;
-    Cache::MoveIndicators::endPreviewCol.a = Cache::layerAlphaMultiplier;
-    // Utils::getSharedObjectGroups(Cache::MoveIndicators::targetObjects, Cache::MoveIndicators::sharedGroups);
+    Cache::MoveIndicators::endPreviewCol.a = Cache::layerAlphaMultiplier 
+    * Settings::MoveIndicators::endPreviewCol.a;
+
     draw(trigger);
 }
 

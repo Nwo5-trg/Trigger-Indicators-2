@@ -346,7 +346,7 @@
 			"type": "rgba",
 			"name": "Center Indicator Color",			
 			"description": "sooo the position of indicators are calculated based on *roughly* all movements the object wouldve done up until the point its at, this just draws a line from the indicator start to the actual center in the editor",
-			"default": [255, 255, 255, 255]
+			"default": [255, 255, 255, 75]
 		},
 		"move-indicators-start-col": {
 			"type": "rgba",

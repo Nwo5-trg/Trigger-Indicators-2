@@ -25,9 +25,9 @@ void Update::draw(LevelEditorLayer* editor) {
     // cill distance stuff
     Cache::View::relativeCenter = (
         (Cache::View::size / 2) - 
-        ccp(
+        ccp( // objects are offset soo
             editor->m_objectLayer->getPositionX(), 
-            editor->m_objectLayer->getPositionY() - 90 // -90 cuz objects are offset +90
+            editor->m_objectLayer->getPositionY() - 45
         )
     ) / Cache::View::zoom;
     Cache::View::cullDistance = Cache::View::size.width / Cache::View::zoom;

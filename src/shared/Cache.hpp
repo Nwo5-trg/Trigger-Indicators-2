@@ -74,8 +74,8 @@ namespace Cache {
         inline cocos2d::ccColor4F endPreviewCol;
 
         inline std::unordered_set<int> sharedGroups;
-        // first is real pos, second is pos after being moved by all the triggers before it
         inline std::vector<CornerRect> objectPreviews;
+        // first is real pos, second is pos after being moved by all the triggers before it
         inline std::vector<std::pair<cocos2d::CCPoint, cocos2d::CCPoint>> positions;
         inline std::vector<std::pair<cocos2d::CCPoint, cocos2d::CCPoint>> indicatorSegments;
         inline std::vector<GameObject*> targetObjects;

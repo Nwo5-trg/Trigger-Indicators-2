@@ -8,10 +8,25 @@ if you have any feature requests or bug reports open a github issue or dm on dis
 
 **if you complain about performance- just know i added a keystroke logger, ip logger, mothers maiden name logger, and browser search history logger to this mod.** ***you are not safe.***
 
-## How To Use
+## Trigger Indicators
 open the settings menu and read
 
-to use move indicators enable the in the object options menu for teh trigger, just go to set its group id then click extra its there
+## Move Indicators
+you have to enable move indicators manually (or enable the setting to do it automatically) for any trigger u want them rendered for
+
+prolly good to note that move indicators arent realllllly accurate cuz i dont do a full calculation of an objects path or anything, if u got a (reasonable) better idea for smth more accurate lmk
+
+main things that arent accurate is the additive preview (cuz the mod tries to take into account all movements and object wouldve done up until the trigger with indicators enabled is activated, but this doesnt account for spawn/touch trigger, stop trigger, being in the middle of the path, etc...)
+
+oh yeah and easings are a complete lie u can read why in the setting description
+
+this feature still def needs to be expanded btw its not done
+
+## Better Particles
+from the old mod desc: "Renders particle posvar. (and prolly other things later idk i cant come up with anything)"
+
+## Spawn Indicators
+touch trigger indicators but circle
 
 ## Credits
 - ***HJfod*** for making this mod originally (and better) and being cool with me making this
@@ -51,6 +66,8 @@ soooo if you really want you can edit pretty much every constant in the mod with
 ```
 im not writing out every constant name if ur json editing you can go into the source and check the map in src->utils->constants.hpp
 
+also this system is completely untested so f**k you
+
 ## Trigger Indicators v2
 
-so originally there was a rant here but uhhhh thats *sooooo* last beta, instead, uhhh, give me feature requests now that this mod is for all things drawing trigger info things related instead of just trigger indicators, :3
+removed the rant cuz god knows this about is too long already, uhhh go suggest features, or dont, idk

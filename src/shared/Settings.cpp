@@ -44,6 +44,7 @@ void Settings::updateSettings() {
         Cache::Utils::clusterObjQueue.reserve(maxClusterThreshold);
 
         set(TriggerIndicators::maxDistance, "trigger-indicators-max-distance"); 
+        // technically abusing settings here cuz theyre supposed to be unmodified but shhhh
         TriggerIndicators::maxDistance *= TriggerIndicators::maxDistance;
         set(TriggerIndicators::thickness, "trigger-indicators-thickness");
         set(TriggerIndicators::clusterObjectsSize, "trigger-indicators-cluster-objects-size");
