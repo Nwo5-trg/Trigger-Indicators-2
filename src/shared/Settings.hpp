@@ -1,9 +1,13 @@
 #pragma once
 
+#include "../utils/Enums.hpp"
+
 namespace Settings {
     inline geode::Mod* mod;
 
     inline bool enabled;
+    
+    inline bool updateWhenPlaytesting;
     
     inline float layerAlphaMultiplier;
 
@@ -21,6 +25,7 @@ namespace Settings {
         inline bool clusterFallbackIndividualTriggers;
         inline bool boxLineObjects;
         inline bool boxLineTriggers;
+        inline bool scaleWithZoom;
 
         inline int clusterObjectsMaxThreshold;
         inline int clusterTriggersMaxThreshold;
@@ -66,6 +71,48 @@ namespace Settings {
         inline cocos2d::ccColor4F primaryCol;
         inline cocos2d::ccColor4F secondaryCol;
         inline cocos2d::ccColor4F centerLineCol;
+
+        inline bool chroma;
+    }
+
+    namespace MoveIndicators {
+        inline bool enabled;
+
+        inline bool enableIndicatorByDefault;
+        inline bool enableEndPreviewByDefault;
+        inline bool excludeTriggers;
+        inline bool previewEasing;
+        inline bool scaleWithZoom;
+
+        inline int easingSteps;
+        inline int clusterMaxThreshold;
+
+        inline MoveIndicatorMode objectGroupingMode;
+        inline MoveIndicatorMode clusterFallbackType;
+
+        inline float thickness;
+        inline float endPreviewThickness;
+        inline float clusterSize;
+
+        inline cocos2d::ccColor4F indicatorCol;
+        inline cocos2d::ccColor4F centerIndicatorCol;
+        inline cocos2d::ccColor4F startCol;
+        inline cocos2d::ccColor4F endCol;
+        inline cocos2d::ccColor4F endPreviewCol;
+
+        inline bool chroma;
+
+        inline std::unordered_map<std::string, MoveIndicatorMode> objectGroupingModeMap {
+            {"On Trigger", MoveIndicatorMode::OnTrigger}, 
+            {"Rect", MoveIndicatorMode::Rect}, 
+            {"Cluster", MoveIndicatorMode::Cluster}
+        };
+
+        inline std::unordered_map<std::string, MoveIndicatorMode> clusterFallbackTypeMap {
+            {"On Trigger", MoveIndicatorMode::OnTrigger},
+            {"Rect", MoveIndicatorMode::Rect},
+            {"Disable", MoveIndicatorMode::Disable}
+        };
     }
 
     inline float sayoDeviceSensitivity;

@@ -104,14 +104,22 @@ CornerRect Utils::getObjectRect(GameObject* obj, float buffer) {
     CornerRect rect;
     auto pos = obj->getPosition();
     auto size = (obj->getContentSize() * ccp(obj->m_scaleX, obj->m_scaleY)) / 2;
+
+    rect.p1 = pos - size;
+    rect.p2 = pos + size;
+
+    if (buffer == 0.0f) return rect;
+
+    buffer /= 2; 
     // HEY CCPOINT IS IT THAT HARD TO HAVE YOUR FUCKING OPERATORS WORK WITH FLOATS
-    auto bufferPoint = ccp(buffer, buffer) / 2;
-    rect.p1 = pos - size + bufferPoint;
-    rect.p2 = pos + size + bufferPoint;
+    rect.p1.x -= buffer; rect.p1.y -= buffer;
+    rect.p2.x += buffer; rect.p2.y += buffer;
+
     return rect;
 }
 CornerRect Utils::getObjectsRect(const std::vector<GameObject*>& objs, float buffer) {
     if (objs.empty()) return {};
+
     CornerRect rect = {{FLT_MAX, FLT_MAX}, {-FLT_MAX, -FLT_MAX}};
     for (auto obj : objs) {
         auto pos = obj->getPosition();
@@ -123,22 +131,51 @@ CornerRect Utils::getObjectsRect(const std::vector<GameObject*>& objs, float buf
         if (p2.x > rect.p2.x) rect.p2.x = p2.x;
         if (p2.y > rect.p2.y) rect.p2.y = p2.y;
     }
-    auto bufferPoint = ccp(buffer, buffer) / 2;
-    rect.p1 -= bufferPoint; 
-    rect.p2 += bufferPoint;
+
+    if (buffer == 0.0f) return rect;
+
+    buffer /= 2;
+    rect.p1.x -= buffer; rect.p1.y -= buffer;
+    rect.p2.x += buffer; rect.p2.y += buffer;
+
     return rect;
+}
+
+void Utils::getSharedObjectGroups(const std::vector<GameObject*>& objs, std::unordered_set<int>& set) {
+    set.clear();
+    if (objs.empty()) return;
+
+    auto firstGroups = objs[0]->m_groups;
+    if (!firstGroups) return;
+ 
+    set.insert(firstGroups->begin(), firstGroups->end());
+    set.erase(0);
+
+    for (auto obj : objs) {
+        auto groups = obj->m_groups;
+        if (!groups) {
+            set.clear(); return;
+        }
+
+        Cache::Utils::currentObjGroupsSet.clear();
+        Cache::Utils::currentObjGroupsSet.insert(groups->begin(), groups->end());
+
+        for (auto it = set.begin(); it != set.end();) {
+            if (!Cache::Utils::currentObjGroupsSet.contains(*it)) it = set.erase(it);
+            else it++;
+        }
+
+        if (set.empty()) return;
+    }
 }
 
 CCPoint Utils::getTriggerBodyPos(GameObject* obj) {
     return ccp(obj->getPositionX(), obj->getPositionY() + (obj->m_scaleY * Constants::triggerBodyYOffset));
 }
 
-void Utils::updateLayerAlpha(GameObject* obj) {
-    // yeah how tf am i supposed to format this might aswell hide it away in a function so update isnt messy
-    Cache::layerAlphaMultiplier = Cache::currentLayer == -1 ||
-        ((obj->m_editorLayer == Cache::currentLayer)
-        || (obj->m_editorLayer2 == Cache::currentLayer))
-    ? 1.0f : Settings::layerAlphaMultiplier;
+CCPoint Utils::getObjectsCenter(const std::vector<GameObject*>& objs) {
+    auto rect = Utils::getObjectsRect(objs);
+    return (rect.p1 + rect.p2) / 2;
 }
 
 void Utils::updateTriggerCol(ccColor4F& col, int id, bool chroma) {

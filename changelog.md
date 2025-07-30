@@ -6,7 +6,9 @@
 - reworked settings
 - reworked clustering
 - integrated better particles into this mod :3c (better duration lines next update???)
+- added move indicators
 - ***prolly*** runs better im not sure but like it should cuz i optimized it way more i think
+- some more settings for trigger indicators
 - more credits :3
 - new changelog formatting again :3c
 

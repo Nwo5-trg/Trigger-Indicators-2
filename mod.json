@@ -36,6 +36,11 @@
 			"name": "Enable Trigger Indicators",
 			"default": true
 		},
+		"features-enabled-move-indicators": {
+			"type": "bool",
+			"name": "Enable Move Indicators",
+			"default": true
+		},
 		"features-enabled-better-particles": {
 			"type": "bool",
 			"name": "Enable Better Particles",
@@ -46,6 +51,11 @@
 			"name": "Enable Spawn Indicators",
 			"default": true
 		},
+
+
+
+
+
 		"trigger-indicators-behaviour-title": {
 			"type": "title",
 			"name": "Trigger Indicators - Behaviour"
@@ -90,6 +100,9 @@
 			"default": "",
 			"filter": "1234567890,"
 		},
+
+
+
 		"trigger-indicators-clusters-title": {
 			"type": "title",
 			"name": "Trigger Indicators - Clusters"
@@ -148,6 +161,9 @@
 			"description": "if cluster threshold is exceeded fallback to indivudal lines to every trigger instead of one big rect",
 			"default": true
 		},
+
+
+
 		"trigger-indicators-visuals-title": {
 			"type": "title",
 			"name": "Trigger Indicators - Visuals"
@@ -158,6 +174,12 @@
 			"default": 1,
 			"min": 0,
 			"max": 50
+		},
+		"trigger-indicators-scale-with-zoom": {
+			"type": "bool",
+			"name": "Scale With Zoom",
+			"description": "dynamic thickness based on editor zoom",
+			"default": false
 		},
 		"trigger-indicators-extras-col-one": {
 			"type": "rgba",
@@ -171,6 +193,21 @@
 			"description": "input/output indicators",
 			"default": [0, 0, 0, 255]
 		},
+		"trigger-indicators-box-line-objects": {
+			"type": "bool",
+			"name": "Object Individual Line Box",
+			"description": "draw rect around object for individual lines",
+			"default": false
+		},
+		"trigger-indicators-box-line-triggers": {
+			"type": "bool",
+			"name": "Trigger Individual Line Box",
+			"description": "draw rect around object for individual lines",
+			"default": true
+		},
+
+
+
 		"trigger-indicators-silly-title": {
 			"type": "title",
 			"name": "Trigger Indicators - Silly :333"
@@ -197,29 +234,151 @@
 			"min": 0.1,
 			"max": 500
 		},
-		"spawn-indicators-title": {
+
+
+
+
+
+		"move-indicators-behavious-title": {
 			"type": "title",
-			"name": "Spawn Indicators"
+			"name": "Move Indicators - Behaviour"
 		},
-		"spawn-indicators-thickness": {
+		"move-indicators-object-grouping-mode": {
+			"type": "string",
+			"name": "Object Grouping Mode",
+			"default": "Cluster",
+			"one-of": ["On Trigger", "Rect", "Cluster"]
+		},
+		"move-indicators-indicators-by-default": {
+			"type": "bool",
+			"name": "Enable Indicators By Default",
+			"description": "automatically turn on move indicators on placed triggers",
+			"default": false
+		},
+		"move-indicators-end-preview-by-default": {
+			"type": "bool",
+			"name": "Enable End Preview By Default",
+			"description": "automatically turn on end preview on placed triggers (sh*t gets laggy fast dont do this :sob:)",
+			"default": false
+		},
+		"move-indicators-exclude-triggers": {
+			"type": "bool",
+			"name": "Exclude Triggers",
+			"description": "skip triggers if theyre targets",
+			"default": true
+		},
+		"move-indicators-preview-easing": {
+			"type": "bool",
+			"name": "Preview Easing",
+			"description": "easing isnt *real* btw its just an inline visualization of the easing, easing is just how far along a line u should be at in a certain time so an accurate visualization would just be a straight line",
+			"default": true
+		},
+		"move-indicators-easing-steps": {
+			"type": "int",
+			"name": "Easing Steps",
+			"default": 30,
+			"min": 1,
+			"max": 1000
+		},
+
+
+
+		"move-indicators-clusters-title": {
+			"type": "title",
+			"name": "Move Indicators - Clusters"
+		},
+		"move-indicators-cluster-size": {
+			"type": "float",
+			"name": "Cluster Size",
+			"description": "when clustering, any neighbours further than this will form their own cluster instead of joining one",
+			"default": 60,
+			"min": 0,
+			"max": 300
+		},
+		"move-indicators-cluster-max-threshold": {
+			"type": "int",
+			"name": "Cluster Max Threshold",
+			"description": "maximum amount of objects for clustering, any more and fallback gets used (dont set to a high number 1k == 1 mil calls worse case sowwy not sowwy that my cluster implementation is on^2 anything more and its too much for me to understand :3c)",
+			"default": 90,
+			"min": 1,
+			"max": 1000
+		},
+		"move-indicators-cluster-fallback": {
+			"type": "string",
+			"name": "Cluster Fallback",
+			"description": "if cluster threshold is exceeded fallback to this",
+			"default": "On Trigger",
+			"one-of": ["On Trigger", "Rect", "Disable"]
+		},
+
+
+
+		"move-indicators-visuals-title": {
+			"type": "title",
+			"name": "Move Indicators - Visuals"
+		},
+		"move-indicators-thickness": {
 			"type": "float",
 			"name": "Thickness",
-			"default": 0.25,
+			"default": 1,
 			"min": 0,
 			"max": 50
 		},
-		"spawn-indicators-size": {
+		"move-indicators-end-preview-thickness": {
 			"type": "float",
-			"name": "Size",
-			"default": 25,
+			"name": "End Preview Thickness",
+			"default": 1,
 			"min": 0,
-			"max": 500
+			"max": 50
 		},
-		"spawn-indicators-col": {
+		"move-indicators-scale-with-zoom": {
+			"type": "bool",
+			"name": "Scale With Zoom",
+			"description": "dynamic thickness based on editor zoom",
+			"default": false
+		},
+		"move-indicators-indicator-col": {
 			"type": "rgba",
-			"name": "Color",
-			"default": [0, 255, 255, 255]
+			"name": "Indicator Color",
+			"default": [0, 255, 0, 255]
 		},
+		"move-indicators-center-indicator-col": {
+			"type": "rgba",
+			"name": "Center Indicator Color",			
+			"description": "sooo the position of indicators are calculated based on *roughly* all movements the object wouldve done up until the point its at, this just draws a line from the indicator start to the actual center in the editor",
+			"default": [255, 255, 255, 255]
+		},
+		"move-indicators-start-col": {
+			"type": "rgba",
+			"name": "Start Center Color",
+			"default": [127, 0, 255, 255]
+		},
+		"move-indicators-end-col": {
+			"type": "rgba",
+			"name": "End Center Color",
+			"default": [255, 127, 0, 255]
+		},
+		"move-indicators-end-preview-col": {
+			"type": "rgba",
+			"name": "End Preview Color",
+			"default": [0, 0, 255, 255]
+		},
+		"move-indicators-silly-title": {
+			"type": "title",
+			"name": "Move Indicators - Silly :333"
+		},
+		"move-indicators-chroma": {
+			"type": "bool",
+			"name": "Chroma",
+			"description": "ooooo gay rgbtq lights :3c",
+			"default": false
+		},
+		
+
+
+
+		
+
 		"better-particles-title": {
 			"type": "title",
 			"name": "Better Particles"
@@ -284,11 +443,56 @@
 		"better-particles-scale-with-zoom": {
 			"type": "bool",
 			"name": "Scale With Zoom",
+			"description": "dynamic thickness based on editor zoom",
 			"default": false
 		},
+		"better-particles-chroma": {
+			"type": "bool",
+			"name": "Chroma",
+			"description": "ooooo gay rgbtq lights :3c",
+			"default": false
+		},
+
+
+
+
+
+		"spawn-indicators-title": {
+			"type": "title",
+			"name": "Spawn Indicators"
+		},
+		"spawn-indicators-thickness": {
+			"type": "float",
+			"name": "Thickness",
+			"default": 0.25,
+			"min": 0,
+			"max": 50
+		},
+		"spawn-indicators-size": {
+			"type": "float",
+			"name": "Size",
+			"default": 25,
+			"min": 0,
+			"max": 500
+		},
+		"spawn-indicators-col": {
+			"type": "rgba",
+			"name": "Color",
+			"default": [0, 255, 255, 255]
+		},
+
+
+
+
+
 		"general-title": {
 			"type": "title",
 			"name": "General"
+		},
+		"general-update-when-playtesting": {
+			"type": "bool",
+			"name": "Update When Playtesting",
+			"default": false
 		},
 		"general-settings-button-texture": {
 			"type": "string",
@@ -305,6 +509,11 @@
 			"min": 0,
 			"max": 1
 		},
+
+
+
+		
+
 		"silly-title": {
 			"type": "title",
 			"name": "Silly :333"

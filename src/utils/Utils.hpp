@@ -2,6 +2,8 @@
 
 #include "Types.hpp"
 #include "Constants.hpp"
+#include "Enums.hpp"
+#include "Easings.hpp"
 
 namespace Utils {
     // so apparently robtops cocos2d has some scuffed drawsegment optimizations
@@ -18,10 +20,14 @@ namespace Utils {
 
     std::unordered_set<int> parseIntArray(const std::string& input);
 
-    CornerRect getObjectRect(GameObject* obj, float buffer);
-    CornerRect getObjectsRect(const std::vector<GameObject*>& objs, float buffer);
+    CornerRect getObjectRect(GameObject* obj, float buffer = 0.0f);
+    CornerRect getObjectsRect(const std::vector<GameObject*>& objs, float buffer = 0.0f);
+
+    void getSharedObjectGroups(const std::vector<GameObject*>& objs, std::unordered_set<int>& set);
 
     cocos2d::CCPoint getTriggerBodyPos(GameObject* obj);
+
+    cocos2d::CCPoint getObjectsCenter(const std::vector<GameObject*>& objs);
 
     inline std::unordered_map<int, cocos2d::ccColor4F> triggerColorMap = {
         {901, {1.0f, 0.0f, 1.0f, 1.0f}}, {3006, {1.0f, 0.0f, 1.0f, 1.0f}}, {3011, {1.0f, 0.0f, 1.0f, 1.0f}},  
@@ -51,6 +57,4 @@ namespace Utils {
 
     void updateTriggerCol(cocos2d::ccColor4F& col, int id, bool chroma);
     cocos2d::ccColor4F getTriggerCol(int id, bool alpha, bool chroma);
-
-    void updateLayerAlpha(GameObject* obj);
 }

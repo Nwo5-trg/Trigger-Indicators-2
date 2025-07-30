@@ -4,19 +4,25 @@ Draw indicators showing what triggers activate :3c
 *(and more, because ive grown as a person, im no longer index farming, totally)*
 
 ## Bugs Reporting / Feature Request
-If you have any feature requests or bug reports open a github issue or dm on discord.
+if you have any feature requests or bug reports open a github issue or dm on discord
 
 **if you complain about performance- just know i added a keystroke logger, ip logger, mothers maiden name logger, and browser search history logger to this mod.** ***you are not safe.***
+
+## How To Use
+open the settings menu and read
+
+to use move indicators enable the in the object options menu for teh trigger, just go to set its group id then click extra its there
 
 ## Credits
 - ***HJfod*** for making this mod originally (and better) and being cool with me making this
 - ***Brift*** for the original idea for this mod
+- ***Brittank88*** for some testing, ideas, and motivating me to rewrite again
 - ***Rue*** for most of the visuals and logo
 
-### Bugs/Testing
+### Bugs/Testing/Features
 
-- ***Brittank88*** for some testing, ideas, and motivating me to rewrite again
-- ***NikAlexIKS*** for partially suggesting the cluster rework
+- ***IPummmpXD*** idea for move indicators and being a *character* in gd modding
+- ***NikAlexIKS*** for partially suggesting the cluster rework and testing
 - ***Doranell*** for some testing
 - ***Xalva*** for pretty much suggesting cull distance multiplier
 - ***GD Game Creating Server*** for convincing me i still had to optimize and proving i cant have nice things
@@ -27,7 +33,7 @@ If you have any feature requests or bug reports open a github issue or dm on dis
 
 ### Misc
 
-- ***Hiimjasmine*** "bro who's jasmine, the geode hermit in the mountains who yells at people?" - *Akurio64*
+- ***Hiimjasmine*** "bro who's jasmine, the geode hermit in the mountains who yells at people?" - *Akurio64* (also hiiii since ur prolly reviewing this mod)
 - ***Ery*** geode gremlin
 
 ## Advanced

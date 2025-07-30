@@ -9,6 +9,8 @@ class $modify(LevelEditorLayer) {
     bool init(GJGameLevel* p0, bool p1) {	
 		if (!LevelEditorLayer::init(p0, p1)) return false;
 
+        Cache::playtesting = false;
+
         for (int i = 0; i < 2; i++) {
             auto layer = CCLayer::create();
             layer->setPosition(0.0f, 0.0f);
@@ -42,5 +44,25 @@ class $modify(LevelEditorLayer) {
     void updateDebugDraw() {
         LevelEditorLayer::updateDebugDraw();
         Update::draw(this);
+    }
+
+    GameObject* createObject(int p0, CCPoint p1, bool p2) {
+        auto ret = LevelEditorLayer::createObject(p0, p1, p2);
+        // move indicator shenangians
+        if (p0 == 901) {
+            ret->m_isIceBlock = Settings::MoveIndicators::enableIndicatorByDefault;
+            ret->m_isGripSlope = Settings::MoveIndicators::enableEndPreviewByDefault;
+        }
+        return ret;
+    }
+
+    void onPlaytest() {
+        Cache::playtesting = true;
+        LevelEditorLayer::onPlaytest();
+    }
+
+    void onStopPlaytest() {
+        Cache::playtesting = false;
+        LevelEditorLayer::onStopPlaytest();
     }
 };

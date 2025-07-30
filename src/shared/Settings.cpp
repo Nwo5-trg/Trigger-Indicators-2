@@ -12,6 +12,9 @@ void Settings::updateSettings() {
     Constants::loadConstants();
 
     set(enabled, "features-enabled-mod");
+    
+    set(updateWhenPlaytesting, "general-update-when-playtesting");
+
     set(layerAlphaMultiplier, "general-layer-alpha-multiplier");
 
     settingsButtonTexture = "nwo5.trigger_indicators_v2/" 
@@ -28,6 +31,9 @@ void Settings::updateSettings() {
         set(TriggerIndicators::clusterTriggers, "trigger-indicators-cluster-triggers");
         set(TriggerIndicators::clusterFallbackIndividualObjects, "trigger-indicators-cluster-fallback-individual-objects");
         set(TriggerIndicators::clusterFallbackIndividualTriggers,"trigger-indicators-cluster-fallback-individual-triggers");
+        set(TriggerIndicators::boxLineObjects, "trigger-indicators-box-line-objects");
+        set(TriggerIndicators::boxLineObjects, "trigger-indicators-box-line-triggers");
+        set(TriggerIndicators::scaleWithZoom, "trigger-indicators-scale-with-zoom");
 
         set(TriggerIndicators::clusterObjectsMaxThreshold, "trigger-indicators-cluster-objects-max-threshold");
         set(TriggerIndicators::clusterTriggersMaxThreshold, "trigger-indicators-cluster-triggers-max-threshold");
@@ -45,9 +51,6 @@ void Settings::updateSettings() {
 
         set(TriggerIndicators::extrasCol1, "trigger-indicators-extras-col-one");
         set(TriggerIndicators::extrasCol2, "trigger-indicators-extras-col-two");
-        // so i dont have to make new cccolor4fs every frame for every trigger like i was doing :3c
-        Cache::TriggerIndicators::extrasCol1 = TriggerIndicators::extrasCol1; 
-        Cache::TriggerIndicators::extrasCol2 = TriggerIndicators::extrasCol2; 
 
         set(TriggerIndicators::groupBlacklist, "trigger-indicators-group-blacklist");
         set(TriggerIndicators::triggerBlacklist, "trigger-indicators-trigger-blacklist");
@@ -86,11 +89,40 @@ void Settings::updateSettings() {
         } else {
             set(BetterParticles::centerLineCol, "better-particles-center-line-col");
         }
-        Cache::BetterParticles::primaryCol = BetterParticles::primaryCol;
-        Cache::BetterParticles::secondaryCol = BetterParticles::secondaryCol;
-        Cache::BetterParticles::centerLineCol = BetterParticles::centerLineCol;
-        Cache::BetterParticles::primaryColFill = BetterParticles::primaryCol;
-        Cache::BetterParticles::secondaryColFill = BetterParticles::secondaryCol;
+
+        set(BetterParticles::chroma, "better-particles-chroma");
+    }
+
+    { // move indicators
+        set(MoveIndicators::enabled, "features-enabled-move-indicators");
+
+        set(MoveIndicators::enableIndicatorByDefault, "move-indicators-indicators-by-default");
+        set(MoveIndicators::enableEndPreviewByDefault, "move-indicators-end-preview-by-default");
+        set(MoveIndicators::excludeTriggers, "move-indicators-exclude-triggers");
+        set(MoveIndicators::previewEasing, "move-indicators-preview-easing");
+        set(MoveIndicators::scaleWithZoom, "move-indicators-scale-with-zoom");
+
+        set(MoveIndicators::easingSteps, "move-indicators-easing-steps");
+        set(MoveIndicators::clusterMaxThreshold, "move-indicators-cluster-max-threshold");
+
+        MoveIndicators::objectGroupingMode = MoveIndicators::objectGroupingModeMap[
+            mod->getSettingValue<std::string>("move-indicators-object-grouping-mode")
+        ];
+        MoveIndicators::clusterFallbackType = MoveIndicators::clusterFallbackTypeMap[
+            mod->getSettingValue<std::string>("move-indicators-cluster-fallback")
+        ];
+
+        set(MoveIndicators::thickness, "move-indicators-thickness");
+        set(MoveIndicators::endPreviewThickness, "move-indicators-end-preview-thickness");
+        set(MoveIndicators::clusterSize, "move-indicators-cluster-size");
+
+        set(MoveIndicators::indicatorCol, "move-indicators-indicator-col");
+        set(MoveIndicators::centerIndicatorCol, "move-indicators-center-indicator-col");
+        set(MoveIndicators::startCol, "move-indicators-start-col");
+        set(MoveIndicators::endCol, "move-indicators-end-col");
+        set(MoveIndicators::endPreviewCol, "move-indicators-end-preview-col");
+
+        set(MoveIndicators::chroma, "move-indicators-chroma");
     }
 
     set(sayoDeviceSensitivity, "silly-sayo-device-sensitivity");

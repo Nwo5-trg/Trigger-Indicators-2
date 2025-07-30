@@ -54,23 +54,26 @@ void TriggerIndicators::drawClusters(CCPoint outputPos, bool isTrigger) {
         if (fallbackToIndividual) {
             for (auto obj : objs) drawToObject(outputPos, obj, isTrigger);
         } else {
-            drawToRect(outputPos, Utils::getObjectsRect(objs, Settings::TriggerIndicators::thickness));
+            drawToRect(outputPos, Utils::getObjectsRect(objs, Cache::TriggerIndicators::thickness));
         }
         return;
     }
+    
     Utils::clusterObjects(objs, size);
     for (const auto& cluster : Cache::Utils::clusters) {
-        drawToRect(outputPos, Utils::getObjectsRect(cluster, Settings::TriggerIndicators::thickness));
+        if (cluster.size() == 1) drawToObject(outputPos, cluster[0], isTrigger);
+
+        drawToRect(outputPos, Utils::getObjectsRect(cluster, Cache::TriggerIndicators::thickness));
     }
 }
 
 void TriggerIndicators::drawToObject(CCPoint outputPos, GameObject* obj, bool isTrigger) {
     // draw boxes
     if (isTrigger ? Settings::TriggerIndicators::boxLineTriggers : Settings::TriggerIndicators::boxLineObjects) {
-        drawToRect(outputPos, Utils::getObjectRect(obj, Settings::TriggerIndicators::thickness));
+        drawToRect(outputPos, Utils::getObjectRect(obj, Cache::TriggerIndicators::thickness));
     } else {
         auto pos = isTrigger
-            ? ccp(obj->getPositionX() - (obj->m_scaleX * Constants::extrasXOffset), Utils::getTriggerBodyPos(obj).y)
+            ? ccp(obj->getPositionX() - (obj->m_scaleX * Constants::triggerIndicatorsExtrasXOffset), Utils::getTriggerBodyPos(obj).y)
             : obj->getPosition();
 
         drawToPoint(outputPos, pos);
@@ -83,7 +86,7 @@ void TriggerIndicators::drawToRect(CCPoint outputPos, const CornerRect& rect) {
     Cache::gridDraw->drawRect(
         rect.p1, rect.p2, 
         Constants::transparentCCC4F, 
-        Settings::TriggerIndicators::thickness, 
+        Cache::TriggerIndicators::thickness, 
         Cache::TriggerIndicators::col
     );
     drawToPoint(outputPos, Utils::getLineCut(outputPos, rect));
@@ -92,7 +95,7 @@ void TriggerIndicators::drawToRect(CCPoint outputPos, const CornerRect& rect) {
 void TriggerIndicators::drawToPoint(CCPoint outputPos, CCPoint pos) {
     Utils::drawLine(
         Cache::gridDraw, outputPos, pos, 
-        Settings::TriggerIndicators::thickness, 
+        Cache::TriggerIndicators::thickness, 
         Cache::TriggerIndicators::col
     );
 }
@@ -100,25 +103,24 @@ void TriggerIndicators::drawToPoint(CCPoint outputPos, CCPoint pos) {
 void TriggerIndicators::drawInput(CCPoint pos, CCSize scale) {
     float maxScale = std::max(scale.width, scale.height);
     Cache::objectDraw->drawCircle(
-        pos, 
-        maxScale * Constants::extrasRadius, 
+        pos, maxScale * Constants::triggerIndicatorsExtrasRadius, 
         Cache::TriggerIndicators::extrasCol1, 
-        maxScale * Constants::extrasSizeThicknessMultiplier, 
+        maxScale * Constants::triggerIndicatorsExtrasSizeThicknessMultiplier, 
         Cache::TriggerIndicators::extrasCol2, 
-        Constants::extrasCircleDetail
+        Constants::triggerIndicatorsExtrasCircleDetail
     );
 }
 
 void TriggerIndicators::drawOutput(CCPoint pos, CCSize scale) {
     CCPoint v[] = {
         ccp(pos.x, pos.y),
-        ccp(pos.x - (scale.width * Constants::extrasSize), pos.y + (scale.height * Constants::extrasSize)),
-        ccp(pos.x - (scale.width * Constants::extrasSize), pos.y - (scale.height * Constants::extrasSize)),
+        ccp(pos.x - (scale.width * Constants::triggerIndicatorsExtrasSize), pos.y + (scale.height * Constants::triggerIndicatorsExtrasSize)),
+        ccp(pos.x - (scale.width * Constants::triggerIndicatorsExtrasSize), pos.y - (scale.height * Constants::triggerIndicatorsExtrasSize)),
     };
     Cache::objectDraw->drawPolygon(
         v, 3, 
         Cache::TriggerIndicators::extrasCol1, 
-        std::max(scale.width, scale.height) * Constants::extrasSizeThicknessMultiplier, 
+        std::max(scale.width, scale.height) * Constants::triggerIndicatorsExtrasSizeThicknessMultiplier, 
         Cache::TriggerIndicators::extrasCol2
     );
 }

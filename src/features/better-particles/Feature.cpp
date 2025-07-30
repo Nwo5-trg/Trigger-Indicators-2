@@ -16,7 +16,11 @@ void BetterParticles::create(ParticleGameObject* particle) {
     Cache::BetterParticles::secondaryColFill.a = Cache::BetterParticles::secondaryCol.a * Settings::BetterParticles::fillOpacity;
 
     auto pos = particle->getPosition();
-    if (!particle->m_isSelected && ccpDistanceSQ(Cache::View::relativeCenter, pos) > Cache::View::cullDistance) return;
+    if ( // culling
+        !particle->m_isSelected && 
+        ccpDistanceSQ(Cache::View::relativeCenter, pos) 
+        > Cache::View::cullDistance
+    ) return;
 
     auto scale = CCSize(particle->m_scaleX, particle->m_scaleY);
     float maxScale = std::max(scale.width, scale.height);

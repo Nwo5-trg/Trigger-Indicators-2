@@ -15,14 +15,12 @@ void TriggerIndicators::create(EffectGameObject* trigger) {
     if (Settings::TriggerIndicators::triggerBlacklist.contains(id)) return;
     if (id == 1006 && trigger->m_pulseTargetType != 1) return; // pulse trigger only draw if theyre on group setting
 
-    if ( // cull if its not on screen, ignore if the triggers selected
+    if ( // culling
         !trigger->m_isSelected 
         && ccpDistanceSQ(Cache::View::relativeCenter, trigger->getPosition()) 
         > Cache::TriggerIndicators::cullDistance
     ) return;
 
-
-    // okie done with all the culling :3c
     Cache::TriggerIndicators::targetObjects.clear();
     Cache::TriggerIndicators::centerObjects.clear();
 
@@ -33,23 +31,22 @@ void TriggerIndicators::create(EffectGameObject* trigger) {
         getObjects(trigger, center, Cache::TriggerIndicators::centerObjects);
     }
 
-    // get offsets and stuff
     auto triggerScale = CCSize(trigger->m_scaleX, trigger->m_scaleX);
     auto triggerPos = trigger->getPosition();
     auto triggerBodyPos = Utils::getTriggerBodyPos(trigger);
 
     auto targetOffset = Cache::TriggerIndicators::centerObjects.empty() 
         ? ccp(
-            triggerBodyPos.x + (triggerScale.width * (Constants::extrasXOffset + Constants::extrasSize)), 
+            triggerBodyPos.x + (triggerScale.width * (Constants::triggerIndicatorsExtrasXOffset + Constants::triggerIndicatorsExtrasSize)), 
             triggerBodyPos.y
         )
         : ccp(
-            triggerBodyPos.x + (triggerScale.width * (Constants::extrasXOffset + Constants::extrasSize)), 
-            triggerBodyPos.y + (triggerScale.height * Constants::targetTypesYOffset)
+            triggerBodyPos.x + (triggerScale.width * (Constants::triggerIndicatorsExtrasXOffset + Constants::triggerIndicatorsExtrasSize)), 
+            triggerBodyPos.y + (triggerScale.height * Constants::triggerIndicatorsTargetTypesYOffset)
         );
     auto centerOffset = ccp(
-        triggerBodyPos.x + (triggerScale.width * (Constants::extrasXOffset + Constants::extrasSize)), 
-        triggerBodyPos.y - (triggerScale.height * Constants::targetTypesYOffset)
+        triggerBodyPos.x + (triggerScale.width * (Constants::triggerIndicatorsExtrasXOffset + Constants::triggerIndicatorsExtrasSize)), 
+        triggerBodyPos.y - (triggerScale.height * Constants::triggerIndicatorsTargetTypesYOffset)
     );
     
     if (trigger->m_activateGroup && id == 1049) id = 10001; // toggle triggers
@@ -75,8 +72,7 @@ void TriggerIndicators::getObjects(EffectGameObject* trigger, int key, std::vect
         if (Settings::TriggerIndicators::onlyTriggers && !isTrigger) continue; 
         if (isTrigger && Settings::TriggerIndicators::onlySpawn && !static_cast<EffectGameObject*>(obj)->m_isSpawnTriggered) continue;
 
-        if (trigger->m_isSelected) goto pushBack;
-        if (obj->m_isSelected) goto pushBack; // selected objects also always show connections
+        if (trigger->m_isSelected || obj->m_isSelected) goto pushBack; // selected objects also always show connections
         if (Settings::TriggerIndicators::onlySelected) continue; // all selected objects would already be pushed back atp
 
         if (ccpDistanceSQ(obj->getPosition(), triggerPos) > Settings::TriggerIndicators::maxDistance) continue;
