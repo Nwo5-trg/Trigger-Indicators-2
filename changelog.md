@@ -8,6 +8,7 @@
 
 - dont update stuff options
 - exit static triggers
+- supercede or however u spell it better particles
 
 ## v0.1.0-beta.8
 
