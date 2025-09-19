@@ -29,6 +29,9 @@ namespace Utils {
 
     cocos2d::CCPoint getObjectsCenter(const std::vector<GameObject*>& objs);
 
+    void createLayer(cocos2d::CCLayer*& layer, std::string id, int z);
+    void createDrawNode(cocos2d::CCDrawNode*& drawNode, std::string id, cocos2d::CCNode* parent);
+
     inline std::unordered_map<int, cocos2d::ccColor4F> triggerColorMap = {
         {901, {1.0f, 0.0f, 1.0f, 1.0f}}, {3006, {1.0f, 0.0f, 1.0f, 1.0f}}, {3011, {1.0f, 0.0f, 1.0f, 1.0f}},  
         {1616, {0.639f, 0.0f, 0.337f, 1.0f}}, {1006, {1.0f, 1.0f, 0.0f, 1.0f}}, {3010, {1.0f, 1.0f, 0.0f, 1.0f}},  

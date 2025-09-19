@@ -1,4 +1,16 @@
+## v0.1.0-beta.9
+
+**Added**
+
+- a lil bit of code cleanup not rly
+
+**Fixed**
+
+- dont update stuff options
+- exit static triggers
+
 ## v0.1.0-beta.8
+
 **Added**
 
 - move indicator toggles to setup move popup
@@ -31,7 +43,7 @@
 
 - collision ids mb
 - group labels (these are not coming back btw)
-- settings in readme, i trust you, please dont betray said trust, if i get ***one more f\*\*king bug report im going to commit a serious crime***
+- settings in readme, i trust you, please dont betray said trust, if i get ***one more f\*\*king bug report im going to commit a [serious crime]***
 
 ## v0.1.0-beta.6
 

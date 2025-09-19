@@ -1,5 +1,5 @@
 {
-	"geode": "4.6.0",
+	"geode": "4.8.0",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
@@ -8,10 +8,13 @@
 	},
 	"id": "nwo5.trigger_indicators_v2",
 	"name": "Trigger Indicators",
-	"version": "v0.1.0-beta.8",
+	"version": "v0.1.0-beta.9",
 	"developer": "Nwo5",
 	"tags": ["utility", "enhancement", "editor", "offline"],
-	"links": {"source": "https://github.com/Nwo5-trg/Trigger-Indicators-2"},
+	"links": {
+		"source": "https://github.com/Nwo5-trg/Trigger-Indicators-2",
+		"community": "https://discord.gg/AeFeYWGUxZ"
+	},
 	"issues": {
 		"info": "@nwo5 on discord or github issues, complain about performance and the threat in readme applies to u :3",
 		"url": "https://github.com/Nwo5-trg/Trigger-Indicators-2/issues"
@@ -19,7 +22,9 @@
 	"dependencies": {
 		"geode.node-ids": ">=1.20.1"
 	},
-	"resources": {"sprites": ["resources/*.png"]},
+	"resources": {
+		"sprites": ["resources/*.png"]
+	},
 	"description": "better edit pro or smth",
 	"settings": {
 		"features-title": {
@@ -489,9 +494,10 @@
 			"type": "title",
 			"name": "General"
 		},
-		"general-update-when-playtesting": {
+		"general-dont-update-when-playtesting": {
 			"type": "bool",
-			"name": "Update When Playtesting",
+			"name": "Dont Update When Playtesting",
+			"description": "always on for move indicators",
 			"default": false
 		},
 		"general-settings-button-texture": {

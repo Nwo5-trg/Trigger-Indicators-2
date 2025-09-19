@@ -54,7 +54,7 @@ void MoveIndicators::drawIndicator(EffectGameObject* trigger, const std::pair<CC
     if (trigger->m_isGripSlope) {
         getObjectPreview(endOffset);
         for (const auto& rect : Cache::MoveIndicators::objectPreviews) {
-            Cache::gridDraw->drawRect( // so the previews are hopefully less intrusive
+            Cache::dontUpdateGridDraw->drawRect( // so the previews are hopefully less intrusive
                 rect.p1, rect.p2, Constants::transparentCCC4F,
                 Cache::MoveIndicators::endPreviewThickness,
                 Cache::MoveIndicators::endPreviewCol
@@ -63,28 +63,28 @@ void MoveIndicators::drawIndicator(EffectGameObject* trigger, const std::pair<CC
     }
 
     Utils::drawLine(
-        Cache::gridDraw, pair.first, pair.second, // so there isnt overlapping
+        Cache::dontUpdateGridDraw, pair.first, pair.second, // so there isnt overlapping
         Cache::MoveIndicators::thickness, 
         Cache::MoveIndicators::centerIndicatorCol
     );
 
     for (const auto& segment : Cache::MoveIndicators::indicatorSegments) {
         Utils::drawLine(
-            Cache::objectDraw, 
+            Cache::dontUpdateObjectDraw, 
             pair.second + segment.first, pair.second + segment.second, 
             Cache::MoveIndicators::thickness, 
             Cache::MoveIndicators::indicatorCol
         );
     }
  
-    Cache::objectDraw->drawCircle(
+    Cache::dontUpdateObjectDraw->drawCircle(
         pair.second + Cache::MoveIndicators::indicatorSegments.front().first, 
         Cache::MoveIndicators::startRadius,
         Cache::MoveIndicators::startCol, 0.0f, 
         Constants::transparentCCC4F, 
         Constants::moveIndicatorsStartCircleDetail
     );
-    Cache::objectDraw->drawDot(
+    Cache::dontUpdateObjectDraw->drawDot(
         pair.second + endOffset, 
         Cache::MoveIndicators::endSize,
         Cache::MoveIndicators::endCol

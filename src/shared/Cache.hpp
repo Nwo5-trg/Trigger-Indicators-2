@@ -4,6 +4,8 @@
 // some of these are more like shared than cache but wtv 
 // i dont wanna make 2 namespaces for pretty much the same thing
 namespace Cache {
+    inline geode::Mod* mod;
+    
     namespace Utils {
         inline std::unordered_set<int> currentObjGroupsSet;
         
@@ -25,8 +27,12 @@ namespace Cache {
 
     inline float layerAlphaMultiplier;
 
+    inline cocos2d::CCLayer* gridDrawLayer = nullptr;
     inline cocos2d::CCDrawNode* gridDraw = nullptr;
+    inline cocos2d::CCDrawNode* dontUpdateGridDraw = nullptr;
+    inline cocos2d::CCLayer* objectDrawLayer = nullptr;
     inline cocos2d::CCDrawNode* objectDraw = nullptr;
+    inline cocos2d::CCDrawNode* dontUpdateObjectDraw = nullptr;
 
     inline cocos2d::CCDictionary* groupDict = nullptr;
     inline cocos2d::CCArray* triggers = nullptr;

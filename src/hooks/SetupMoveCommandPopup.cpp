@@ -21,7 +21,7 @@ class $modify(MoveTriggerPopup, SetupMoveCommandPopup) {
             auto toggler = CCMenuItemToggler::create(
                 CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png"),
                 CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png"), 
-                this, menu_selector(MoveTriggerPopup::onToggler)
+                this, menu_selector(MoveTriggerPopup::onMoveIndicatorToggler)
             );
             toggler->setID(i == 0 ? "enable-indicators-toggle"_spr : "enable-preview-toggle"_spr);
             toggler->setTag(i);
@@ -50,7 +50,7 @@ class $modify(MoveTriggerPopup, SetupMoveCommandPopup) {
         return true;
     }
 
-    void onToggler(CCObject* sender) {
+    void onMoveIndicatorToggler(CCObject* sender) {
         auto fields = m_fields.self();
         bool toggle = !static_cast<CCMenuItemToggler*>(sender)->m_toggled;
 

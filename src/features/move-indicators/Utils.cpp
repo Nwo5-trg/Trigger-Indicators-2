@@ -57,9 +57,9 @@ CCPoint MoveIndicators::getObjectMovedPos(CCPoint pos, EffectGameObject* target)
     for (auto trigger : CCArrayExt<EffectGameObject*>(Cache::moveTriggers)) {
         if (
             trigger->getPositionX() >= triggerX 
-            || !Cache::MoveIndicators::sharedGroups.contains(trigger->m_targetGroupID)
-            || trigger->m_isSpawnTriggered
-            || trigger->m_isTouchTriggered
+                || !Cache::MoveIndicators::sharedGroups.contains(trigger->m_targetGroupID)
+                || trigger->m_isSpawnTriggered
+                || trigger->m_isTouchTriggered
         ) continue;
 
         pos += trigger->m_moveOffset;

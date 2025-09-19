@@ -3,11 +3,9 @@
 #include "../utils/Enums.hpp"
 
 namespace Settings {
-    inline geode::Mod* mod;
-
     inline bool enabled;
     
-    inline bool updateWhenPlaytesting;
+    inline bool dontUpdateWhenPlaytesting;
     
     inline float layerAlphaMultiplier;
 
