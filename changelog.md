@@ -1,3 +1,16 @@
+## v0.1.0-beta.10
+
+**Added**
+
+- better duration lines & area previews !
+- bugs prolly cuz i added 2 new features :3c
+
+**Fixed**
+
+- all of last update \<\/3
+- culling kinda, moreso made it slightly better
+- some tiny bugs
+
 ## v0.1.0-beta.9
 
 **Added**
@@ -187,4 +200,3 @@
 ## v0.1.0-alpha.1
 
 - First build
-

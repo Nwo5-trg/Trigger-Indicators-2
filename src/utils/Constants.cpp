@@ -17,7 +17,7 @@ namespace Constants {
             if (!setConstantsFunctions.contains(id)) continue;;
             if (!values.contains("value")) continue;
             auto& value = values["value"];
-            setConstantsFunctions.at(id)(value);
+            setConstantsFunctions[id](value);
         }
     }
 

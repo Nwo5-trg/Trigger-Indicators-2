@@ -29,21 +29,43 @@ class $modify(LevelEditorLayer) {
             nullptr));
             Cache::gayNode->runAction(rgbtqiaplus16mcolultra4khd);
         }
+
+        updateTriggers();
         
         return true;
     }
 
     void updateDebugDraw() {
         LevelEditorLayer::updateDebugDraw();
+
+        int objects = m_objects->count();
+        if (objects != Cache::lastObjectCount) {
+            updateTriggers();
+        }
+        Cache::lastObjectCount = objects;
+
         Update::draw(this);
+    }
+
+    void updateTriggers() {
+        Cache::triggers.clear();
+        for (auto obj : CCArrayExt<GameObject*>(m_objects)) {
+            if (obj->m_isTrigger) {
+                Cache::triggers.push_back(static_cast<EffectGameObject*>(obj));
+            }
+        }
     }
 
     GameObject* createObject(int p0, CCPoint p1, bool p2) {
         auto ret = LevelEditorLayer::createObject(p0, p1, p2);
         // move indicator shenangians
-        if (p0 == 901) {
+        if (Settings::MoveIndicators::enabled && p0 == 901) {
             ret->m_isIceBlock = Settings::MoveIndicators::enableIndicatorByDefault;
             ret->m_isGripSlope = Settings::MoveIndicators::enableEndPreviewByDefault;
+        }
+        // area preview shenangians
+        if (Settings::AreaPreviews::enabled && Utils::areaTriggers.contains(p0)) {
+            ret->m_isIceBlock = Settings::AreaPreviews::enablePreviewsByDefault;
         }
         return ret;
     }

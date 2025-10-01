@@ -4,7 +4,6 @@ struct CornerRect;
 
 namespace TriggerIndicators {
     void create(EffectGameObject* trigger);
-    void getObjects(EffectGameObject* trigger, int key, std::vector<GameObject*>& vector);
 
     void draw(EffectGameObject* trigger, const std::vector<GameObject*>& objs, cocos2d::CCPoint outputPos);
     void drawClusters(cocos2d::CCPoint outputPos, bool isTrigger);
@@ -13,4 +12,6 @@ namespace TriggerIndicators {
     void drawToPoint(cocos2d::CCPoint outputPos, cocos2d::CCPoint pos);
     void drawInput(cocos2d::CCPoint pos, cocos2d::CCSize scale);
     void drawOutput(cocos2d::CCPoint pos, cocos2d::CCSize scale);
+
+    void getObjects(EffectGameObject* trigger, int key, std::vector<GameObject*>& vector);
 }

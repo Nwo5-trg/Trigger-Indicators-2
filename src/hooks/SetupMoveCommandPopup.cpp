@@ -3,7 +3,7 @@
 
 using namespace geode::prelude;
 
-class $modify(MoveTriggerPopup, SetupMoveCommandPopup) {
+class $modify(SetupMoveCommandPopupHook, SetupMoveCommandPopup) {
     struct Fields {
         std::vector<EffectGameObject*> triggers;
     };
@@ -21,7 +21,7 @@ class $modify(MoveTriggerPopup, SetupMoveCommandPopup) {
             auto toggler = CCMenuItemToggler::create(
                 CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png"),
                 CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png"), 
-                this, menu_selector(MoveTriggerPopup::onMoveIndicatorToggler)
+                this, menu_selector(SetupMoveCommandPopupHook::onMoveIndicatorToggler)
             );
             toggler->setID(i == 0 ? "enable-indicators-toggle"_spr : "enable-preview-toggle"_spr);
             toggler->setTag(i);
@@ -51,15 +51,14 @@ class $modify(MoveTriggerPopup, SetupMoveCommandPopup) {
     }
 
     void onMoveIndicatorToggler(CCObject* sender) {
-        auto fields = m_fields.self();
         bool toggle = !static_cast<CCMenuItemToggler*>(sender)->m_toggled;
 
         if (sender->getTag() == 0) {
-            for (auto obj : fields->triggers) {
+            for (auto obj : m_fields->triggers) {
                 obj->m_isIceBlock = toggle;
             }
         } else {
-            for (auto obj : fields->triggers) {
+            for (auto obj : m_fields->triggers) {
                 obj->m_isGripSlope = toggle;
             }
         }

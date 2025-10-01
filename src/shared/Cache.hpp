@@ -6,7 +6,7 @@
 namespace Cache {
     inline geode::Mod* mod;
     
-    namespace Utils {
+    namespace Utils { // just realised some of these could just b static, silly me
         inline std::unordered_set<int> currentObjGroupsSet;
         
         inline std::vector<std::vector<GameObject*>> clusters;
@@ -17,6 +17,7 @@ namespace Cache {
     namespace View {
         inline float zoom;
         inline float cullDistance;
+        inline float cullDistanceSQ;
         inline cocos2d::CCSize size;
         inline cocos2d::CCPoint relativeCenter; // to batchlayer
     }
@@ -24,8 +25,13 @@ namespace Cache {
     inline bool playtesting;
 
     inline int currentLayer;
+    inline int lastObjectCount;
 
     inline float layerAlphaMultiplier;
+
+    inline std::vector<EffectGameObject*> triggers;
+
+    inline LevelEditorLayer* editor;
 
     inline cocos2d::CCLayer* gridDrawLayer = nullptr;
     inline cocos2d::CCDrawNode* gridDraw = nullptr;
@@ -35,8 +41,6 @@ namespace Cache {
     inline cocos2d::CCDrawNode* dontUpdateObjectDraw = nullptr;
 
     inline cocos2d::CCDictionary* groupDict = nullptr;
-    inline cocos2d::CCArray* triggers = nullptr;
-    inline cocos2d::CCArray* moveTriggers = nullptr;
 
     inline cocos2d::CCNodeRGBA* gayNode = nullptr;
     inline cocos2d::ccColor4F currentChromaCol;
@@ -55,11 +59,34 @@ namespace Cache {
         inline std::vector<GameObject*> queuedTriggerClusterObjects;
     }
 
+    namespace BetterDurationLines {
+        inline bool dontExtendNegative;
+
+        inline float thickness;
+        inline float duration;
+
+        inline cocos2d::CCPoint triggerPos;
+        
+        inline cocos2d::ccColor4F col;
+        inline cocos2d::ccColor4F startCol;
+        inline cocos2d::ccColor4F endCol;
+    }
+
+    namespace AreaPreviews {
+        inline float thickness;
+
+        inline cocos2d::ccColor4F lengthCol;
+        inline cocos2d::ccColor4F lengthCircleCol;
+        inline cocos2d::ccColor4F deadzoneCol;
+        inline cocos2d::ccColor4F offsetXCol;
+        inline cocos2d::ccColor4F offsetYCol;
+    }
+
     namespace BetterParticles {
         inline float thickness;
         inline float centerLineThickness;
         
-        // idk why im caching if im copyinghalf the time anyway but oh well
+        // idk why im caching if im copying half the time anyway but oh well
         inline cocos2d::ccColor4F primaryCol;
         inline cocos2d::ccColor4F secondaryCol;
         inline cocos2d::ccColor4F primaryColFill;

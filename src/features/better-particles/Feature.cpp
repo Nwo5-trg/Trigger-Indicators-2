@@ -9,18 +9,18 @@ namespace BetterParticles {
     void create(ParticleGameObject* particle) {
         if (Settings::BetterParticles::hideOnDifferentLayer && Cache::layerAlphaMultiplier != 1.0f) return;
 
+        auto pos = particle->getPosition();
+        if ( // culling
+            !particle->m_isSelected && 
+            ccpDistanceSQ(Cache::View::relativeCenter, pos) 
+            > Cache::View::cullDistanceSQ
+        ) return;
+
         Cache::BetterParticles::primaryCol.a = Cache::layerAlphaMultiplier;
         Cache::BetterParticles::secondaryCol.a = Cache::layerAlphaMultiplier;
         Cache::BetterParticles::centerLineCol.a = Cache::layerAlphaMultiplier;
         Cache::BetterParticles::primaryColFill.a = Cache::BetterParticles::primaryCol.a * Settings::BetterParticles::fillOpacity;
         Cache::BetterParticles::secondaryColFill.a = Cache::BetterParticles::secondaryCol.a * Settings::BetterParticles::fillOpacity;
-
-        auto pos = particle->getPosition();
-        if ( // culling
-            !particle->m_isSelected && 
-            ccpDistanceSQ(Cache::View::relativeCenter, pos) 
-            > Cache::View::cullDistance
-        ) return;
 
         auto scale = CCSize(particle->m_scaleX, particle->m_scaleY);
         float maxScale = std::max(scale.width, scale.height);

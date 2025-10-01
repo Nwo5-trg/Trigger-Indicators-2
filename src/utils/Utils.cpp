@@ -1,15 +1,17 @@
 #include "Utils.hpp"
 #include "../shared/Cache.hpp"
+#include <random>
 
 using namespace geode::prelude;
 
 namespace Utils {
-    void drawLine(CCDrawNode* drawNode, CCPoint p1, CCPoint p2, float thickness, ccColor4F col) {
-        // see taking like 3 weeks learning opengl payed off for smth 
+    void drawLine(CCDrawNode* drawNode, CCPoint p1, CCPoint p2, float thickness, const ccColor4F& col) {
+        if (p1 == p2) return;
+        // remind me on day to just use opengl 4r ts i cant w/ cocos anymore vro
         auto dir = ccpNormalize(p2 - p1);
         auto perp = ccp(-dir.y, dir.x) * (thickness / 2);
         CCPoint v[] {
-            (p1 + perp), (p2 + perp), (p2 - perp), (p1 - perp)
+            (p1 + perp), (p1 - perp), (p2 - perp), (p2 + perp)
         };
         drawNode->drawPolygon(v, 4, col, 0.0f, col);
     }
@@ -87,6 +89,7 @@ namespace Utils {
         return r;
     }
 
+    // would replace w/ an inlined version of geodes function but im lazy and its only 4r settings so
     std::unordered_set<int> parseIntArray(const std::string& input) {
         std::unordered_set<int> intSet;
         auto start = 0;
@@ -195,12 +198,5 @@ namespace Utils {
     void updateTriggerCol(ccColor4F& col, int id, bool chroma) {
         col = chroma ? Cache::currentChromaCol : triggerColorMap[id];
         col.a = Cache::layerAlphaMultiplier;
-    }
-    // technically i could still optimize duration lines like trigger indicators but ehhhhh
-    ccColor4F getTriggerCol(int id, bool alpha, bool chroma) {
-        ccColor4F col;
-        col = chroma ? Cache::currentChromaCol : triggerColorMap[id];
-        if (alpha) col.a = Cache::layerAlphaMultiplier;
-        return col;
     }
 }

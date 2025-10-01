@@ -8,15 +8,15 @@
 	},
 	"id": "nwo5.trigger_indicators_v2",
 	"name": "Trigger Indicators",
-	"version": "v0.1.0-beta.9",
+	"version": "v0.1.0-beta.10",
 	"developer": "Nwo5",
-	"tags": ["utility", "enhancement", "editor", "offline"],
+	"tags": ["utility", "enhancement", "customization", "editor", "offline"],
 	"links": {
 		"source": "https://github.com/Nwo5-trg/Trigger-Indicators-2",
 		"community": "https://discord.gg/AeFeYWGUxZ"
 	},
 	"issues": {
-		"info": "@nwo5 on discord or github issues, complain about performance and the threat in readme applies to u :3",
+		"info": "@nwo5 on discord or github issues, complain about performance and the threat in readme applies to u ;3",
 		"url": "https://github.com/Nwo5-trg/Trigger-Indicators-2/issues"
 	},
 	"dependencies": {
@@ -37,31 +37,41 @@
 			"type": "title",
 			"name": "Features"
 		},
-		"features-enabled-mod": {
-			"type": "bool",
-			"name": "Enable Mod",
-			"default": true
-		},
-		"features-enabled-trigger-indicators": {
-			"type": "bool",
-			"name": "Enable Trigger Indicators",
-			"default": true
-		},
-		"features-enabled-move-indicators": {
-			"type": "bool",
-			"name": "Enable Move Indicators",
-			"default": true
-		},
-		"features-enabled-better-particles": {
-			"type": "bool",
-			"name": "Enable Better Particles",
-			"default": true
-		},
-		"features-enabled-spawn-indicators": {
-			"type": "bool",
-			"name": "Enable Spawn Indicators",
-			"default": true
-		},
+			"features-enabled-mod": {
+				"type": "bool",
+				"name": "Enable Mod",
+				"default": true
+			},
+			"features-enabled-trigger-indicators": {
+				"type": "bool",
+				"name": "Enable Trigger Indicators",
+				"default": true
+			},
+			"features-enabled-better-duration-lines": {
+				"type": "bool",
+				"name": "Enable Better Duration Lines",
+				"default": true
+			},
+			"features-enabled-move-indicators": {
+				"type": "bool",
+				"name": "Enable Move Indicators",
+				"default": true
+			},
+			"features-enabled-area-previews": {
+				"type": "bool",
+				"name": "Enable Area Trigger Previews",
+				"default": true
+			},
+			"features-enabled-better-particles": {
+				"type": "bool",
+				"name": "Enable Better Particles",
+				"default": true
+			},
+			"features-enabled-spawn-indicators": {
+				"type": "bool",
+				"name": "Enable Spawn Indicators",
+				"default": true
+			},
 
 
 
@@ -71,46 +81,46 @@
 			"type": "title",
 			"name": "Trigger Indicators - Behaviour"
 		},
-		"trigger-indicators-only-selected": {
-			"type": "bool",
-			"name": "Only Selected",
-			"description": "only show indicators for selected triggers/objs",
-			"default": false
-		},
-		"trigger-indicators-only-triggers": {
-			"type": "bool",
-			"name": "Only Triggers",
-			"description": "only show trigger to trigger connections",
-			"default": false
-		},
-		"trigger-indicators-only-spawn": {
-			"type": "bool",
-			"name": "Only Spawn",
-			"description": "only triggers only show spawn connected triggers instead of all triggers with that id",
-			"default": true
-		},
-		"trigger-indicators-max-distance": {
-			"type": "float",
-			"name": "Max Distance",
-			"description": "max distance between objects to draw indicators (without selecting)",
-			"default": 300,
-			"min": 0,
-			"max": 10000
-		},
-		"trigger-indicators-group-blacklist": {
-			"type": "string",
-			"name": "Group Blacklist",
-			"description": "you can input more groups like, '1,2,3,4,5'",
-			"default": "",
-			"filter": "1234567890,"
-		},
-		"trigger-indicators-trigger-blacklist": {
-			"type": "string",
-			"name": "Trigger Blacklist",
-			"description": "you can input more trigger ids like, '1,2,3,4,5'",
-			"default": "",
-			"filter": "1234567890,"
-		},
+			"trigger-indicators-only-selected": {
+				"type": "bool",
+				"name": "Only Selected",
+				"description": "only show indicators for selected triggers/objs",
+				"default": false
+			},
+			"trigger-indicators-only-triggers": {
+				"type": "bool",
+				"name": "Only Triggers",
+				"description": "only show trigger to trigger connections",
+				"default": false
+			},
+			"trigger-indicators-only-spawn": {
+				"type": "bool",
+				"name": "Only Spawn",
+				"description": "only triggers only show spawn connected triggers instead of all triggers with that id",
+				"default": true
+			},
+			"trigger-indicators-max-distance": {
+				"type": "float",
+				"name": "Max Distance",
+				"description": "max distance between objects to draw indicators (without selecting)",
+				"default": 300,
+				"min": 0,
+				"max": 10000
+			},
+			"trigger-indicators-group-blacklist": {
+				"type": "string",
+				"name": "Group Blacklist",
+				"description": "you can input more groups like, '1,2,3,4,5'",
+				"default": "",
+				"filter": "1234567890,"
+			},
+			"trigger-indicators-trigger-blacklist": {
+				"type": "string",
+				"name": "Trigger Blacklist",
+				"description": "you can input more trigger ids like, '1,2,3,4,5'",
+				"default": "",
+				"filter": "1234567890,"
+			},
 
 
 
@@ -118,60 +128,60 @@
 			"type": "title",
 			"name": "Trigger Indicators - Clusters"
 		},
-		"trigger-indicators-cluster-objects": {
-			"type": "bool",
-			"name": "Cluster Objects",
-			"default": true
-		},
-		"trigger-indicators-cluster-triggers": {
-			"type": "bool",
-			"name": "Cluster Triggers",
-			"default": true
-		},
-		"trigger-indicators-cluster-objects-size": {
-			"type": "float",
-			"name": "Max Object Cluster Distance",
-			"description": "when clustering, any neighbours further than this will form their own cluster instead of joining one",
-			"default": 60,
-			"min": 0,
-			"max": 300
-		},
-		"trigger-indicators-cluster-triggers-size": {
-			"type": "float",
-			"name": "Max Trigger Cluster Distance",
-			"description": "when clustering, any neighbours further than this will form their own cluster instead of joining one",
-			"default": 30,
-			"min": 0,
-			"max": 300
-		},
-		"trigger-indicators-cluster-objects-max-threshold": {
-			"type": "int",
-			"name": "Object Clusters Max Threshold",
-			"description": "maximum amount of objects for clustering, any more and fallback gets used (dont set to a high number 1k == 1 mil calls worse case sowwy not sowwy that my cluster implementation is on^2 anything more and its too much for me to understand :3c)",
-			"default": 90,
-			"min": 1,
-			"max": 1000
-		},
-		"trigger-indicators-cluster-triggers-max-threshold": {
-			"type": "int",
-			"name": "Trigger Clusters Max Threshold",
-			"description": "maximum amount of triggers for clustering, any more and fallback gets used (dont set to a high number 1k == 1 mil calls worse case sowwy not sowwy that my cluster implementation is on^2 anything more and its too much for me to understand :3c)",
-			"default": 90,
-			"min": 1,
-			"max": 1000
-		},
-		"trigger-indicators-cluster-fallback-individual-objects": {
-			"type": "bool",
-			"name": "Object Clusters Falback To Individual Lines",
-			"description": "if cluster threshold is exceeded fallback to indivudal lines to every object instead of one big rect",
-			"default": false
-		},
-		"trigger-indicators-cluster-fallback-individual-triggers": {
-			"type": "bool",
-			"name": "Trigger Clusters Falback To Individual Lines",
-			"description": "if cluster threshold is exceeded fallback to indivudal lines to every trigger instead of one big rect",
-			"default": true
-		},
+			"trigger-indicators-cluster-objects": {
+				"type": "bool",
+				"name": "Cluster Objects",
+				"default": true
+			},
+			"trigger-indicators-cluster-triggers": {
+				"type": "bool",
+				"name": "Cluster Triggers",
+				"default": true
+			},
+			"trigger-indicators-cluster-objects-size": {
+				"type": "float",
+				"name": "Max Object Cluster Distance",
+				"description": "when clustering, any neighbours further than this will form their own cluster instead of joining one",
+				"default": 60,
+				"min": 0,
+				"max": 300
+			},
+			"trigger-indicators-cluster-triggers-size": {
+				"type": "float",
+				"name": "Max Trigger Cluster Distance",
+				"description": "when clustering, any neighbours further than this will form their own cluster instead of joining one",
+				"default": 30,
+				"min": 0,
+				"max": 300
+			},
+			"trigger-indicators-cluster-objects-max-threshold": {
+				"type": "int",
+				"name": "Object Clusters Max Threshold",
+				"description": "maximum amount of objects for clustering, any more and fallback gets used (dont set to a high number 1k == 1 mil calls worse case sowwy not sowwy that my cluster implementation is on^2 anything more and its too much for me to understand :3c)",
+				"default": 90,
+				"min": 1,
+				"max": 1000
+			},
+			"trigger-indicators-cluster-triggers-max-threshold": {
+				"type": "int",
+				"name": "Trigger Clusters Max Threshold",
+				"description": "maximum amount of triggers for clustering, any more and fallback gets used (dont set to a high number 1k == 1 mil calls worse case sowwy not sowwy that my cluster implementation is on^2 anything more and its too much for me to understand :3c)",
+				"default": 90,
+				"min": 1,
+				"max": 1000
+			},
+			"trigger-indicators-cluster-fallback-individual-objects": {
+				"type": "bool",
+				"name": "Object Clusters Falback To Individual Lines",
+				"description": "if cluster threshold is exceeded fallback to indivudal lines to every object instead of one big rect",
+				"default": false
+			},
+			"trigger-indicators-cluster-fallback-individual-triggers": {
+				"type": "bool",
+				"name": "Trigger Clusters Falback To Individual Lines",
+				"description": "if cluster threshold is exceeded fallback to indivudal lines to every trigger instead of one big rect",
+				"default": true
+			},
 
 
 
@@ -179,43 +189,43 @@
 			"type": "title",
 			"name": "Trigger Indicators - Visuals"
 		},
-		"trigger-indicators-thickness": {
-			"type": "float",
-			"name": "Thickness",
-			"default": 1,
-			"min": 0,
-			"max": 50
-		},
-		"trigger-indicators-scale-with-zoom": {
-			"type": "bool",
-			"name": "Scale With Zoom",
-			"description": "dynamic thickness based on editor zoom",
-			"default": false
-		},
-		"trigger-indicators-extras-col-one": {
-			"type": "rgba",
-			"name": "Extras Fill Color",
-			"description": "input/output indicators",
-			"default": [255, 255, 255, 255]
-		},
-		"trigger-indicators-extras-col-two": {
-			"type": "rgba",
-			"name": "Extras Outline Color",
-			"description": "input/output indicators",
-			"default": [0, 0, 0, 255]
-		},
-		"trigger-indicators-box-line-objects": {
-			"type": "bool",
-			"name": "Object Individual Line Box",
-			"description": "draw rect around object for individual lines",
-			"default": false
-		},
-		"trigger-indicators-box-line-triggers": {
-			"type": "bool",
-			"name": "Trigger Individual Line Box",
-			"description": "draw rect around object for individual lines",
-			"default": true
-		},
+			"trigger-indicators-thickness": {
+				"type": "float",
+				"name": "Thickness",
+				"default": 1,
+				"min": 0,
+				"max": 50
+			},
+			"trigger-indicators-scale-with-zoom": {
+				"type": "bool",
+				"name": "Scale With Zoom",
+				"description": "dynamic thickness based on editor zoom",
+				"default": false
+			},
+			"trigger-indicators-extras-col-one": {
+				"type": "rgba",
+				"name": "Extras Fill Color",
+				"description": "input/output indicators",
+				"default": [255, 255, 255, 255]
+			},
+			"trigger-indicators-extras-col-two": {
+				"type": "rgba",
+				"name": "Extras Outline Color",
+				"description": "input/output indicators",
+				"default": [0, 0, 0, 255]
+			},
+			"trigger-indicators-box-line-objects": {
+				"type": "bool",
+				"name": "Object Individual Line Box",
+				"description": "draw rect around object for individual lines",
+				"default": false
+			},
+			"trigger-indicators-box-line-triggers": {
+				"type": "bool",
+				"name": "Trigger Individual Line Box",
+				"description": "draw rect around object for individual lines",
+				"default": true
+			},
 
 
 
@@ -223,28 +233,111 @@
 			"type": "title",
 			"name": "Trigger Indicators - Silly :333"
 		},
-		"trigger-indicators-chroma": {
-			"type": "bool",
-			"name": "Chroma",
-			"description": "ooooo gay rgbtq lights :3c",
-			"default": false
+			"trigger-indicators-chroma": {
+				"type": "bool",
+				"name": "Chroma",
+				"description": "ooooo gay rgbtq lights :3c",
+				"default": false
+			},
+			"trigger-indicators-cull-distance-multiplier": {
+				"type": "float",
+				"name": "Cull Distance Multiplier",
+				"description": "less cull distance which is prolly bad unless u want selected objects to show their triggers from further idk :3c",
+				"default": 1,
+				"min": 0.1,
+				"max": 500
+			},
+			"trigger-indicators-selected-cull-distance-multiplier": {
+				"type": "float",
+				"name": "Select Cull Distance Multiplier",
+				"description": "yeah so cuz selecting objects negates max distance but triggers still get culled, cull distance is decreased when selecting :3c u can disable or change that here ig idk rawr",
+				"default": 5,
+				"min": 0.1,
+				"max": 500
+			},
+
+
+
+
+		
+		"better-duration-lines-title": {
+			"type": "title",
+			"name": "Better Duration Lines"
 		},
-		"trigger-indicators-cull-distance-multiplier": {
-			"type": "float",
-			"name": "Cull Distance Multiplier",
-			"description": "less cull distance which is prolly bad unless u want selected objects to show their triggers from further idk :3c",
-			"default": 1,
-			"min": 0.1,
-			"max": 500
-		},
-		"trigger-indicators-selected-cull-distance-multiplier": {
-			"type": "float",
-			"name": "Select Cull Distance Multiplier",
-			"description": "yeah so cuz selecting objects negates max distance but triggers still get culled, cull distance is decreased when selecting :3c u can disable or change that here ig idk rawr",
-			"default": 5,
-			"min": 0.1,
-			"max": 500
-		},
+			"better-duration-lines-thickness": {
+				"type": "float",
+				"name": "Thickness",
+				"default": 0.5,
+				"min": 0,
+				"max": 10
+			},
+			"better-duration-lines-opacity": {
+				"type": "float",
+				"name": "Opacity",
+				"default": 1,
+				"min": 0,
+				"max": 1
+			},
+			"better-duration-lines-inline-previews": {
+				"type": "bool",
+				"name": "Inline Previews",
+				"description": "previews color and opacity change inline, and some other things",
+				"default": true
+			},
+			"better-duration-lines-preview-steps": {
+				"type": "int",
+				"name": "Preview Steps",
+				"default": 20,
+				"min": 2,
+				"max": 250
+			},
+			"better-duration-lines-scale-with-zoom": {
+				"type": "bool",
+				"name": "Scale With Zoom",
+				"default": true
+			},
+			"better-duration-lines-zoom-clamp": {
+				"type": "float",
+				"name": "Zoom Clamp",
+				"description": "any zoom past this wont shrink duration lines w/ scale w/ zoom",
+				"default": 1,
+				"min": 0,
+				"max": 100
+			},
+			"better-duration-lines-trigger-blacklist": {
+				"type": "string",
+				"name": "Trigger Blacklist",
+				"description": "you can input more trigger ids like, '1,2,3,4,5'",
+				"default": "",
+				"filter": "1234567890,"
+			},
+			"better-duration-lines-alpha-fix": {
+				"type": "bool",
+				"name": "Alpha Fix | READ DESC",
+				"description": "might cause stuff to just not render btw so, also doesnt fix like line overlapping (cuz im lazy) just fixes polygon scuffedness",
+				"default": false
+			},
+			"better-duration-lines-pulse-in-col": {
+				"type": "rgba",
+				"name": "Pulse Fade In Color",
+				"default": [255, 0, 0, 255]
+			},
+			"better-duration-lines-pulse-hold-col": {
+				"type": "rgba",
+				"name": "Pulse Hold Color",
+				"default": [255, 255, 0, 255]
+			},
+			"better-duration-lines-pulse-out-col": {
+				"type": "rgba",
+				"name": "Pulse Fade Out Color",
+				"default": [0, 0, 255, 255]
+			},
+			"better-duration-lines-chroma": {
+				"type": "bool",
+				"name": "Chroma",
+				"description": "ooooo gay rgbtq lights :3c",
+				"default": false
+			},
 
 
 
@@ -254,43 +347,43 @@
 			"type": "title",
 			"name": "Move Indicators - Behaviour"
 		},
-		"move-indicators-object-grouping-mode": {
-			"type": "string",
-			"name": "Object Grouping Mode",
-			"default": "Cluster",
-			"one-of": ["On Trigger", "Rect", "Cluster"]
-		},
-		"move-indicators-indicators-by-default": {
-			"type": "bool",
-			"name": "Enable Indicators By Default",
-			"description": "automatically turn on move indicators on placed triggers",
-			"default": false
-		},
-		"move-indicators-end-preview-by-default": {
-			"type": "bool",
-			"name": "Enable End Preview By Default",
-			"description": "automatically turn on end preview on placed triggers (sh*t gets laggy fast dont do this :sob:)",
-			"default": false
-		},
-		"move-indicators-exclude-triggers": {
-			"type": "bool",
-			"name": "Exclude Triggers",
-			"description": "skip triggers if theyre targets",
-			"default": true
-		},
-		"move-indicators-preview-easing": {
-			"type": "bool",
-			"name": "Preview Easing",
-			"description": "easing isnt *real* btw its just an inline visualization of the easing, easing is just how far along a line u should be at in a certain time so an accurate visualization would just be a straight line",
-			"default": true
-		},
-		"move-indicators-easing-steps": {
-			"type": "int",
-			"name": "Easing Steps",
-			"default": 30,
-			"min": 1,
-			"max": 1000
-		},
+			"move-indicators-object-grouping-mode": {
+				"type": "string",
+				"name": "Object Grouping Mode",
+				"default": "Cluster",
+				"one-of": ["On Trigger", "Rect", "Cluster"]
+			},
+			"move-indicators-indicators-by-default": {
+				"type": "bool",
+				"name": "Enable Indicators By Default",
+				"description": "automatically turn on move indicators on placed triggers",
+				"default": false
+			},
+			"move-indicators-end-preview-by-default": {
+				"type": "bool",
+				"name": "Enable End Preview By Default",
+				"description": "automatically turn on end preview on placed triggers (sh*t gets laggy fast dont do this :sob:)",
+				"default": false
+			},
+			"move-indicators-exclude-triggers": {
+				"type": "bool",
+				"name": "Exclude Triggers",
+				"description": "skip triggers if theyre targets",
+				"default": true
+			},
+			"move-indicators-preview-easing": {
+				"type": "bool",
+				"name": "Preview Easing",
+				"description": "easing isnt *real* btw its just an inline visualization of the easing, easing is just how far along a line u should be at in a certain time so an accurate visualization would just be a straight line",
+				"default": true
+			},
+			"move-indicators-easing-steps": {
+				"type": "int",
+				"name": "Easing Steps",
+				"default": 30,
+				"min": 1,
+				"max": 1000
+			},
 
 
 
@@ -298,29 +391,29 @@
 			"type": "title",
 			"name": "Move Indicators - Clusters"
 		},
-		"move-indicators-cluster-size": {
-			"type": "float",
-			"name": "Cluster Size",
-			"description": "when clustering, any neighbours further than this will form their own cluster instead of joining one",
-			"default": 60,
-			"min": 0,
-			"max": 300
-		},
-		"move-indicators-cluster-max-threshold": {
-			"type": "int",
-			"name": "Cluster Max Threshold",
-			"description": "maximum amount of objects for clustering, any more and fallback gets used (dont set to a high number 1k == 1 mil calls worse case sowwy not sowwy that my cluster implementation is on^2 anything more and its too much for me to understand :3c)",
-			"default": 90,
-			"min": 1,
-			"max": 1000
-		},
-		"move-indicators-cluster-fallback": {
-			"type": "string",
-			"name": "Cluster Fallback",
-			"description": "if cluster threshold is exceeded fallback to this",
-			"default": "On Trigger",
-			"one-of": ["On Trigger", "Rect", "Disable"]
-		},
+			"move-indicators-cluster-size": {
+				"type": "float",
+				"name": "Cluster Size",
+				"description": "when clustering, any neighbours further than this will form their own cluster instead of joining one",
+				"default": 60,
+				"min": 0,
+				"max": 300
+			},
+			"move-indicators-cluster-max-threshold": {
+				"type": "int",
+				"name": "Cluster Max Threshold",
+				"description": "maximum amount of objects for clustering, any more and fallback gets used (dont set to a high number 1k == 1 mil calls worse case sowwy not sowwy that my cluster implementation is on^2 anything more and its too much for me to understand :3c)",
+				"default": 90,
+				"min": 1,
+				"max": 1000
+			},
+			"move-indicators-cluster-fallback": {
+				"type": "string",
+				"name": "Cluster Fallback",
+				"description": "if cluster threshold is exceeded fallback to this",
+				"default": "On Trigger",
+				"one-of": ["On Trigger", "Rect", "Disable"]
+			},
 
 
 
@@ -328,141 +421,221 @@
 			"type": "title",
 			"name": "Move Indicators - Visuals"
 		},
-		"move-indicators-thickness": {
-			"type": "float",
-			"name": "Thickness",
-			"default": 1,
-			"min": 0,
-			"max": 50
-		},
-		"move-indicators-end-preview-thickness": {
-			"type": "float",
-			"name": "End Preview Thickness",
-			"default": 1,
-			"min": 0,
-			"max": 50
-		},
-		"move-indicators-scale-with-zoom": {
-			"type": "bool",
-			"name": "Scale With Zoom",
-			"description": "dynamic thickness based on editor zoom",
-			"default": false
-		},
-		"move-indicators-indicator-col": {
-			"type": "rgba",
-			"name": "Indicator Color",
-			"default": [0, 255, 0, 255]
-		},
-		"move-indicators-center-indicator-col": {
-			"type": "rgba",
-			"name": "Center Indicator Color",			
-			"description": "sooo the position of indicators are calculated based on *roughly* all movements the object wouldve done up until the point its at, this just draws a line from the indicator start to the actual center in the editor",
-			"default": [255, 255, 255, 75]
-		},
-		"move-indicators-start-col": {
-			"type": "rgba",
-			"name": "Start Center Color",
-			"default": [127, 0, 255, 255]
-		},
-		"move-indicators-end-col": {
-			"type": "rgba",
-			"name": "End Center Color",
-			"default": [255, 127, 0, 255]
-		},
-		"move-indicators-end-preview-col": {
-			"type": "rgba",
-			"name": "End Preview Color",
-			"default": [0, 0, 255, 255]
-		},
-		"move-indicators-silly-title": {
+			"move-indicators-thickness": {
+				"type": "float",
+				"name": "Thickness",
+				"default": 1,
+				"min": 0,
+				"max": 50
+			},
+			"move-indicators-end-preview-thickness": {
+				"type": "float",
+				"name": "End Preview Thickness",
+				"default": 1,
+				"min": 0,
+				"max": 50
+			},
+			"move-indicators-scale-with-zoom": {
+				"type": "bool",
+				"name": "Scale With Zoom",
+				"description": "dynamic thickness based on editor zoom",
+				"default": false
+			},
+			"move-indicators-indicator-col": {
+				"type": "rgba",
+				"name": "Indicator Color",
+				"default": [0, 255, 0, 255]
+			},
+			"move-indicators-center-indicator-col": {
+				"type": "rgba",
+				"name": "Center Indicator Color",			
+				"description": "sooo the position of indicators are calculated based on *roughly* all movements the object wouldve done up until the point its at, this just draws a line from the indicator start to the actual center in the editor",
+				"default": [255, 255, 255, 75]
+			},
+			"move-indicators-start-col": {
+				"type": "rgba",
+				"name": "Start Center Color",
+				"default": [127, 0, 255, 255]
+			},
+			"move-indicators-end-col": {
+				"type": "rgba",
+				"name": "End Center Color",
+				"default": [255, 127, 0, 255]
+			},
+			"move-indicators-end-preview-col": {
+				"type": "rgba",
+				"name": "End Preview Color",
+				"default": [0, 0, 255, 255]
+			},
+			"move-indicators-silly-title": {
+				"type": "title",
+				"name": "Move Indicators - Silly :333"
+			},
+			"move-indicators-chroma": {
+				"type": "bool",
+				"name": "Chroma",
+				"description": "ooooo gay rgbtq lights :3c",
+				"default": false
+			},
+		
+		
+		
+		
+		
+
+		"area-previews-title": {
 			"type": "title",
-			"name": "Move Indicators - Silly :333"
+			"name": "Area Trigger Previews"
 		},
-		"move-indicators-chroma": {
-			"type": "bool",
-			"name": "Chroma",
-			"description": "ooooo gay rgbtq lights :3c",
-			"default": false
-		},
+			"area-previews-length": {
+				"type": "bool",
+				"name": "Show Length",
+				"default": true
+			},
+			"area-previews-length-circle": {
+				"type": "bool",
+				"name": "Show Length Circle",
+				"default": true
+			},
+			"area-previews-deadzone": {
+				"type": "bool",
+				"name": "Show Deadzone",
+				"default": true
+			},
+			"area-previews-previews-by-default": {
+				"type": "bool",
+				"name": "Enable Previews By Default",
+				"description": "automatically turn on area previews on placed triggers",
+				"default": true
+			},
+			"area-previews-thickness": {
+				"type": "float",
+				"name": "Thickness",
+				"default": 1,
+				"min": 0,
+				"max": 50
+			},
+			"area-previews-scale-with-zoom": {
+				"type": "bool",
+				"name": "Scale With Zoom",
+				"default": true
+			},
+			"area-previews-arrow-size": {
+				"type": "float",
+				"name": "Arrow Size",
+				"default": 5,
+				"min": 0,
+				"max": 50
+			},
+			"area-previews-length-col": {
+				"type": "rgba",
+				"name": "Length Color",
+				"default": [255, 127, 0, 255]
+			},
+			"area-previews-length-circle-col": {
+				"type": "rgba",
+				"name": "Length Circle Color",
+				"default": [255, 0, 0, 255]
+			},
+			"area-previews-deadzone-col": {
+				"type": "rgba",
+				"name": "Deadzone Color",
+				"default": [127, 255, 127, 255]
+			},
+			"area-previews-offset-x-col": {
+				"type": "rgba",
+				"name": "Offset X Color",
+				"default": [0, 255, 255, 255]
+			},
+			"area-previews-offset-y-col": {
+				"type": "rgba",
+				"name": "Offset Y Color",
+				"default": [0, 255, 0, 255]
+			},
+			"area-previews-chroma": {
+				"type": "bool",
+				"name": "Chroma",
+				"description": "ooooo gay rgbtq lights :3c",
+				"default": false
+			},
 		
 
 
 
 		
-
 		"better-particles-title": {
 			"type": "title",
 			"name": "Better Particles"
 		},
-		"better-particles-primary-col": {
-			"type": "rgba",
-			"name": "Primary Color",
-			"default": [0, 255, 0, 255]
-		},
-		"better-particles-secondary-col": {
-			"type": "rgba",
-			"name": "Secondary Color",
-			"default": [0, 255, 255, 255],
-			"description": "endrad col"
-		},
-		"better-particles-center-line-col": {
-			"type": "rgba",
-			"name": "Center Line Color",
-			"default": [0, 255, 0, 255]
-		},
-		"better-particles-thickness": {
-			"type": "float",
-			"name": "thickness",
-			"default": 1,
-			"min": 0,
-			"max": 50
-		},
-		"better-particles-center-line-thickness": {
-			"type": "float",
-			"name": "Center Line Thickness",
-			"default": 0.5,
-			"min": 0,
-			"max": 50
-		},
-		"better-particles-fill-for-rect": {
-			"type": "bool",
-			"name": "Fill For Rect",
-			"default": false
-		},
-		"better-particles-fill-opacity": {
-			"type": "float",
-			"name": "Fill Opacity Multiplier",
-			"default": 0.25,
-			"min": 0,
-			"max": 1
-		},
-		"better-particles-lines-to-center": {
-			"type": "bool",
-			"name": "Lines To Center",
-			"default": false
-		},
-		"better-particles-primary-col-for-center-lines": {
-			"type": "bool",
-			"name": "Use Primary Color For Center Lines",
-			"default": true
-		},
-		"better-particles-hide-on-different-layer": {
-			"type": "bool",
-			"name": "Hide On Different Layer",
-			"default": false
-		},
-		"better-particles-scale-with-zoom": {
-			"type": "bool",
-			"name": "Scale With Zoom",
-			"description": "dynamic thickness based on editor zoom",
-			"default": false
-		},
-		"better-particles-chroma": {
-			"type": "bool",
-			"name": "Chroma",
-			"description": "ooooo gay rgbtq lights :3c",
-			"default": false
-		},
+			"better-particles-primary-col": {
+				"type": "rgba",
+				"name": "Primary Color",
+				"default": [0, 255, 0, 255]
+			},
+			"better-particles-secondary-col": {
+				"type": "rgba",
+				"name": "Secondary Color",
+				"default": [0, 255, 255, 255],
+				"description": "endrad col"
+			},
+			"better-particles-center-line-col": {
+				"type": "rgba",
+				"name": "Center Line Color",
+				"default": [0, 255, 0, 255]
+			},
+			"better-particles-thickness": {
+				"type": "float",
+				"name": "thickness",
+				"default": 1,
+				"min": 0,
+				"max": 50
+			},
+			"better-particles-center-line-thickness": {
+				"type": "float",
+				"name": "Center Line Thickness",
+				"default": 0.5,
+				"min": 0,
+				"max": 50
+			},
+			"better-particles-fill-for-rect": {
+				"type": "bool",
+				"name": "Fill For Rect",
+				"default": false
+			},
+			"better-particles-fill-opacity": {
+				"type": "float",
+				"name": "Fill Opacity Multiplier",
+				"default": 0.25,
+				"min": 0,
+				"max": 1
+			},
+			"better-particles-lines-to-center": {
+				"type": "bool",
+				"name": "Lines To Center",
+				"default": false
+			},
+			"better-particles-primary-col-for-center-lines": {
+				"type": "bool",
+				"name": "Use Primary Color For Center Lines",
+				"default": true
+			},
+			"better-particles-hide-on-different-layer": {
+				"type": "bool",
+				"name": "Hide On Different Layer",
+				"default": false
+			},
+			"better-particles-scale-with-zoom": {
+				"type": "bool",
+				"name": "Scale With Zoom",
+				"description": "dynamic thickness based on editor zoom",
+				"default": false
+			},
+			"better-particles-chroma": {
+				"type": "bool",
+				"name": "Chroma",
+				"description": "ooooo gay rgbtq lights :3c",
+				"default": false
+			},
 
 
 
@@ -472,55 +645,55 @@
 			"type": "title",
 			"name": "Spawn Indicators"
 		},
-		"spawn-indicators-thickness": {
-			"type": "float",
-			"name": "Thickness",
-			"default": 0.25,
-			"min": 0,
-			"max": 50
-		},
-		"spawn-indicators-size": {
-			"type": "float",
-			"name": "Size",
-			"default": 25,
-			"min": 0,
-			"max": 500
-		},
-		"spawn-indicators-col": {
-			"type": "rgba",
-			"name": "Color",
-			"default": [0, 255, 255, 255]
-		},
+			"spawn-indicators-thickness": {
+				"type": "float",
+				"name": "Thickness",
+				"default": 0.25,
+				"min": 0,
+				"max": 50
+			},
+			"spawn-indicators-size": {
+				"type": "float",
+				"name": "Size",
+				"default": 25,
+				"min": 0,
+				"max": 500
+			},
+			"spawn-indicators-col": {
+				"type": "rgba",
+				"name": "Color",
+				"default": [0, 255, 255, 255]
+			},
 
 
 
 
 
-		"general-title": {
-			"type": "title",
-			"name": "General"
-		},
-		"general-dont-update-when-playtesting": {
-			"type": "bool",
-			"name": "Dont Update When Playtesting",
-			"description": "always on for move indicators",
-			"default": false
-		},
-		"general-settings-button-texture": {
-			"type": "string",
-			"name": "Settings Button Texture",
-			"description": "yes you have only pride flags, be gay force, it on everyone, dont like it, homophobic, :3",
-			"default": "genderfluid alt",
-			"one-of": ["ace", "aro", "aroace", "bi", "femboy", "gay", "genderfluid", "lesbian", "nonbinary", "pride", "rainbow", "trans", "ace alt", "aro alt", "aroace alt", "bi alt", "femboy alt", "gay alt", "genderfluid alt", "lesbian alt", "nonbinary alt", "pride alt", "rainbow alt", "trans alt"]
-		},
-		"general-layer-alpha-multiplier": {
-			"type": "float",
-			"name": "Layer Alpha Multiplier",
-			"description": "how much to fade smth drawn thats not on ur layer",
-			"default": 0.5,
-			"min": 0,
-			"max": 1
-		},
+			"general-title": {
+				"type": "title",
+				"name": "General"
+			},
+			"general-dont-update-when-playtesting": {
+				"type": "bool",
+				"name": "Dont Update When Playtesting",
+				"description": "always on for move indicators",
+				"default": false
+			},
+			"general-settings-button-texture": {
+				"type": "string",
+				"name": "Settings Button Texture",
+				"description": "yes you have only pride flags, be gay force, it on everyone, dont like it, homophobic, :3",
+				"default": "genderfluid alt",
+				"one-of": ["ace", "aro", "aroace", "bi", "femboy", "gay", "genderfluid", "lesbian", "nonbinary", "pride", "rainbow", "trans", "ace alt", "aro alt", "aroace alt", "bi alt", "femboy alt", "gay alt", "genderfluid alt", "lesbian alt", "nonbinary alt", "pride alt", "rainbow alt", "trans alt"]
+			},
+			"general-layer-alpha-multiplier": {
+				"type": "float",
+				"name": "Layer Alpha Multiplier",
+				"description": "how much to fade smth drawn thats not on ur layer",
+				"default": 0.5,
+				"min": 0,
+				"max": 1
+			},
 
 
 
@@ -530,13 +703,13 @@
 			"type": "title",
 			"name": "Silly :333"
 		},
-		"silly-sayo-device-sensitivity": {
-			"type": "float",
-			"name": "Sayo Device Sensitivity",
-			"description": "new hardest acu 100% cbf 240hz sayo solid wave trail uldm jump from time machine first victor on the iss",
-			"default": 0.25,
-			"min": 0.01,
-			"max": 5
-		}
+			"silly-sayo-device-sensitivity": {
+				"type": "float",
+				"name": "Sayo Device Sensitivity",
+				"description": "new hardest acu 100% cbf 240hz sayo solid wave trail uldm jump from time machine first victor on the iss",
+				"default": 0.25,
+				"min": 0.01,
+				"max": 5
+			}
 	}
 }

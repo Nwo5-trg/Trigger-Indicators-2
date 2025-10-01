@@ -10,7 +10,7 @@ namespace Utils {
     // soooo you need to do this so a million ppl stop dming me about shit 
     // randomly disappearing :3c
     // source: preveter like 8 months ago
-    void drawLine(cocos2d::CCDrawNode* drawNode, cocos2d::CCPoint p1, cocos2d::CCPoint p2, float thickness, cocos2d::ccColor4F col);
+    void drawLine(cocos2d::CCDrawNode* drawNode, cocos2d::CCPoint p1, cocos2d::CCPoint p2, float thickness, const cocos2d::ccColor4F& col);
 
     // clusters into cache so i dont make like a million vectors every call </3
     void clusterObjects(const std::vector<GameObject*>& objs, float clusterSize);
@@ -55,9 +55,16 @@ namespace Utils {
         {3609, {0.325f, 0.749f, 1.0f, 1.0f}}, {1812, {0.8f, 0.396f, 0.396f, 1.0f}}, {3600, {0.0f, 0.0f, 0.0f, 1.0f}},  
         {3022, {0.408f, 0.886f, 1.0f, 1.0f}}, {2902, {0.408f, 0.886f, 1.0f, 1.0f}}, {2905, {0.498f, 0.498f, 0.498f, 0.498f}},  
         {2907, {0.498f, 0.498f, 0.498f, 0.498f}}, {2913, {0.498f, 0.498f, 0.498f, 0.498f}}, {2915, {0.498f, 0.498f, 0.498f, 0.498f}},  
-        {2916, {0.498f, 0.498f, 0.498f, 0.498f}}, {10001, {0.0f, 1.0f, 0.498f, 1.0f}}
+        {2916, {0.498f, 0.498f, 0.498f, 0.498f}}, {1520, {1.0f, 1.0f, 1.0f, 1.0f}}, {10001, {0.0f, 1.0f, 0.498f, 1.0f}}
+    };
+
+    inline std::unordered_map<Speed, float> speedMap = {
+        {Speed::Slow, 251.16f}, {Speed::Normal, 311.58f}, {Speed::Fast, 387.42f}, {Speed::Faster, 468.0f}, {Speed::Fastest, 576.0f}
+    };
+
+    inline std::unordered_set<int> areaTriggers {
+        3006, 3007, 3008, 3009, 3010
     };
 
     void updateTriggerCol(cocos2d::ccColor4F& col, int id, bool chroma);
-    cocos2d::ccColor4F getTriggerCol(int id, bool alpha, bool chroma);
 }

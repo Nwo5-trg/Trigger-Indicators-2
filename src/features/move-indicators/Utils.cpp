@@ -54,7 +54,7 @@ CCPoint MoveIndicators::getObjectMovedPos(CCPoint pos, EffectGameObject* target)
     // when i add better duration lines add the triggers duration to this so 
     // any move triggers on the path also get accounted for
     auto triggerX = target->getPositionX();
-    for (auto trigger : CCArrayExt<EffectGameObject*>(Cache::moveTriggers)) {
+    for (auto trigger : CCArrayExt<EffectGameObject*>(Cache::editor->m_moveTriggers)) {
         if (
             trigger->getPositionX() >= triggerX 
                 || !Cache::MoveIndicators::sharedGroups.contains(trigger->m_targetGroupID)

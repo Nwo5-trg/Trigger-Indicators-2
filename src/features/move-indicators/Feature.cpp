@@ -18,7 +18,7 @@ namespace MoveIndicators {
         if ( // culling
             !trigger->m_isSelected 
             && ccpDistanceSQ(Cache::View::relativeCenter, trigger->getPosition()) 
-            > Cache::View::cullDistance
+            > Cache::View::cullDistanceSQ
         ) return;
 
         // idc if this could be like slight optimized with a constant might do that later idk prolly not

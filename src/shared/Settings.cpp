@@ -62,6 +62,28 @@ namespace Settings {
             set(TriggerIndicators::selectedCullDistanceMultiplier, "trigger-indicators-selected-cull-distance-multiplier");
         }
 
+        { // better duration lines
+            set(BetterDurationLines::enabled, "features-enabled-better-duration-lines");
+            
+            set(BetterDurationLines::inlinePreviews, "better-duration-lines-inline-previews");
+            set(BetterDurationLines::scaleWithZoom, "better-duration-lines-scale-with-zoom");
+            set(BetterDurationLines::alphaFix, "better-duration-lines-alpha-fix");
+
+            set(BetterDurationLines::previewSteps, "better-duration-lines-preview-steps");
+
+            set(BetterDurationLines::thickness, "better-duration-lines-thickness");
+            set(BetterDurationLines::opacity, "better-duration-lines-opacity");
+            set(BetterDurationLines::zoomClamp, "better-duration-lines-zoom-clamp");
+
+            set(BetterDurationLines::pulseInCol, "better-duration-lines-pulse-in-col");
+            set(BetterDurationLines::pulseHoldCol, "better-duration-lines-pulse-hold-col");
+            set(BetterDurationLines::pulseOutCol, "better-duration-lines-pulse-out-col");
+
+            set(BetterDurationLines::triggerBlacklist, "better-duration-lines-trigger-blacklist");
+
+            set(BetterDurationLines::chroma, "better-duration-lines-chroma");
+        }
+
         { // spawn indicators
             set(SpawnIndicators::enabled, "features-enabled-spawn-indicators");
 
@@ -69,6 +91,27 @@ namespace Settings {
             set(SpawnIndicators::size, "spawn-indicators-size");
             
             set(SpawnIndicators::col, "spawn-indicators-col");
+        }
+
+        { // area previews
+            set(AreaPreviews::enabled, "features-enabled-area-previews");
+
+            set(AreaPreviews::showLength, "area-previews-length");
+            set(AreaPreviews::showLengthCircle, "area-previews-length-circle");
+            set(AreaPreviews::showDeadzone, "area-previews-deadzone");
+            set(AreaPreviews::enablePreviewsByDefault, "area-previews-previews-by-default");
+            set(AreaPreviews::scaleWithZoom, "area-previews-scale-with-zoom");
+
+            set(AreaPreviews::thickness, "area-previews-thickness");
+            set(AreaPreviews::arrowSize, "area-previews-arrow-size");
+
+            set(AreaPreviews::lengthCol, "area-previews-length-col");
+			set(AreaPreviews::lengthCircleCol, "area-previews-length-circle-col");
+			set(AreaPreviews::deadzoneCol, "area-previews-deadzone-col");
+			set(AreaPreviews::offsetXCol, "area-previews-offset-x-col");
+			set(AreaPreviews::offsetYCol, "area-previews-offset-y-col");
+
+            set(BetterParticles::chroma, "area-previews-chroma");
         }
 
         { // better particles

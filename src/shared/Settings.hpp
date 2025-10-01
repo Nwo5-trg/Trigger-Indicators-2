@@ -45,6 +45,28 @@ namespace Settings {
         inline float selectedCullDistanceMultiplier;
     }
 
+    namespace BetterDurationLines {
+        inline bool enabled;
+
+        inline bool inlinePreviews;
+        inline bool scaleWithZoom;
+        inline bool alphaFix;
+
+        inline int previewSteps;
+
+        inline float thickness;
+        inline float opacity;
+        inline float zoomClamp;
+
+        inline cocos2d::ccColor4F pulseInCol;
+        inline cocos2d::ccColor4F pulseHoldCol;
+        inline cocos2d::ccColor4F pulseOutCol;
+
+        inline std::unordered_set<int> triggerBlacklist;
+
+        inline bool chroma;
+    }
+
     namespace SpawnIndicators {
         inline bool enabled;
 
@@ -52,6 +74,27 @@ namespace Settings {
         inline float size;
 
         inline cocos2d::ccColor4F col;
+    }
+
+    namespace AreaPreviews {
+        inline bool enabled;
+
+        inline bool showLength;
+        inline bool showLengthCircle;
+        inline bool showDeadzone;
+        inline bool enablePreviewsByDefault;
+        inline bool scaleWithZoom;
+
+        inline float thickness;
+        inline float arrowSize;
+
+        inline cocos2d::ccColor4F lengthCol;
+        inline cocos2d::ccColor4F lengthCircleCol;
+        inline cocos2d::ccColor4F deadzoneCol;
+        inline cocos2d::ccColor4F offsetXCol;
+        inline cocos2d::ccColor4F offsetYCol;
+
+        inline bool chroma;
     }
 
     namespace BetterParticles {
