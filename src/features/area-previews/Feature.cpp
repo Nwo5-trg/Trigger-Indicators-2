@@ -42,7 +42,7 @@ namespace AreaPreviews {
         int offsetY = type == 0 ? trigger->m_offsetY : (type == 2 ? trigger->m_offset : 0.0f);
         int offsetX = type == 2 ? 0.0f : trigger->m_offset;
 
-        float deadzone = length - (length * trigger->m_deadzone);
+        float deadzone = inbound ? (length * trigger->m_deadzone) : length - (length * trigger->m_deadzone);
 
         auto center = trigger->getPosition();
         auto pos = center + ccp(offsetX, offsetY);

@@ -111,7 +111,7 @@ namespace Settings {
 			set(AreaPreviews::offsetXCol, "area-previews-offset-x-col");
 			set(AreaPreviews::offsetYCol, "area-previews-offset-y-col");
 
-            set(BetterParticles::chroma, "area-previews-chroma");
+            set(AreaPreviews::chroma, "area-previews-chroma");
         }
 
         { // better particles
