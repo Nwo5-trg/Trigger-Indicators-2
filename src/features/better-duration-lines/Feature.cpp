@@ -50,8 +50,17 @@ namespace BetterDurationLines {
             > cullDistance * cullDistance
         ) return;
 
-        float triggerTime = Cache::editor->m_drawGridLayer->timeForPos(
-            Cache::BetterDurationLines::triggerPos, 0, 0, false, false, true, 0
+        float triggerTime = LevelTools::timeForPos(
+            Cache::BetterDurationLines::triggerPos,
+            Cache::editor->m_drawGridLayer->m_speedObjects,
+            (int)Cache::editor->m_levelSettings->m_startSpeed,
+            trigger->m_ordValue,
+            trigger->m_channelValue,
+            false,
+            Cache::editor->m_isPlatformer,
+            true,
+            false,
+            false
         );
 
         Cache::BetterDurationLines::dontExtendNegative = (trigger->m_isSpawnTriggered || trigger->m_isTouchTriggered)
