@@ -24,8 +24,8 @@ using namespace geode::prelude;
                 this, menu_selector( hook ::onAreaPreviewToggler) \
             ); \
             toggler->setID("enable-preview-toggle"_spr); \
-            toggler->setPosition(190.0f, -5.0f); \
-            toggler->setScale(0.55f); \
+            toggler->setPosition(-100.0f, 240.0f); \
+            toggler->setScale(0.5f); \
             bool toggle = true; \
             for (auto obj : fields->triggers) { \
                 if (!obj->m_isIceBlock) { toggle = false; break; } \
@@ -36,7 +36,7 @@ using namespace geode::prelude;
     \
             auto label = CCLabelBMFont::create("Enable\nPreview", "bigFont.fnt"); \
             label->setID("enable-preview-label"_spr); \
-            label->setPosition(ccp(177.5f, -5.0f) + m_buttonMenu->getPosition()); \
+            label->setPosition(ccp(-112.5f, 240.0f) + m_buttonMenu->getPosition()); \
             label->setScale(0.225f); \
             label->setAnchorPoint({1.0f, 0.5f}); \
             addObjectToPage(label, 0); \
