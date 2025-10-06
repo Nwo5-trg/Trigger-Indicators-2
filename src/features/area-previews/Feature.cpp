@@ -39,7 +39,7 @@ namespace AreaPreviews {
         bool inbound = trigger->m_inbound;
 
         int type = trigger->m_directionType;
-        int offsetY = type == 0 ? trigger->m_offsetY : (type == 2 ? trigger->m_offset : 0.0f);
+        int offsetY = type == 0 ? trigger->m_offsetY : (type == 2 ? -trigger->m_offset : 0.0f); // robert topala what the fuck man
         int offsetX = type == 2 ? 0.0f : trigger->m_offset;
 
         float deadzone = inbound ? (length * trigger->m_deadzone) : length - (length * trigger->m_deadzone);
