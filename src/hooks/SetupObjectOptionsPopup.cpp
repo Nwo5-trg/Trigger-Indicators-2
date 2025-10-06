@@ -12,7 +12,7 @@ class $modify(SetupObjectOptionsPopup) {
 
         for (auto obj : CCArrayExt<GameObject*>(m_gameObject ? CCArray::createWithObject(m_gameObject) : m_gameObjects)) {
             if (obj->m_objectID != 901) moveIndicators = false;
-            if (!Utils::areaTriggers.contains(obj->m_objectID)) moveIndicators = false;
+            if (!Utils::areaTriggers.contains(obj->m_objectID)) areaPreviews = false;
         }
 
         if (moveIndicators) {        
