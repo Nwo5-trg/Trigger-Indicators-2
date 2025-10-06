@@ -57,8 +57,8 @@ namespace BetterDurationLines {
             end = (end * Constants::normalSpeed) + Cache::BetterDurationLines::triggerPos.x;
         }
         else {
-            start = Cache::editor->m_drawGridLayer->posForTime(start).x;
-            end = Cache::editor->m_drawGridLayer->posForTime(end).x;
+            start = posForTime(start);
+            end = posForTime(end);
             if (start == 0.0f) {
                 start += Cache::BetterDurationLines::triggerPos.x;
             }
@@ -123,4 +123,18 @@ namespace BetterDurationLines {
         return Constants::betterDurationLinesShakeRandomMin + (x / (float)UINT32_MAX) *
             (Constants::betterDurationLinesShakeRandomMax - Constants::betterDurationLinesShakeRandomMin);
     }
+
+    float posForTime(float time) {
+        // yoinked from goodgrid
+        return LevelTools::posForTimeInternal(
+            time,
+            Cache::editor->m_drawGridLayer->m_speedObjects,
+            (int)Cache::editor->m_levelSettings->m_startSpeed,
+            Cache::editor->m_isPlatformer,
+            false,
+            true,
+            Cache::editor->m_gameState.m_rotateChannel,
+            false
+        ).x;
+    };
 }
