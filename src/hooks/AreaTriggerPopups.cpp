@@ -31,7 +31,7 @@ using namespace geode::prelude;
                 if (!obj->m_isIceBlock) { toggle = false; break; } \
             } \
             toggler->toggle(toggle); \
-            m_modeButtons->addObject(toggler); \
+            addObjectToPage(toggler, 0); \
             m_buttonMenu->addChild(toggler); \
     \
             auto label = CCLabelBMFont::create("Enable\nPreview", "bigFont.fnt"); \
@@ -39,6 +39,7 @@ using namespace geode::prelude;
             label->setPosition(ccp(177.5f, -5.0f) + m_buttonMenu->getPosition()); \
             label->setScale(0.225f); \
             label->setAnchorPoint({1.0f, 0.5f}); \
+            addObjectToPage(label, 0); \
             m_mainLayer->addChild(label); \
     \
             return true; \
