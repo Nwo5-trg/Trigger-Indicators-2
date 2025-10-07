@@ -1,3 +1,9 @@
+## v0.1.0-beta.11
+
+**Fixed**
+
+- zero thickness should actually work now i hope
+
 ## v0.1.0-beta.10
 
 **Added**

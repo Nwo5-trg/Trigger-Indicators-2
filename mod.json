@@ -8,7 +8,7 @@
 	},
 	"id": "nwo5.trigger_indicators_v2",
 	"name": "Trigger Indicators",
-	"version": "v0.1.0-beta.10",
+	"version": "v0.1.0-beta.11",
 	"developer": "Nwo5",
 	"tags": ["utility", "enhancement", "customization", "editor", "offline"],
 	"links": {

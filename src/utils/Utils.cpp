@@ -6,7 +6,7 @@ using namespace geode::prelude;
 
 namespace Utils {
     void drawLine(CCDrawNode* drawNode, CCPoint p1, CCPoint p2, float thickness, const ccColor4F& col) {
-        if (p1 == p2) return;
+        if (p1 == p2 || thickness == 0) return;
         // remind me on day to just use opengl 4r ts i cant w/ cocos anymore vro
         auto dir = ccpNormalize(p2 - p1);
         auto perp = ccp(-dir.y, dir.x) * (thickness / 2);
