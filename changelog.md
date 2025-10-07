@@ -1,8 +1,14 @@
 ## v0.1.0-beta.11
 
+**Added**
+
+- rewrote draw line
+
 **Fixed**
 
-- zero thickness should actually work now i hope
+- line thickness being f\*\*cked
+- triangles in transperant lines overlapping i think
+- move indicator culling
 
 ## v0.1.0-beta.10
 

@@ -1,20 +1,64 @@
 #include "Utils.hpp"
 #include "../shared/Cache.hpp"
-#include <random>
 
 using namespace geode::prelude;
 
 namespace Utils {
+    constexpr cocos2d::ccVertex2F vertFromPoint(const cocos2d::CCPoint& p) { return {p.x, p.y}; }
+
     void drawLine(CCDrawNode* drawNode, CCPoint p1, CCPoint p2, float thickness, const ccColor4F& col) {
-        if (p1 == p2 || thickness == 0) return;
-        // remind me on day to just use opengl 4r ts i cant w/ cocos anymore vro
-        auto dir = ccpNormalize(p2 - p1);
-        auto perp = ccp(-dir.y, dir.x) * (thickness / 2);
-        CCPoint v[] {
-            (p1 + perp), (p1 - perp), (p2 - perp), (p2 + perp)
+        unsigned int vertexCount = 6 * 3;
+
+        if (drawNode->m_nBufferCount + vertexCount > drawNode->m_uBufferCapacity) {
+            drawNode->m_uBufferCapacity += MAX(drawNode->m_uBufferCapacity, vertexCount);
+            drawNode->m_pBuffer = static_cast<ccV2F_C4B_T2F*>(
+                realloc(drawNode->m_pBuffer, drawNode->m_uBufferCapacity * sizeof(ccV2F_C4B_T2F))
+            );
+        }
+
+        auto n = ccpNormalize(ccpPerp(ccpSub(p2, p1)));
+        auto t = ccpPerp(n);
+
+        auto nw = ccpMult(n, thickness);
+        auto tw = ccpMult(t, thickness);
+        auto v0 = vertFromPoint(ccpSub(p2, ccpAdd(nw, tw)));
+        auto v1 = vertFromPoint(ccpAdd(p2, ccpSub(nw, tw)));
+        auto v2 = vertFromPoint(ccpSub(p2, nw));
+        auto v3 = vertFromPoint(ccpAdd(p2, nw));
+        auto v4 = vertFromPoint(ccpSub(p1, nw));
+        auto v5 = vertFromPoint(ccpAdd(p1, nw));
+        auto v6 = vertFromPoint(ccpSub(p1, ccpSub(nw, tw)));
+        auto v7 = vertFromPoint(ccpAdd(p1, ccpAdd(nw, tw)));
+
+        ccV2F_C4B_T2F_Triangle* triangles =
+            reinterpret_cast<ccV2F_C4B_T2F_Triangle*>(drawNode->m_pBuffer + drawNode->m_nBufferCount);
+
+        auto col4b = ccc4BFromccc4F(col);
+
+        // this might be against the geneva convention idk
+        triangles[0] = {
+            {v0, col4b, {}}, {v1, col4b, {}}, {v2, col4b, {}}
         };
-        drawNode->drawPolygon(v, 4, col, 0.0f, col);
+        triangles[1] = {
+            {v3, col4b, {}}, {v1, col4b, {}}, {v2, col4b, {}}
+        };
+        triangles[2] = {
+            {v3, col4b, {}}, {v4, col4b, {}}, {v2, col4b, {}}
+        };
+        triangles[3] = {
+            {v3, col4b, {}}, {v4, col4b, {}}, {v5, col4b, {}}
+        };
+        triangles[4] = {
+            {v6, col4b, {}}, {v4, col4b, {}}, {v5, col4b, {}}
+        };
+        triangles[5] = {
+            {v6, col4b, {}}, {v7, col4b, {}}, {v5, col4b, {}}
+        };
+
+        drawNode->m_nBufferCount += vertexCount;
+        drawNode->m_bDirty = true;
     }
+
 
     void clusterObjects(const std::vector<GameObject*>& objs, float clusterSize) {
         Cache::Utils::clusters.clear();

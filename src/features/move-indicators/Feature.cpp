@@ -22,7 +22,7 @@ namespace MoveIndicators {
         ) return;
 
         // idc if this could be like slight optimized with a constant might do that later idk prolly not
-        if (trigger->m_moveOffset == ccp(0.0f, 0.0f)) return;
+        if (trigger->m_moveOffset == CCPointZero) return;
 
         Cache::MoveIndicators::targetObjects.clear();
         getObjects(trigger, target);
@@ -53,7 +53,7 @@ namespace MoveIndicators {
             if (Settings::MoveIndicators::excludeTriggers && obj->m_isTrigger) continue;
 
             if (trigger->m_isSelected || obj->m_isSelected) goto pushBack;
-            if (ccpDistanceSQ(obj->getPosition(), triggerPos) > Cache::View::cullDistance) continue;
+            if (ccpDistanceSQ(obj->getPosition(), triggerPos) > Cache::View::cullDistanceSQ) continue;
 
             pushBack:
             Cache::MoveIndicators::targetObjects.push_back(obj);

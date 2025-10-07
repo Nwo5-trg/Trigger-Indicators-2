@@ -22,12 +22,12 @@ void MoveIndicators::draw(EffectGameObject* trigger) {
 
     if (easingType == EasingType::None || distance.x == 0.0f || distance.y == 0.0f) {
         Cache::MoveIndicators::indicatorSegments.reserve(1);
-        Cache::MoveIndicators::indicatorSegments.emplace_back(ccp(0.0f, 0.0f), distance);
+        Cache::MoveIndicators::indicatorSegments.emplace_back(CCPointZero, distance);
     } else {
         float exponent = trigger->m_easingRate;
         Cache::MoveIndicators::indicatorSegments.reserve(Settings::MoveIndicators::easingSteps);
         
-        auto start = ccp(0.0f, 0.0f);
+        auto start = CCPointZero;
         bool visualizeX = distance.x >= distance.y;
         for (int i = 1; i <= Settings::MoveIndicators::easingSteps; ++i) {
             float t = float(i) / Settings::MoveIndicators::easingSteps;
