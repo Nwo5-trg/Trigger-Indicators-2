@@ -10,7 +10,7 @@ namespace Utils {
         unsigned int vertexCount = 6 * 3;
 
         if (drawNode->m_nBufferCount + vertexCount > drawNode->m_uBufferCapacity) {
-            drawNode->m_uBufferCapacity += MAX(drawNode->m_uBufferCapacity, vertexCount);
+            drawNode->m_uBufferCapacity += std::max(drawNode->m_uBufferCapacity, vertexCount);
             drawNode->m_pBuffer = static_cast<ccV2F_C4B_T2F*>(
                 realloc(drawNode->m_pBuffer, drawNode->m_uBufferCapacity * sizeof(ccV2F_C4B_T2F))
             );
