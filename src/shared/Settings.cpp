@@ -67,7 +67,7 @@ namespace Settings {
             
             set(BetterDurationLines::inlinePreviews, "better-duration-lines-inline-previews");
             set(BetterDurationLines::scaleWithZoom, "better-duration-lines-scale-with-zoom");
-            set(BetterDurationLines::hideWhilePlaytesting, "better-duration-hide-while-playtesting");
+            set(BetterDurationLines::hideWhilePlaytesting, "better-duration-lines-hide-while-playtesting");
 
             set(BetterDurationLines::previewSteps, "better-duration-lines-preview-steps");
 
