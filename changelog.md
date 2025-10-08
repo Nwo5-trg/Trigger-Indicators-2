@@ -1,3 +1,20 @@
+## v0.1.0-beta.12
+(just adding wat ninkaz said p much)
+
+**Added**
+
+- select only mode 4r area previews and better particles
+- hide duration lines while playtesting
+- better chroma :333
+
+**Removed**
+
+- alpha fix cuz last update made that useless
+
+**Fixed**
+
+- layer alpha stuff
+
 ## v0.1.0-beta.11
 
 **Added**

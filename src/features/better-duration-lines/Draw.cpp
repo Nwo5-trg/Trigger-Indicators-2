@@ -25,7 +25,7 @@ namespace BetterDurationLines {
                     float alpha = startOpacity + (opacityStep * time);
 
                     if (Settings::BetterDurationLines::chroma) {
-                        Cache::BetterDurationLines::col = Cache::currentChromaCol;
+                        Cache::BetterDurationLines::col = Cache::chromaCol0;
                         Cache::BetterDurationLines::col.a *= alpha;
                     }
                     else Cache::BetterDurationLines::col = {1.0f, 1.0f, 1.0f, alpha};

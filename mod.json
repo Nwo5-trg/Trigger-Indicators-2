@@ -8,7 +8,7 @@
 	},
 	"id": "nwo5.trigger_indicators_v2",
 	"name": "Trigger Indicators",
-	"version": "v0.1.0-beta.11",
+	"version": "v0.1.0-beta.12",
 	"developer": "Nwo5",
 	"tags": ["utility", "enhancement", "customization", "editor", "offline"],
 	"links": {
@@ -304,18 +304,17 @@
 				"min": 0,
 				"max": 100
 			},
+			"better-duration-lines-hide-while-playtesting": {
+				"type": "bool",
+				"name": "Hide While Playtesting",
+				"default": true
+			},
 			"better-duration-lines-trigger-blacklist": {
 				"type": "string",
 				"name": "Trigger Blacklist",
 				"description": "you can input more trigger ids like, '1,2,3,4,5'",
 				"default": "",
 				"filter": "1234567890,"
-			},
-			"better-duration-lines-alpha-fix": {
-				"type": "bool",
-				"name": "Alpha Fix | READ DESC",
-				"description": "might cause stuff to just not render btw so, also doesnt fix like line overlapping (cuz im lazy) just fixes polygon scuffedness",
-				"default": false
 			},
 			"better-duration-lines-pulse-in-col": {
 				"type": "rgba",
@@ -520,6 +519,11 @@
 				"name": "Scale With Zoom",
 				"default": true
 			},
+			"area-previews-only-selected": {
+				"type": "bool",
+				"name": "Only Selected",
+				"default": false
+			},
 			"area-previews-arrow-size": {
 				"type": "float",
 				"name": "Arrow Size",
@@ -628,6 +632,11 @@
 				"type": "bool",
 				"name": "Scale With Zoom",
 				"description": "dynamic thickness based on editor zoom",
+				"default": false
+			},
+			"better-particles-only-selected": {
+				"type": "bool",
+				"name": "Only Selected",
 				"default": false
 			},
 			"better-particles-chroma": {

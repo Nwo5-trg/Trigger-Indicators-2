@@ -12,7 +12,7 @@ namespace BetterParticles {
         auto pos = particle->getPosition();
         if ( // culling
             !particle->m_isSelected && 
-            ccpDistanceSQ(Cache::View::relativeCenter, pos) 
+            Settings::BetterParticles::onlySelected ? true : ccpDistanceSQ(Cache::View::relativeCenter, pos) 
             > Cache::View::cullDistanceSQ
         ) return;
 

@@ -67,7 +67,7 @@ namespace Settings {
             
             set(BetterDurationLines::inlinePreviews, "better-duration-lines-inline-previews");
             set(BetterDurationLines::scaleWithZoom, "better-duration-lines-scale-with-zoom");
-            set(BetterDurationLines::alphaFix, "better-duration-lines-alpha-fix");
+            set(BetterDurationLines::hideWhilePlaytesting, "better-duration-hide-while-playtesting");
 
             set(BetterDurationLines::previewSteps, "better-duration-lines-preview-steps");
 
@@ -101,6 +101,7 @@ namespace Settings {
             set(AreaPreviews::showDeadzone, "area-previews-deadzone");
             set(AreaPreviews::enablePreviewsByDefault, "area-previews-previews-by-default");
             set(AreaPreviews::scaleWithZoom, "area-previews-scale-with-zoom");
+            set(AreaPreviews::onlySelected, "area-previews-only-selected");
 
             set(AreaPreviews::thickness, "area-previews-thickness");
             set(AreaPreviews::arrowSize, "area-previews-arrow-size");
@@ -121,6 +122,7 @@ namespace Settings {
             set(BetterParticles::linesToCenter, "better-particles-lines-to-center");
             set(BetterParticles::hideOnDifferentLayer, "better-particles-hide-on-different-layer");
             set(BetterParticles::scaleWithZoom, "better-particles-scale-with-zoom");
+            set(BetterParticles::onlySelected, "better-particles-only-selected");
 
             set(BetterParticles::thickness, "better-particles-thickness");
             set(BetterParticles::centerLineThickness, "better-particles-center-line-thickness");

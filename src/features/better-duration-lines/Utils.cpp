@@ -23,24 +23,14 @@ namespace BetterDurationLines {
         Cache::BetterDurationLines::col.a *= Cache::layerAlphaMultiplier * Settings::BetterDurationLines::opacity;
 
         drawDurationLineFixTime(start, end);
-
-        if (Settings::BetterDurationLines::alphaFix) {
-            Cache::gridDraw->drawSegment(
-                {start, Cache::BetterDurationLines::triggerPos.y}, 
-                {end, Cache::BetterDurationLines::triggerPos.y}, 
-                Cache::BetterDurationLines::thickness,
-                Cache::BetterDurationLines::col
-            );
-        }
-        else {
-            Utils::drawLine(
-                Cache::gridDraw, 
-                {start, Cache::BetterDurationLines::triggerPos.y}, 
-                {end, Cache::BetterDurationLines::triggerPos.y}, 
-                Cache::BetterDurationLines::thickness, 
-                Cache::BetterDurationLines::col
-            );
-        }
+        
+        Utils::drawLine(
+            Cache::gridDraw, 
+            {start, Cache::BetterDurationLines::triggerPos.y}, 
+            {end, Cache::BetterDurationLines::triggerPos.y}, 
+            Cache::BetterDurationLines::thickness, 
+            Cache::BetterDurationLines::col
+        );
     }
     void drawDurationLineShake(CCPoint start, CCPoint end) {
         drawDurationLineFixTime(start.x, end.x);

@@ -19,15 +19,50 @@ class $modify(LevelEditorLayer) {
         Utils::createDrawNode(Cache::objectDraw, "object-draw"_spr, Cache::objectDrawLayer);
         Utils::createDrawNode(Cache::dontUpdateObjectDraw, "dont-update-object-draw"_spr, Cache::objectDrawLayer);
 
-        { // gay node
-            Cache::gayNode = CCNodeRGBA::create();
-            Cache::gridDrawLayer->addChild(Cache::gayNode);
-            auto rgbtqiaplus16mcolultra4khd = CCRepeatForever::create(CCSequence::create( // we on that sillydoggo naming shit yeahhhh
-                CCTintTo::create(Settings::sayoDeviceSensitivity, 255, 128, 128), CCTintTo::create(Settings::sayoDeviceSensitivity, 255, 255, 128),
-                CCTintTo::create(Settings::sayoDeviceSensitivity, 128, 255, 128), CCTintTo::create(Settings::sayoDeviceSensitivity, 128, 255, 255),
-                CCTintTo::create(Settings::sayoDeviceSensitivity, 128, 128, 255), CCTintTo::create(Settings::sayoDeviceSensitivity, 255, 128, 255),
-            nullptr));
-            Cache::gayNode->runAction(rgbtqiaplus16mcolultra4khd);
+        { // gay node :3c (i am not making this better if it works it works)
+            std::pair<ccColor3B, CCNodeRGBA**> gayArray[] = {
+                {{255, 128, 128}, &Cache::gayNode0},
+                {{255, 255, 128}, &Cache::gayNode1},
+                {{128, 255, 128}, &Cache::gayNode2},
+                {{128, 255, 255}, &Cache::gayNode3},
+                {{128, 128, 255}, &Cache::gayNode4},
+                {{255, 128, 255}, &Cache::gayNode5},
+            };
+
+            for (int i = 0; i < 6; i++) {
+                auto gayNode = CCNodeRGBA::create();
+                Cache::gridDrawLayer->addChild(gayNode);
+
+                gayNode->runAction(CCRepeatForever::create(
+                    CCSequence::create(
+                        CCTintTo::create(
+                            Settings::sayoDeviceSensitivity, gayArray[(i + 0) % 6].first.r,
+                            gayArray[(i + 0) % 6].first.g, gayArray[(i + 0) % 6].first.b
+                        ),
+                        CCTintTo::create(
+                            Settings::sayoDeviceSensitivity, gayArray[(i + 1) % 6].first.r,
+                            gayArray[(i + 1) % 6].first.g, gayArray[(i + 1) % 6].first.b
+                        ),
+                        CCTintTo::create(
+                            Settings::sayoDeviceSensitivity, gayArray[(i + 2) % 6].first.r,
+                            gayArray[(i + 2) % 6].first.g, gayArray[(i + 2) % 6].first.b
+                        ),
+                        CCTintTo::create(
+                            Settings::sayoDeviceSensitivity, gayArray[(i + 3) % 6].first.r,
+                            gayArray[(i + 3) % 6].first.g, gayArray[(i + 3) % 6].first.b
+                        ),
+                        CCTintTo::create(
+                            Settings::sayoDeviceSensitivity, gayArray[(i + 4) % 6].first.r,
+                            gayArray[(i + 4) % 6].first.g, gayArray[(i + 4) % 6].first.b
+                        ),
+                        CCTintTo::create(
+                            Settings::sayoDeviceSensitivity, gayArray[(i + 5) % 6].first.r,
+                            gayArray[(i + 5) % 6].first.g, gayArray[(i + 5) % 6].first.b
+                        ), nullptr
+                    )
+                ));
+                *gayArray[i].second = gayNode;
+            }
         }
 
         updateTriggers();

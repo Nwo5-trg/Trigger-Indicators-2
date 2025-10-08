@@ -47,7 +47,12 @@ namespace Update {
         if (Settings::BetterDurationLines::enabled) GameManager::sharedState()->setGameVariable("0058", false);
 
         // :3c
-        Cache::currentChromaCol = ccc4FFromccc3B(Cache::gayNode->getColor());
+        Cache::chromaCol0 = ccc4FFromccc3B(Cache::gayNode0->getColor());
+        Cache::chromaCol1 = ccc4FFromccc3B(Cache::gayNode1->getColor());
+        Cache::chromaCol2 = ccc4FFromccc3B(Cache::gayNode2->getColor());
+        Cache::chromaCol3 = ccc4FFromccc3B(Cache::gayNode3->getColor());
+        Cache::chromaCol4 = ccc4FFromccc3B(Cache::gayNode4->getColor());
+        Cache::chromaCol5 = ccc4FFromccc3B(Cache::gayNode5->getColor());
 
         Cache::groupDict = editor->m_groupDict;
         Cache::currentLayer = editor->m_currentLayer;
@@ -58,7 +63,7 @@ namespace Update {
             if (Settings::SpawnIndicators::enabled) SpawnIndicators::create(trigger);
             if (Settings::TriggerIndicators::enabled) TriggerIndicators::create(trigger);
             if (Settings::MoveIndicators::enabled && !Cache::playtesting) MoveIndicators::create(trigger);
-            if (Settings::BetterDurationLines::enabled) BetterDurationLines::create(trigger);
+            if (Settings::BetterDurationLines::enabled && (!Settings::BetterDurationLines::hideWhilePlaytesting || !Cache::playtesting)) BetterDurationLines::create(trigger);
             if (Settings::AreaPreviews::enabled) AreaPreviews::create(trigger);
         }
 
@@ -73,11 +78,16 @@ namespace Update {
     }
 
     void updateLayerAlpha(GameObject* obj) {
-        // yeah how tf am i supposed to format this might aswell hide it away in a function so update isnt messy
-        Cache::layerAlphaMultiplier = Cache::currentLayer == -1 ||
-            ((obj->m_editorLayer == Cache::currentLayer)
-            || (obj->m_editorLayer2 == Cache::currentLayer))
-        ? 1.0f : Settings::layerAlphaMultiplier;
+        if (Cache::currentLayer == -1 || Cache::playtesting) {
+            Cache::layerAlphaMultiplier = 1.0f;
+        }
+        else if (obj->m_editorLayer2 != 0 && obj->m_editorLayer2 == Cache::currentLayer) {
+            Cache::layerAlphaMultiplier = 1.0f;
+        }
+        else {
+            Cache::layerAlphaMultiplier = obj->m_editorLayer == Cache::currentLayer 
+                ? 1.0f : Settings::layerAlphaMultiplier;
+        }
     }
 
     void updateColorCache() {
@@ -85,34 +95,37 @@ namespace Update {
         Cache::TriggerIndicators::extrasCol2 = Settings::TriggerIndicators::extrasCol2;
 
         Cache::AreaPreviews::lengthCol = Settings::AreaPreviews::chroma
-            ? Cache::currentChromaCol : Settings::AreaPreviews::lengthCol;
+            ? Cache::chromaCol0 : Settings::AreaPreviews::lengthCol;
         Cache::AreaPreviews::lengthCircleCol = Settings::AreaPreviews::chroma
-            ? Cache::currentChromaCol : Settings::AreaPreviews::lengthCircleCol;
+            ? Cache::chromaCol1 : Settings::AreaPreviews::lengthCircleCol;
         Cache::AreaPreviews::deadzoneCol = Settings::AreaPreviews::chroma
-            ? Cache::currentChromaCol : Settings::AreaPreviews::deadzoneCol;
+            ? Cache::chromaCol2 : Settings::AreaPreviews::deadzoneCol;
         Cache::AreaPreviews::offsetXCol = Settings::AreaPreviews::chroma
-            ? Cache::currentChromaCol : Settings::AreaPreviews::offsetXCol;
+            ? Cache::chromaCol3 : Settings::AreaPreviews::offsetXCol;
         Cache::AreaPreviews::offsetYCol = Settings::AreaPreviews::chroma
-            ? Cache::currentChromaCol : Settings::AreaPreviews::offsetYCol;
+            ? Cache::chromaCol4 : Settings::AreaPreviews::offsetYCol;
         
         Cache::BetterParticles::primaryCol = Settings::BetterParticles::chroma 
-            ? Cache::currentChromaCol : Settings::BetterParticles::primaryCol;
+            ? Cache::chromaCol0 : Settings::BetterParticles::primaryCol;
         Cache::BetterParticles::secondaryCol = Settings::BetterParticles::chroma 
-            ? Cache::currentChromaCol : Settings::BetterParticles::secondaryCol;
+            ? Cache::chromaCol1 : Settings::BetterParticles::secondaryCol;
         Cache::BetterParticles::centerLineCol = Settings::BetterParticles::chroma 
-            ? Cache::currentChromaCol : Settings::BetterParticles::centerLineCol;
+            ? Cache::chromaCol2 : Settings::BetterParticles::centerLineCol;
         Cache::BetterParticles::primaryColFill = Settings::BetterParticles::chroma 
-            ? Cache::currentChromaCol : Settings::BetterParticles::primaryCol;
+            ? Cache::chromaCol3 : Settings::BetterParticles::primaryCol;
         Cache::BetterParticles::secondaryColFill = Settings::BetterParticles::chroma 
-            ? Cache::currentChromaCol : Settings::BetterParticles::secondaryCol;
+            ? Cache::chromaCol4 : Settings::BetterParticles::secondaryCol;
 
         Cache::MoveIndicators::indicatorCol = Settings::MoveIndicators::chroma 
-            ? Cache::currentChromaCol : Settings::MoveIndicators::indicatorCol;
+            ? Cache::chromaCol0 : Settings::MoveIndicators::indicatorCol;
         Cache::MoveIndicators::centerIndicatorCol = Settings::MoveIndicators::chroma 
-            ? Cache::currentChromaCol : Settings::MoveIndicators::centerIndicatorCol;
-        Cache::MoveIndicators::startCol = Settings::MoveIndicators::startCol;
-        Cache::MoveIndicators::endCol = Settings::MoveIndicators::endCol;
-        Cache::MoveIndicators::endPreviewCol = Settings::MoveIndicators::endPreviewCol;
+            ? Cache::chromaCol1 : Settings::MoveIndicators::centerIndicatorCol;
+        Cache::MoveIndicators::startCol = Settings::MoveIndicators::chroma 
+            ? Cache::chromaCol2 : Settings::MoveIndicators::startCol;
+        Cache::MoveIndicators::endCol = Settings::MoveIndicators::chroma 
+            ? Cache::chromaCol3 : Settings::MoveIndicators::endCol;
+        Cache::MoveIndicators::endPreviewCol = Settings::MoveIndicators::chroma 
+            ? Cache::chromaCol4 : Settings::MoveIndicators::endPreviewCol;
     }
 
     void updateThicknessCache() {

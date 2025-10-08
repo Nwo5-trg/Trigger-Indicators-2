@@ -42,8 +42,18 @@ namespace Cache {
 
     inline cocos2d::CCDictionary* groupDict = nullptr;
 
-    inline cocos2d::CCNodeRGBA* gayNode = nullptr;
-    inline cocos2d::ccColor4F currentChromaCol;
+    inline cocos2d::CCNodeRGBA* gayNode0 = nullptr;
+    inline cocos2d::CCNodeRGBA* gayNode1 = nullptr;
+    inline cocos2d::CCNodeRGBA* gayNode2 = nullptr;
+    inline cocos2d::CCNodeRGBA* gayNode3 = nullptr;
+    inline cocos2d::CCNodeRGBA* gayNode4 = nullptr;
+    inline cocos2d::CCNodeRGBA* gayNode5 = nullptr;
+    inline cocos2d::ccColor4F chromaCol0;
+    inline cocos2d::ccColor4F chromaCol1;
+    inline cocos2d::ccColor4F chromaCol2;
+    inline cocos2d::ccColor4F chromaCol3;
+    inline cocos2d::ccColor4F chromaCol4;
+    inline cocos2d::ccColor4F chromaCol5;
 
     namespace TriggerIndicators {
         inline float cullDistance;

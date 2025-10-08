@@ -14,8 +14,8 @@ namespace AreaPreviews {
         auto area = static_cast<EnterEffectObject*>(trigger);
 
         if ( // culling
-            !trigger->m_isSelected 
-            && ccpDistanceSQ(Cache::View::relativeCenter, trigger->getPosition()) 
+            !trigger->m_isSelected && 
+            Settings::AreaPreviews::onlySelected ? true : ccpDistanceSQ(Cache::View::relativeCenter, trigger->getPosition()) 
             > Cache::View::cullDistanceSQ
         ) return;
 

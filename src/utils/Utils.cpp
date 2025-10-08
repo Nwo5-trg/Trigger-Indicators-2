@@ -240,7 +240,7 @@ namespace Utils {
     }
 
     void updateTriggerCol(ccColor4F& col, int id, bool chroma) {
-        col = chroma ? Cache::currentChromaCol : triggerColorMap[id];
+        col = chroma ? Cache::chromaCol0 : triggerColorMap[id];
         col.a = Cache::layerAlphaMultiplier;
     }
 }

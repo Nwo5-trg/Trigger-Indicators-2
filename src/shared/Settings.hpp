@@ -50,7 +50,7 @@ namespace Settings {
 
         inline bool inlinePreviews;
         inline bool scaleWithZoom;
-        inline bool alphaFix;
+        inline bool hideWhilePlaytesting;
 
         inline int previewSteps;
 
@@ -84,6 +84,7 @@ namespace Settings {
         inline bool showDeadzone;
         inline bool enablePreviewsByDefault;
         inline bool scaleWithZoom;
+        inline bool onlySelected;
 
         inline float thickness;
         inline float arrowSize;
@@ -104,6 +105,7 @@ namespace Settings {
         inline bool linesToCenter;
         inline bool hideOnDifferentLayer;
         inline bool scaleWithZoom;
+        inline bool onlySelected;
 
         inline float thickness;
         inline float centerLineThickness;
