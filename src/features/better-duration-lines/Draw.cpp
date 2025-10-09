@@ -53,7 +53,7 @@ namespace BetterDurationLines {
                 }
             break; }
             case DurationLineType::Color: {
-                getStartColor(trigger->m_targetGroupID);
+                getStartColor(trigger->m_targetColor);
                 Cache::BetterDurationLines::endCol = ccc4FFromccc3B(trigger->m_triggerTargetColor);
                 Cache::BetterDurationLines::endCol.a = trigger->m_opacity;
 

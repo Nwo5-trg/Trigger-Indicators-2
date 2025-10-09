@@ -14,6 +14,7 @@
 **Fixed**
 
 - layer alpha stuff
+- color trigger inline previews
 
 ## v0.1.0-beta.11
 

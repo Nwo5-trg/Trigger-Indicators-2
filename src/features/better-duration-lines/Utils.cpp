@@ -75,7 +75,7 @@ namespace BetterDurationLines {
         EffectGameObject* closestObj = nullptr;
 
         for (auto obj : CCArrayExt<EffectGameObject*>(Cache::editor->m_colorTriggers)) {
-            if (obj->m_targetGroupID != channel) continue;
+            if (obj->m_targetColor != channel) continue;
             float objX = obj->getPositionX();
             if (objX > closestPos && objX < Cache::BetterDurationLines::triggerPos.x) {
                 closestPos = objX;
