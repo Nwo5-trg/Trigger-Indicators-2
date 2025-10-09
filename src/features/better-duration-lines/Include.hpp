@@ -13,7 +13,7 @@ namespace BetterDurationLines {
     void drawDurationLineFixTime(float& start, float& end);
 
     float getStartOpacity(int group);
-    void getStartColor(int channel);
+    void getStartColor(EffectGameObject* trigger);
     
     void interpolateColor(float time);
     

@@ -70,7 +70,8 @@ namespace BetterDurationLines {
 
         return closestObj ? closestObj->m_opacity : 1.0f;
     }
-    void getStartColor(int channel) {
+    void getStartColor(EffectGameObject* trigger) {
+        int channel = trigger->m_targetColor;
         float closestPos = -FLT_MAX;
         EffectGameObject* closestObj = nullptr;
 
@@ -84,8 +85,9 @@ namespace BetterDurationLines {
         }
         if (!closestObj) {
             auto action = Cache::editor->m_effectManager->getColorAction(channel);
-            Cache::BetterDurationLines::startCol = ccc4FFromccc3B(action->m_fromColor);
-            Cache::BetterDurationLines::startCol.a = action->m_fromOpacity;
+            bool spawn = trigger->m_isSpawnTriggered || trigger->m_isTouchTriggered;
+            Cache::BetterDurationLines::startCol = ccc4FFromccc3B(spawn ? action->m_toColor : action->m_fromColor);
+            Cache::BetterDurationLines::startCol.a = spawn ? action->m_currentOpacity : action->m_fromOpacity;
             return;
         }
 
