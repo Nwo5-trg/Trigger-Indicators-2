@@ -69,9 +69,9 @@ touch trigger indicators but circle
 - ***Prevter*** their old message made me aware of draw segment being scuffed soooo that constitutes a credit
 - ***CarlIsBored*** for the item edit bug thing, they arent the only person to report it but they also made my thread in gd modding so >:3c
 - ***undefined*** half of the better duration lines previews r just stolen :3
-- ***Alpha*** stole good grid code 4r better duration lines :3c
+- ***Alpha*** stole good grid code for better duration lines :3c
 - ***marmalade_toast*** for actually making me rewrite draw line
-- ***flurrybun*** for reporting some bugs w/ duration lines and also giving me some code to steal 4r layer alpha :3c
+- ***flurrybun*** for reporting some bugs w/ duration lines and also giving me some code to steal for layer alpha :3c
 
 (sowwyyyy if i forgot ur name here lmk)
 
