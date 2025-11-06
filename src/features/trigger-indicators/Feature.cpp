@@ -13,6 +13,7 @@ namespace TriggerIndicators {
 
         int id = trigger->m_objectID; 
         if (Settings::TriggerIndicators::triggerBlacklist.contains(id)) return;
+        if (id == 3619) return; // fuck me omg there
         if (id == 1006 && trigger->m_pulseTargetType != 1) return; // pulse trigger only draw if theyre on group setting
         if (id == 1914 && static_cast<CameraTriggerGameObject*>(trigger)->m_exitStatic) return; // static camera exit
 
@@ -25,7 +26,7 @@ namespace TriggerIndicators {
         Cache::TriggerIndicators::targetObjects.clear();
         Cache::TriggerIndicators::centerObjects.clear();
 
-        if (target != 0 && !Settings::TriggerIndicators::groupBlacklist.contains(target)) { // item edit uses target group id
+        if (target != 0 && !Settings::TriggerIndicators::groupBlacklist.contains(target)) {
             getObjects(trigger, target, Cache::TriggerIndicators::targetObjects);
         }
         if (center != 0 && !Settings::TriggerIndicators::groupBlacklist.contains(center)) {
