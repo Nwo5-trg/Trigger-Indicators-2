@@ -82,6 +82,9 @@ touch trigger indicators but circle
 ## Advanced
 soooo if you really want you can edit pretty much every constant in the mod with a json, syntax is just
 ```json
+// constants.json
+// goes in mod config dir
+
 {
     "number-constant": {
         "value": 1
