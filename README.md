@@ -15,6 +15,7 @@ if you have any feature requests or bug reports open a github issue or dm on dis
 - **area previews** renders wtv the editor guide showed for area triggers in game
 - **better particles** posvar preview
 - **spawn indicators** only feature w/out chroma so crazy
+- **drag triggers** drag to connect triggers like in a node based editor or smth
 
 ## Trigger Indicators
 its in the name vro, theres a bunch of settings so go read
@@ -53,6 +54,16 @@ from the old mod desc: "Renders particle posvar. (and prolly other things later 
 
 ## Spawn Indicators
 touch trigger indicators but circle
+
+## Utils
+rawr
+
+### Drag Triggers
+***off by default, and requires always show extras to b enabled***
+
+click and drag on an extra and let go on wtv u want to add to that group, if that object is selected all selected objects will b added
+
+mind u click detection doesnt work very well w/ scaled triggers but i dont wanna fix that so :3c
 
 ## Credits
 - ***HJfod*** for making this mod originally (and better) and being cool with me making this (also for me just stealing all their stuff all the time)

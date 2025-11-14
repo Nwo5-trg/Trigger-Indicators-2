@@ -50,15 +50,17 @@ namespace AreaPreviews {
         switch (trigger->m_directionType) {
             case 0: {
                 if (Settings::AreaPreviews::showLengthCircle) {
-                    Cache::gridDraw->drawCircle(
-                        pos, length + lengthVar, Constants::transparentCCC4F,
+                    Utils::drawCircle(
+                        Cache::gridDraw, pos, 
+                        length + lengthVar, Constants::transparentCCC4F,
                         Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCircleCol,
                         Constants::areaPreviewsLengthCircleDetail
                     );
                 }
                 if (Settings::AreaPreviews::showDeadzone && trigger->m_deadzone >= Constants::areaPreviewsDeadzoneThreshold) {
-                    Cache::gridDraw->drawCircle(
-                        pos, deadzone, Constants::transparentCCC4F,
+                    Utils::drawCircle(
+                        Cache::gridDraw, pos, 
+                        deadzone, Constants::transparentCCC4F,
                         Cache::AreaPreviews::thickness, Cache::AreaPreviews::deadzoneCol,
                         Constants::areaPreviewsLengthCircleDetail
                     );
@@ -78,10 +80,22 @@ namespace AreaPreviews {
                     drawArrow({pos.x, pos.y - length}, inbound ? ArrowDirection::Up : ArrowDirection::Down);
                     drawArrow({pos.x, pos.y + length}, inbound ? ArrowDirection::Down : ArrowDirection::Up);
 
-                    drawDottedLine({pos.x - (length + lengthVar), pos.y}, {pos.x - length, pos.y}, Cache::AreaPreviews::lengthCol);
-                    drawDottedLine({pos.x + length, pos.y}, {pos.x + (length + lengthVar), pos.y}, Cache::AreaPreviews::lengthCol);
-                    drawDottedLine({pos.x, pos.y - (length + lengthVar)}, {pos.x, pos.y - length}, Cache::AreaPreviews::lengthCol);
-                    drawDottedLine({pos.x, pos.y + length}, {pos.x, pos.y + (length + lengthVar)}, Cache::AreaPreviews::lengthCol);
+                    Utils::drawDottedLine(
+                        Cache::gridDraw, {pos.x - (length + lengthVar), pos.y}, {pos.x - length, pos.y}, 
+                        Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCol
+                    );
+                    Utils::drawDottedLine(
+                        Cache::gridDraw, {pos.x + length, pos.y}, {pos.x + (length + lengthVar), pos.y}, 
+                        Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCol
+                    );
+                    Utils::drawDottedLine(
+                        Cache::gridDraw, {pos.x, pos.y - (length + lengthVar)}, {pos.x, pos.y - length}, 
+                        Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCol
+                    );
+                    Utils::drawDottedLine(
+                        Cache::gridDraw, {pos.x, pos.y + length}, {pos.x, pos.y + (length + lengthVar)}, 
+                        Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCol
+                    );
                 }
             break; }
             case 1: {
@@ -116,12 +130,21 @@ namespace AreaPreviews {
                         drawArrow({pos.x - length, pos.y}, inbound ? ArrowDirection::Right : ArrowDirection::Left);
                         drawArrow({pos.x + length, pos.y}, inbound ? ArrowDirection::Left : ArrowDirection::Right);
 
-                        drawDottedLine({pos.x - (length + lengthVar), pos.y}, {pos.x - length, pos.y}, Cache::AreaPreviews::lengthCol);
-                        drawDottedLine({pos.x + length, pos.y}, {pos.x + (length + lengthVar), pos.y}, Cache::AreaPreviews::lengthCol);
+                        Utils::drawDottedLine(
+                            Cache::gridDraw, {pos.x - (length + lengthVar), pos.y}, {pos.x - length, pos.y}, 
+                            Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCol
+                        );
+                        Utils::drawDottedLine(
+                            Cache::gridDraw, {pos.x + length, pos.y}, {pos.x + (length + lengthVar), pos.y}, 
+                            Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCol
+                        );
                     }
                     else {
                         drawArrow({pos.x + length, pos.y}, inbound ? ArrowDirection::Left : ArrowDirection::Right);
-                        drawDottedLine({pos.x + length, pos.y}, {pos.x + (length + lengthVar), pos.y}, Cache::AreaPreviews::lengthCol);
+                        Utils::drawDottedLine(
+                            Cache::gridDraw, {pos.x + length, pos.y}, {pos.x + (length + lengthVar), pos.y}, 
+                            Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCol
+                        );
                     }
                 }
             break; }
@@ -157,12 +180,21 @@ namespace AreaPreviews {
                         drawArrow({pos.x, pos.y - length}, inbound ? ArrowDirection::Up : ArrowDirection::Down);
                         drawArrow({pos.x, pos.y + length}, inbound ? ArrowDirection::Down : ArrowDirection::Up);
 
-                        drawDottedLine({pos.x, pos.y - (length + lengthVar)}, {pos.x, pos.y - length}, Cache::AreaPreviews::lengthCol);
-                        drawDottedLine({pos.x, pos.y + length}, {pos.x, pos.y + (length + lengthVar)}, Cache::AreaPreviews::lengthCol);
+                        Utils::drawDottedLine(
+                            Cache::gridDraw, {pos.x, pos.y - (length + lengthVar)}, {pos.x, pos.y - length}, 
+                            Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCol
+                        );
+                        Utils::drawDottedLine(
+                            Cache::gridDraw, {pos.x, pos.y + length}, {pos.x, pos.y + (length + lengthVar)}, 
+                            Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCol
+                        );
                     }
                     else {
                         drawArrow({pos.x, pos.y + length}, inbound ? ArrowDirection::Down : ArrowDirection::Up);
-                        drawDottedLine({pos.x, pos.y + length}, {pos.x, pos.y + (length + lengthVar)}, Cache::AreaPreviews::lengthCol);
+                        Utils::drawDottedLine(
+                            Cache::gridDraw, {pos.x, pos.y + length}, {pos.x, pos.y + (length + lengthVar)}, 
+                            Cache::AreaPreviews::thickness, Cache::AreaPreviews::lengthCol
+                        );
                     }
                 }
             break; }
@@ -175,9 +207,9 @@ namespace AreaPreviews {
                 Cache::gridDraw, {center.x + offsetX, center.y}, pos,
                 Cache::AreaPreviews::thickness, Cache::AreaPreviews::offsetYCol
             );
-            drawDottedLine(
-                pos, {pos.x, pos.y + var},
-                Cache::AreaPreviews::offsetYCol
+            Utils::drawDottedLine(
+                Cache::gridDraw, pos, {pos.x, pos.y + var},
+                Cache::AreaPreviews::thickness, Cache::AreaPreviews::offsetYCol
             );
         }
         if (type != 2) {
@@ -186,9 +218,9 @@ namespace AreaPreviews {
                 Cache::gridDraw, center, {center.x + offsetX, center.y},
                 Cache::AreaPreviews::thickness, Cache::AreaPreviews::offsetXCol
             );
-            drawDottedLine(
-                {center.x + offsetX, center.y}, {center.x + offsetX + var, center.y},
-                Cache::AreaPreviews::offsetXCol
+            Utils::drawDottedLine(
+                Cache::gridDraw, {center.x + offsetX, center.y}, {center.x + offsetX + var, center.y},
+                Cache::AreaPreviews::thickness, Cache::AreaPreviews::offsetXCol
             );
         }
     }
@@ -231,10 +263,10 @@ namespace AreaPreviews {
         float length = dir.getLength();
         dir = ccpNormalize(dir);
 
-        for (float dist = 0.0f; dist < length; dist += Constants::areaPreviewsDottedLineSegmentSize) {
+        for (float dist = 0.0f; dist < length; dist += Constants::dottedLineSegmentSize) {
             Utils::drawLine(
-                Cache::gridDraw, (p1 + dir * dist),
-                (p1 + dir * std::min(dist + Constants::areaPreviewsDottedLineDotSize, length)),
+                Cache::gridDraw, (p1 + (dir * dist)),
+                (p1 + (dir * std::min(dist + Constants::dottedLineDotSize, length))),
                 Cache::AreaPreviews::thickness, col
             );
         }

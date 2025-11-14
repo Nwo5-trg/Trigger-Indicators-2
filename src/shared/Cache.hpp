@@ -1,8 +1,6 @@
 #pragma once
 #include "../utils/Types.hpp"
 
-// some of these are more like shared than cache but wtv 
-// i dont wanna make 2 namespaces for pretty much the same thing
 namespace Cache {
     inline geode::Mod* mod;
     
@@ -56,6 +54,8 @@ namespace Cache {
     inline cocos2d::ccColor4F chromaCol5;
 
     namespace TriggerIndicators {
+        inline bool shouldDrawDotted;
+
         inline float cullDistance;
         inline float thickness;
 
@@ -122,5 +122,16 @@ namespace Cache {
         inline std::vector<std::pair<cocos2d::CCPoint, cocos2d::CCPoint>> positions;
         inline std::vector<std::pair<cocos2d::CCPoint, cocos2d::CCPoint>> indicatorSegments;
         inline std::vector<GameObject*> targetObjects;
+    }
+
+    namespace Utils {
+        namespace DragTriggers {
+            inline bool dragActive;
+            inline bool isCenter;
+            
+            inline EffectGameObject* target = nullptr;
+
+            inline cocos2d::CCPoint touchPos;
+        }
     }
 }

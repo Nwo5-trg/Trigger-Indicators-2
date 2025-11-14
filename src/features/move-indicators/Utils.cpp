@@ -15,9 +15,7 @@ void MoveIndicators::getPositions(EffectGameObject* trigger, MoveIndicatorMode m
                 return getPositions(trigger, Settings::MoveIndicators::clusterFallbackType);
             }
 
-            Utils::clusterObjects(Cache::MoveIndicators::targetObjects, Settings::MoveIndicators::clusterSize);
-
-            for (const auto& cluster : Cache::Utils::clusters) {
+            for (const auto& cluster : Utils::clusterObjects(Cache::MoveIndicators::targetObjects, Settings::MoveIndicators::clusterSize)) {
                 auto pos = Utils::getObjectsCenter(cluster);
                 Cache::MoveIndicators::positions.emplace_back(pos, getObjectMovedPos(pos, trigger));
             }

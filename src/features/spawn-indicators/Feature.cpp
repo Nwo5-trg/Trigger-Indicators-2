@@ -18,8 +18,8 @@ namespace SpawnIndicators {
             > Cache::View::cullDistanceSQ
         ) return;
 
-        Cache::objectDraw->drawCircle(
-            pos, // idc if i get scale twice fuck you if you lag cuz of this shit u got bigger problems
+        Utils::drawCircle(
+            Cache::objectDraw, pos,
             (Settings::SpawnIndicators::size * (std::max(trigger->m_scaleX, trigger->m_scaleY)) / 2), 
             Constants::transparentCCC4F, 
             Settings::SpawnIndicators::thickness / Cache::View::zoom, 

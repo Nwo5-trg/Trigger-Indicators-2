@@ -35,13 +35,15 @@ namespace Update {
         Cache::View::relativeCenter = (
             (Cache::View::size / 2) - editor->m_objectLayer->getPosition()
         ) / Cache::View::zoom;
-        Cache::View::cullDistance = Cache::View::size.width / Cache::View::zoom;
-        Cache::View::cullDistanceSQ = (Cache::View::cullDistance * Cache::View::cullDistance) * Constants::cullDistanceBuffer;
+        Cache::View::cullDistance = (Cache::View::size.width / std::min(Cache::View::zoom, Constants::maxZoomCullingClamp)) 
+            * Constants::cullDistanceBuffer;
+        Cache::View::cullDistanceSQ = Cache::View::cullDistance * Cache::View::cullDistance;
         
         // cull distance for trigger indicators
         Cache::TriggerIndicators::cullDistance = Cache::View::cullDistanceSQ * Settings::TriggerIndicators::cullDistanceMultiplier;
-        bool isSelectingObjects = editor->m_editorUI->getSelectedObjects()->count() != 0;
-        if (isSelectingObjects) Cache::TriggerIndicators::cullDistance *= Settings::TriggerIndicators::selectedCullDistanceMultiplier;
+        if (editor->m_editorUI->getSelectedObjects()->count() != 0) {
+            Cache::TriggerIndicators::cullDistance *= Settings::TriggerIndicators::selectedCullDistanceMultiplier;
+        }
 
         // better duration lines
         if (Settings::BetterDurationLines::enabled) GameManager::sharedState()->setGameVariable("0058", false);

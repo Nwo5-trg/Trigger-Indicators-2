@@ -24,6 +24,9 @@ namespace Settings {
         inline bool boxLineObjects;
         inline bool boxLineTriggers;
         inline bool scaleWithZoom;
+        inline bool alwaysDrawExtras;
+        inline bool dottedCenterLines;
+        inline bool circleOutputExtras;
 
         inline int clusterObjectsMaxThreshold;
         inline int clusterTriggersMaxThreshold;
@@ -156,6 +159,20 @@ namespace Settings {
             {"Rect", MoveIndicatorMode::Rect},
             {"Disable", MoveIndicatorMode::Disable}
         };
+    }
+
+    namespace Utils {
+        namespace DragTriggers {
+            inline bool enabled;
+            inline bool onlyTriggers;
+            inline bool dontIncludeSelected;
+            inline bool autoSpawnEnable;
+            inline bool autoMultiEnable;
+            inline bool autoSpawnDisable;
+            inline bool autoMultiDisable;
+
+            inline float distanceBuffer;
+        }
     }
 
     inline float sayoDeviceSensitivity;

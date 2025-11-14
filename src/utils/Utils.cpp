@@ -4,17 +4,21 @@
 using namespace geode::prelude;
 
 namespace Utils {
-    constexpr cocos2d::ccVertex2F vertFromPoint(const cocos2d::CCPoint& p) { return {p.x, p.y}; }
-
-    void drawLine(CCDrawNode* drawNode, CCPoint p1, CCPoint p2, float thickness, const ccColor4F& col) {
-        unsigned int vertexCount = 6 * 3;
-
+    constexpr ccVertex2F vertFromPoint(const cocos2d::CCPoint& p) { return {p.x, p.y}; }
+    void ensureDrawnodeCapcity(CCDrawNode* drawNode, unsigned int vertexCount) {
         if (drawNode->m_nBufferCount + vertexCount > drawNode->m_uBufferCapacity) {
             drawNode->m_uBufferCapacity += std::max(drawNode->m_uBufferCapacity, vertexCount);
             drawNode->m_pBuffer = static_cast<ccV2F_C4B_T2F*>(
                 realloc(drawNode->m_pBuffer, drawNode->m_uBufferCapacity * sizeof(ccV2F_C4B_T2F))
             );
         }
+    }
+
+    void drawLine(CCDrawNode* drawNode, CCPoint p1, CCPoint p2, float thickness, const ccColor4F& col) {
+        if (p1 == p2 || col.a == 0.0f) return;
+        
+        unsigned int vertexCount = 6 * 3;
+        ensureDrawnodeCapcity(drawNode, vertexCount);
 
         auto n = ccpNormalize(ccpPerp(ccpSub(p2, p1)));
         auto t = ccpPerp(n);
@@ -30,8 +34,7 @@ namespace Utils {
         auto v6 = vertFromPoint(ccpSub(p1, ccpSub(nw, tw)));
         auto v7 = vertFromPoint(ccpAdd(p1, ccpAdd(nw, tw)));
 
-        ccV2F_C4B_T2F_Triangle* triangles =
-            reinterpret_cast<ccV2F_C4B_T2F_Triangle*>(drawNode->m_pBuffer + drawNode->m_nBufferCount);
+        auto* triangles = reinterpret_cast<ccV2F_C4B_T2F_Triangle*>(drawNode->m_pBuffer + drawNode->m_nBufferCount);
 
         auto col4b = ccc4BFromccc4F(col);
 
@@ -54,13 +57,108 @@ namespace Utils {
         triangles[5] = {
             {v6, col4b, {}}, {v7, col4b, {}}, {v5, col4b, {}}
         };
+        
+        drawNode->m_nBufferCount += vertexCount;
+        drawNode->m_bDirty = true;
+    }
+
+    void drawDottedLine(CCDrawNode* drawNode, CCPoint p1, CCPoint p2, float thickness, const ccColor4F& col) {
+        if (p1 == p2) return;
+        auto dir = p2 - p1;
+        float length = dir.getLength();
+        dir = ccpNormalize(dir);
+
+        for (float dist = 0.0f; dist < length; dist += Constants::dottedLineSegmentSize) {
+            Utils::drawLine(
+                drawNode, (p1 + dir * dist),
+                (p1 + dir * std::min(dist + Constants::dottedLineDotSize, length)),
+                thickness, col
+            );
+        }
+    }
+
+    void drawCircle(
+        CCDrawNode* drawNode, CCPoint center, float radius, const ccColor4F& fillCol, 
+        float thickness, const ccColor4F& outlineCol, unsigned int segments
+    ) {
+        drawEllipse(drawNode, center, {radius, radius}, fillCol, thickness, outlineCol, segments);
+    }
+
+    void drawEllipse(
+        CCDrawNode* drawNode, CCPoint center, CCSize size, const ccColor4F& fillCol, 
+        float thickness, const ccColor4F& outlineCol, unsigned int segments
+    ) {
+        segments = std::max(3u, segments);
+        
+        unsigned int fillTriangles = fillCol.a == 0.0f ? 0 : segments;
+        unsigned int outlineTriangles = thickness == 0.0f || outlineCol.a == 0.0f ? 0 : segments * 2;
+
+        unsigned int vertexCount = (fillTriangles + outlineTriangles) * 3;
+        if (vertexCount == 0) return;
+        ensureDrawnodeCapcity(drawNode, vertexCount);
+
+        ccV2F_C4B_T2F centerVertex = {
+            vertFromPoint(center), ccc4BFromccc4F(fillCol), {}
+        };
+
+        ccVertex2F fillStart = {center.x + size.width, center.y};
+        ccVertex2F fillEnd;
+
+        CCSize inner = size - (thickness);
+        // i love cocos operators :3
+        CCSize outer = size - -(thickness);
+
+        ccVertex2F innerStart = {center.x + inner.width, center.y};
+        ccVertex2F innerEnd;
+        ccVertex2F outerStart = {center.x + outer.width, center.y};
+        ccVertex2F outerEnd;
+
+        auto* triangles = reinterpret_cast<ccV2F_C4B_T2F_Triangle*>(drawNode->m_pBuffer + drawNode->m_nBufferCount);
+
+        auto fill4b = ccc4BFromccc4F(fillCol);
+        auto outline4b = ccc4BFromccc4F(outlineCol);
+
+        float delta = Constants::pi2 / segments;
+        float angle = delta;
+        unsigned int index = 0;
+
+        for (int i = 0; i < segments; i++) {
+            float ca = cosf(angle);
+            float sa = sinf(angle);
+
+            if (fillTriangles) {
+                fillEnd = {center.x + (size.width * ca), center.y + (size.height * sa)};
+
+                triangles[index++] = {
+                    centerVertex,{fillStart, fill4b, {}}, {fillEnd, fill4b, {}}
+                };
+
+                fillStart = fillEnd;
+            }
+
+            if (outlineTriangles) {
+                innerEnd = {center.x + (inner.width * ca), center.y + (inner.height* sa)};
+                outerEnd = {center.x + (outer.width * ca), center.y + (outer.height * sa)};
+
+                triangles[index++] = {
+                    {outerStart, outline4b, {}}, {innerStart, outline4b, {}}, {innerEnd, outline4b, {}}
+                };
+                triangles[index++] = {
+                    {outerStart, outline4b, {}}, {innerEnd, outline4b, {}}, {outerEnd, outline4b, {}}
+                };
+
+                innerStart = innerEnd;
+                outerStart = outerEnd;
+            }
+
+            angle += delta;
+        }
 
         drawNode->m_nBufferCount += vertexCount;
         drawNode->m_bDirty = true;
     }
 
-
-    void clusterObjects(const std::vector<GameObject*>& objs, float clusterSize) {
+    std::vector<std::vector<GameObject*>>& clusterObjects(const std::vector<GameObject*>& objs, float clusterSize) {
         Cache::Utils::clusters.clear();
         Cache::Utils::clusterMap.clear();
 
@@ -93,6 +191,8 @@ namespace Utils {
                 }
             }
         }
+
+        return Cache::Utils::clusters;
     }
 
     CCPoint getLineCut(CCPoint origin, const CornerRect& rect) {

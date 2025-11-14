@@ -17,11 +17,11 @@ namespace TriggerIndicators {
         Cache::TriggerIndicators::queuedTriggerClusterObjects.clear();
         Cache::TriggerIndicators::queuedTriggerClusterObjects.reserve(objs.size());
 
-        drawOutput(outputPos, {trigger->m_scaleX, trigger->m_scaleY});
+        if (!Settings::TriggerIndicators::alwaysDrawExtras) drawOutput(outputPos, {trigger->m_scaleX, trigger->m_scaleY});
 
         for (auto obj : objs) {
             bool isTrigger = obj->m_isTrigger;
-
+            
             if (isTrigger ? Settings::TriggerIndicators::clusterTriggers : Settings::TriggerIndicators::clusterObjects) {
                 if (isTrigger) Cache::TriggerIndicators::queuedTriggerClusterObjects.push_back(obj);
                 else Cache::TriggerIndicators::queuedObjectClusterObjects.push_back(obj);
@@ -39,6 +39,8 @@ namespace TriggerIndicators {
         const auto& objs = isTrigger 
             ? Cache::TriggerIndicators::queuedTriggerClusterObjects 
             : Cache::TriggerIndicators::queuedObjectClusterObjects;
+        if (objs.empty()) return;
+
         float size = isTrigger
             ? Settings::TriggerIndicators::clusterTriggersSize
             : Settings::TriggerIndicators::clusterObjectsSize;
@@ -59,9 +61,11 @@ namespace TriggerIndicators {
             return;
         }
         
-        Utils::clusterObjects(objs, size);
-        for (const auto& cluster : Cache::Utils::clusters) {
-            if (cluster.size() == 1) drawToObject(outputPos, cluster[0], isTrigger);
+        for (const auto& cluster : Utils::clusterObjects(objs, size)) {
+            if (cluster.size() == 1) {
+                drawToObject(outputPos, cluster[0], isTrigger);
+                continue;
+            }
 
             drawToRect(outputPos, Utils::getObjectsRect(cluster, Cache::TriggerIndicators::thickness));
         }
@@ -71,51 +75,95 @@ namespace TriggerIndicators {
         // draw boxes
         if (isTrigger ? Settings::TriggerIndicators::boxLineTriggers : Settings::TriggerIndicators::boxLineObjects) {
             drawToRect(outputPos, Utils::getObjectRect(obj, Cache::TriggerIndicators::thickness));
-        } else {
-            auto pos = isTrigger
-                ? ccp(obj->getPositionX() - (obj->m_scaleX * Constants::triggerIndicatorsExtrasXOffset), Utils::getTriggerBodyPos(obj).y)
-                : obj->getPosition();
+        } 
+        else {
+            auto pos = isTrigger ? getInputPos(obj) : obj->getPosition();
 
             drawToPoint(outputPos, pos);
 
-            if (isTrigger) drawInput(pos, {obj->m_scaleX, obj->m_scaleY});
+            if (isTrigger && !Settings::TriggerIndicators::alwaysDrawExtras) {
+                drawInput(pos, {obj->m_scaleX, obj->m_scaleY});
+            }
         }
     }
 
     void drawToRect(CCPoint outputPos, const CornerRect& rect) {
-        Cache::gridDraw->drawRect(
-            rect.p1, rect.p2, 
-            Constants::transparentCCC4F, 
-            Cache::TriggerIndicators::thickness, 
-            Cache::TriggerIndicators::col
-        );
+        if (Cache::TriggerIndicators::shouldDrawDotted) {
+            // i actually cant b bothered fuck you
+            Utils::drawDottedLine(
+                Cache::gridDraw, rect.p1, {rect.p1.x, rect.p2.y},
+                Cache::TriggerIndicators::thickness, Cache::TriggerIndicators::col
+            );
+            Utils::drawDottedLine(
+                Cache::gridDraw, {rect.p1.x, rect.p2.y}, rect.p2,
+                Cache::TriggerIndicators::thickness, Cache::TriggerIndicators::col
+            );
+            Utils::drawDottedLine(
+                Cache::gridDraw, rect.p2, {rect.p2.x, rect.p1.y},
+                Cache::TriggerIndicators::thickness, Cache::TriggerIndicators::col
+            );
+            Utils::drawDottedLine(
+                Cache::gridDraw, {rect.p2.x, rect.p1.y}, rect.p1,
+                Cache::TriggerIndicators::thickness, Cache::TriggerIndicators::col
+            );
+        }
+        else {
+            Cache::gridDraw->drawRect(
+                rect.p1, rect.p2, 
+                Constants::transparentCCC4F, 
+                Cache::TriggerIndicators::thickness, 
+                Cache::TriggerIndicators::col
+            );
+        }
+
         drawToPoint(outputPos, Utils::getLineCut(outputPos, rect));
     }
 
     void drawToPoint(CCPoint outputPos, CCPoint pos) {
-        Utils::drawLine(
-            Cache::gridDraw, outputPos, pos, 
-            Cache::TriggerIndicators::thickness, 
-            Cache::TriggerIndicators::col
-        );
+        if (Cache::TriggerIndicators::shouldDrawDotted) {
+            Utils::drawDottedLine(
+                Cache::gridDraw, outputPos, pos,
+                Cache::TriggerIndicators::thickness,
+                Cache::TriggerIndicators::col
+            );
+        }
+        else {
+            Utils::drawLine(
+                Cache::gridDraw, outputPos, pos, 
+                Cache::TriggerIndicators::thickness, 
+                Cache::TriggerIndicators::col
+            );
+        }
     }
 
     void drawInput(CCPoint pos, CCSize scale) {
         float maxScale = std::max(scale.width, scale.height);
-        Cache::objectDraw->drawCircle(
-            pos, maxScale * Constants::triggerIndicatorsExtrasRadius, 
+        Utils::drawCircle(
+            Cache::objectDraw, pos, 
+            maxScale * Constants::triggerIndicatorsExtrasRadius, 
             Cache::TriggerIndicators::extrasCol1, 
             maxScale * Constants::triggerIndicatorsExtrasSizeThicknessMultiplier, 
             Cache::TriggerIndicators::extrasCol2, 
             Constants::triggerIndicatorsExtrasCircleDetail
         );
+        // Cache::objectDraw->drawDot(pos, maxScale * Constants::triggerIndicatorsExtrasRadius, Cache::chromaCol0);
     }
 
     void drawOutput(CCPoint pos, CCSize scale) {
+        if (Settings::TriggerIndicators::circleOutputExtras) {
+            // i love this little returning void trick i learned by ~~stealing~~ from allium
+            pos.x += Constants::triggerIndicatorsExtrasInputXOffset - Constants::triggerIndicatorsExtrasOutputXOffset;
+            return drawInput(pos, scale);
+        }
+
+        CCSize size = {
+            scale.width * (Constants::triggerIndicatorsExtrasSize / 2),
+            scale.height * Constants::triggerIndicatorsExtrasSize
+        };
         CCPoint v[] = {
-            ccp(pos.x, pos.y),
-            ccp(pos.x - (scale.width * Constants::triggerIndicatorsExtrasSize), pos.y + (scale.height * Constants::triggerIndicatorsExtrasSize)),
-            ccp(pos.x - (scale.width * Constants::triggerIndicatorsExtrasSize), pos.y - (scale.height * Constants::triggerIndicatorsExtrasSize)),
+            ccp(pos.x - size.width, pos.y + size.height),
+            ccp(pos.x - size.width, pos.y - size.height),
+            ccp(pos.x + size.width, pos.y),
         };
         Cache::objectDraw->drawPolygon(
             v, 3, 

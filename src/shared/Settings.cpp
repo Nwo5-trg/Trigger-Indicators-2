@@ -34,17 +34,14 @@ namespace Settings {
             set(TriggerIndicators::boxLineObjects, "trigger-indicators-box-line-objects");
             set(TriggerIndicators::boxLineObjects, "trigger-indicators-box-line-triggers");
             set(TriggerIndicators::scaleWithZoom, "trigger-indicators-scale-with-zoom");
+            set(TriggerIndicators::alwaysDrawExtras, "trigger-indicators-always-draw-extras");
+            set(TriggerIndicators::dottedCenterLines, "trigger-indicators-dotted-center-lines");
+            set(TriggerIndicators::circleOutputExtras, "trigger-indicators-circle-output-extras");
 
             set(TriggerIndicators::clusterObjectsMaxThreshold, "trigger-indicators-cluster-objects-max-threshold");
             set(TriggerIndicators::clusterTriggersMaxThreshold, "trigger-indicators-cluster-triggers-max-threshold");
-            int maxClusterThreshold = std::max(
-                TriggerIndicators::clusterObjectsMaxThreshold, TriggerIndicators::clusterTriggersMaxThreshold
-            );
-            Cache::Utils::clusters.reserve(maxClusterThreshold);
-            Cache::Utils::clusterObjQueue.reserve(maxClusterThreshold);
 
             set(TriggerIndicators::maxDistance, "trigger-indicators-max-distance"); 
-            // technically abusing settings here cuz theyre supposed to be unmodified but shhhh
             TriggerIndicators::maxDistance *= TriggerIndicators::maxDistance;
             set(TriggerIndicators::thickness, "trigger-indicators-thickness");
             set(TriggerIndicators::clusterObjectsSize, "trigger-indicators-cluster-objects-size");
@@ -55,6 +52,9 @@ namespace Settings {
 
             set(TriggerIndicators::groupBlacklist, "trigger-indicators-group-blacklist");
             set(TriggerIndicators::triggerBlacklist, "trigger-indicators-trigger-blacklist");
+            for (auto id : ::Utils::noTargetTriggers) {
+                TriggerIndicators::triggerBlacklist.insert(id);
+            }
 
             set(TriggerIndicators::chroma, "trigger-indicators-chroma");
 
@@ -171,7 +171,29 @@ namespace Settings {
             set(MoveIndicators::chroma, "move-indicators-chroma");
         }
 
+        {
+            Utils::DragTriggers::enabled = 
+                Cache::mod->getSettingValue<bool>("utils-drag-triggers-enabled")
+                && Settings::TriggerIndicators::alwaysDrawExtras;
+            set(Utils::DragTriggers::onlyTriggers, "utils-drag-triggers-only-triggers");
+            set(Utils::DragTriggers::dontIncludeSelected, "utils-drag-triggers-dont-include-selected");
+            set(Utils::DragTriggers::autoSpawnEnable, "utils-drag-triggers-auto-spawn-enable");
+            set(Utils::DragTriggers::autoMultiEnable, "utils-drag-triggers-auto-multi-enable");
+            set(Utils::DragTriggers::autoSpawnDisable, "utils-drag-triggers-auto-spawn-disable");
+            set(Utils::DragTriggers::autoMultiDisable, "utils-drag-triggers-auto-multi-disable");
+            
+            set(Utils::DragTriggers::distanceBuffer, "utils-drag-triggers-distance-buffer");
+        }
+
         set(sayoDeviceSensitivity, "silly-sayo-device-sensitivity");
+
+        int maxClusterThreshold = std::max( // why isnt std::max allow 4r infinite args </3
+            std::max(
+                TriggerIndicators::clusterObjectsMaxThreshold, TriggerIndicators::clusterTriggersMaxThreshold
+            ), MoveIndicators::clusterMaxThreshold
+        );
+        Cache::Utils::clusters.reserve(maxClusterThreshold);
+        Cache::Utils::clusterObjQueue.reserve(maxClusterThreshold);
     }
 
     void set(bool& setting, const char* key) {
@@ -187,7 +209,7 @@ namespace Settings {
         setting = ccc4FFromccc4B(Cache::mod->getSettingValue<ccColor4B>(key));
     }
     void set(std::unordered_set<int>& setting, const char* key) {
-        setting = Utils::parseIntArray(Cache::mod->getSettingValue<std::string>(key));
+        setting = ::Utils::parseIntArray(Cache::mod->getSettingValue<std::string>(key));
     }
 }
 

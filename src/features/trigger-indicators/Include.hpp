@@ -13,5 +13,8 @@ namespace TriggerIndicators {
     void drawInput(cocos2d::CCPoint pos, cocos2d::CCSize scale);
     void drawOutput(cocos2d::CCPoint pos, cocos2d::CCSize scale);
 
+    bool isValidTrigger(EffectGameObject* trigger);
     void getObjects(EffectGameObject* trigger, int key, std::vector<GameObject*>& vector);
+    cocos2d::CCPoint getInputPos(GameObject* trigger);
+    cocos2d::CCPoint getOutputPos(GameObject* trigger, bool center, bool hasCenter = true);
 }

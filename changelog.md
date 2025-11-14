@@ -1,11 +1,29 @@
-## v0.1.0-beta.12
-(just adding wat ninkaz said p much)
+## v0.1.0-beta.13
 
 **Added**
 
-- select only mode 4r area previews and better particles
-- hide duration lines while playtesting
-- better chroma :333
+- <cr>d</c><co>r</c><cy>a</c><cg>g</c> <cp>t</c><cr>r</c><co>i</c><cy>g</c><cg>g</c><cb>e</c><cp>r</c> <co>c</c><cy>o</c><cg>n</c><cb>n</c><cp>e</c><cr>c</c><co>t</c><cy>i</c><cg>o</c><cb>n</c><cp>s</c> :3c (enabled in settings)
+- always draw extras setting for <cd>trigger indicator</c>
+- dotted lines for <cd>trigger indicator</c>
+- comments to constants
+- rewrite extras for <cd>trigger indicator</c>
+- changelog <cr>c</c><co>o</c><cy>l</c><cg>o</c><cb>r</c><cp>s</c> !
+- rewrite draw circle cuz it was just disappearing sometimes so might as well :3
+
+**Fixed**
+
+- lowered <co>better duration lines</c> cull threshold
+- something very dumb with drawing double lines when clustering
+- very small and stupid bugs
+
+## v0.1.0-beta.12
+*(just adding wat ninkaz said p much)*
+
+**Added**
+
+- select only mode 4r <cr>area previews</c> and <cl>better particles</c>
+- hide <co>duration lines</c> while playtesting
+- better <cr>c</c><co>h</c><cy>r</c><cg>o</c><cb>m</c><cp>a</c> :333
 
 **Removed**
 
@@ -20,19 +38,19 @@
 
 **Added**
 
-- rewrote draw line
+- rewrite draw line
 
 **Fixed**
 
 - line thickness being f\*\*cked
 - triangles in transperant lines overlapping i think
-- move indicator culling
+- <cb>move indicator</c> culling
 
 ## v0.1.0-beta.10
 
 **Added**
 
-- better duration lines & area previews !
+- <cr>b</c><co>e</c><cy>t</c><cg>t</c><cb>e</c><cp>r</c> <co>d</c><cy>u</c><cg>r</c><cb>a</c><cp>t</c><cr>i</c><co>o</c><cy>n</c> <cb>l</c><cp>i</c><cr>n</c><co>e</c><cy>s</c> <cb>&</c> <cr>a</c><co>r</c><cy>e</c><cg>a</c> <cp>p</c><cr>r</c><co>e</c><cy>v</c><cg>i</c><cb>e</c><cp>w</c><cr>s</c> !
 - bugs prolly cuz i added 2 new features :3c
 
 **Fixed**
@@ -57,22 +75,22 @@
 
 **Added**
 
-- move indicator toggles to setup move popup
+- <cb>move indicator</c> toggles to setup move popup
 - made that a lil more clear in about
-- femboy flag logo :3c
+- <cp>f</c><cd>e</c><cf>mb</c><cd>o</c><cp>y</c> flag logo :3c
 
 ## v0.1.0-beta.7
 
 **Added**
 
-- full rewrite 2, electric boogaloo
+- <cr>f</c><co>u</c><cy>l</c><cg>l</c> <cp>r</c><cr>e</c><co>w</c><cy>r</c><cg>i</c><cb>t</c><cp>e</c> <co>2</c><cy>,</c> <cb>e</c><cp>l</c><cr>e</c><co>c</c><cy>t</c><cg>r</c><cb>i</c><cp>c</c> <co>b</c><cy>o</c><cg>o</c><cb>g</c><cp>a</c><cr>l</c><co>o</c><cy>o</c>
 - reworked settings
 - reworked clustering
-- integrated better particles into this mod :3c (better duration lines next update???)
-- move indicators
+- integrated <cl>better particles</c> into this mod :3c (better duration lines next update???)
+- <cb>move indicators</c>
 - constants customization cuz why not
 - ***prolly*** runs better im not sure but like it should cuz i optimized it way more i think
-- some more settings for trigger indicators
+- some more settings for <cd>trigger indicators</c>
 - more credits :3
 - new changelog formatting again :3c
 

@@ -1,5 +1,5 @@
 {
-	"geode": "4.8.0",
+	"geode": "4.9.0",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
@@ -200,6 +200,21 @@
 				"type": "bool",
 				"name": "Scale With Zoom",
 				"description": "dynamic thickness based on editor zoom",
+				"default": false
+			},
+			"trigger-indicators-always-draw-extras": {
+				"type": "bool",
+				"name": "Always Draw Extras",
+				"default": false
+			},
+			"trigger-indicators-dotted-center-lines": {
+				"type": "bool",
+				"name": "Dotted Center Lines",
+				"default": true
+			},
+			"trigger-indicators-circle-output-extras": {
+				"type": "bool",
+				"name": "Circle Output Extras",
 				"default": false
 			},
 			"trigger-indicators-extras-col-one": {
@@ -644,6 +659,70 @@
 				"name": "Chroma",
 				"description": "ooooo gay rgbtq lights :3c",
 				"default": false
+			},
+
+
+
+
+
+		"utils-drag-triggers-title": {
+			"type": "title",
+			"name": "Utils - Drag Triggers"
+		},
+			"utils-drag-triggers-enabled": {
+				"type": "bool",
+				"name": "Enabled",
+				"default": false,
+				"description": "wont work unless always draw extras is enabled ;3",
+				"enable-if": "trigger-indicators-always-draw-extras"
+			},
+			"utils-drag-triggers-only-triggers": {
+				"type": "bool",
+				"name": "Only Triggers",
+				"default": false,
+				"enable-if": "trigger-indicators-always-draw-extras"
+			},
+			"utils-drag-triggers-dont-include-selected": {
+				"type": "bool",
+				"name": "Dont Include Selected",
+				"default": false,
+				"description": "by default if u drag to a selected object, all selected objects will b added to the group",
+				"enable-if": "trigger-indicators-always-draw-extras"
+			},
+			"utils-drag-triggers-auto-spawn-enable": {
+				"type": "bool",
+				"name": "Auto Spawn Enable",
+				"default": true,
+				"description": "when connected to another trigger, automatically set it to spawn triggered",
+				"enable-if": "trigger-indicators-always-draw-extras"
+			},
+			"utils-drag-triggers-auto-multi-enable": {
+				"type": "bool",
+				"name": "Auto Multi Enable",
+				"default": true,
+				"description": "when connected to another trigger, automatically set it to multi triggered",
+				"enable-if": "trigger-indicators-always-draw-extras"
+			},
+			"utils-drag-triggers-auto-spawn-disable": {
+				"type": "bool",
+				"name": "Auto Spawn Disable",
+				"default": true,
+				"description": "when disconnected to another trigger, automatically disable spawn triggered",
+				"enable-if": "trigger-indicators-always-draw-extras"
+			},
+			"utils-drag-triggers-auto-multi-disable": {
+				"type": "bool",
+				"name": "Auto Multi Disable",
+				"default": true,
+				"description": "when disconnected to another trigger, automatically disable multi triggered",
+				"enable-if": "trigger-indicators-always-draw-extras"
+			},
+			"utils-drag-triggers-distance-buffer": {
+				"type": "float",
+				"name": "Distance Buffer",
+				"default": 1.25,
+				"description": "multiply the max distance from the output extra by this for the click to still count",
+				"enable-if": "trigger-indicators-always-draw-extras"
 			},
 
 

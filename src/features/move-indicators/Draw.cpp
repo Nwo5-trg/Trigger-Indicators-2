@@ -77,7 +77,8 @@ void MoveIndicators::drawIndicator(EffectGameObject* trigger, const std::pair<CC
         );
     }
  
-    Cache::dontUpdateObjectDraw->drawCircle(
+    Utils::drawCircle(
+        Cache::dontUpdateObjectDraw,
         pair.second + Cache::MoveIndicators::indicatorSegments.front().first, 
         Cache::MoveIndicators::startRadius,
         Cache::MoveIndicators::startCol, 0.0f, 
