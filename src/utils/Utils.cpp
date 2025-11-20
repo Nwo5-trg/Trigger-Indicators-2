@@ -336,6 +336,7 @@ namespace Utils {
         drawNode = CCDrawNode::create();
         drawNode->setPosition(0.0f, 0.0f);
         drawNode->setBlendFunc({GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA});
+        drawnode->m_bUseArea = false; // ty config :3
         parent->addChild(drawNode);
     }
 
